@@ -1,0 +1,319 @@
+---------------------------------------
+Settings: DRBCQ_Hopper-v2_0
+---------------------------------------
+---------------------------------------
+Evaluation over 10 episodes: 1601.362453
+---------------------------------------
+Training iterations: 5000.0	 Average reward: 1601.36
+---------------------------------------
+Evaluation over 10 episodes: 768.522915
+---------------------------------------
+Training iterations: 10000.0	 Average reward: 768.52
+---------------------------------------
+Evaluation over 10 episodes: 2316.459481
+---------------------------------------
+Training iterations: 15000.0	 Average reward: 2316.46
+---------------------------------------
+Evaluation over 10 episodes: 2070.878290
+---------------------------------------
+Training iterations: 20000.0	 Average reward: 2070.88
+---------------------------------------
+Evaluation over 10 episodes: 2868.079461
+---------------------------------------
+Training iterations: 25000.0	 Average reward: 2868.08
+---------------------------------------
+Evaluation over 10 episodes: 2691.699080
+---------------------------------------
+Training iterations: 30000.0	 Average reward: 2691.70
+---------------------------------------
+Evaluation over 10 episodes: 1606.732232
+---------------------------------------
+Training iterations: 35000.0	 Average reward: 1606.73
+---------------------------------------
+Evaluation over 10 episodes: 2290.387184
+---------------------------------------
+Training iterations: 40000.0	 Average reward: 2290.39
+---------------------------------------
+Evaluation over 10 episodes: 1839.472663
+---------------------------------------
+Training iterations: 45000.0	 Average reward: 1839.47
+---------------------------------------
+Evaluation over 10 episodes: 2110.127281
+---------------------------------------
+Training iterations: 50000.0	 Average reward: 2110.13
+---------------------------------------
+Evaluation over 10 episodes: 2483.610151
+---------------------------------------
+Training iterations: 55000.0	 Average reward: 2483.61
+---------------------------------------
+Evaluation over 10 episodes: 3104.456490
+---------------------------------------
+Training iterations: 60000.0	 Average reward: 3104.46
+---------------------------------------
+Evaluation over 10 episodes: 2611.167235
+---------------------------------------
+Training iterations: 65000.0	 Average reward: 2611.17
+---------------------------------------
+Evaluation over 10 episodes: 2168.852115
+---------------------------------------
+Training iterations: 70000.0	 Average reward: 2168.85
+---------------------------------------
+Evaluation over 10 episodes: 1880.019976
+---------------------------------------
+Training iterations: 75000.0	 Average reward: 1880.02
+---------------------------------------
+Evaluation over 10 episodes: 2213.627685
+---------------------------------------
+Training iterations: 80000.0	 Average reward: 2213.63
+---------------------------------------
+Evaluation over 10 episodes: 2237.643985
+---------------------------------------
+Training iterations: 85000.0	 Average reward: 2237.64
+---------------------------------------
+Evaluation over 10 episodes: 2212.568486
+---------------------------------------
+Training iterations: 90000.0	 Average reward: 2212.57
+---------------------------------------
+Evaluation over 10 episodes: 2340.667514
+---------------------------------------
+Training iterations: 95000.0	 Average reward: 2340.67
+---------------------------------------
+Evaluation over 10 episodes: 2621.924927
+---------------------------------------
+Training iterations: 100000.0	 Average reward: 2621.92
+---------------------------------------
+Evaluation over 10 episodes: 2582.606403
+---------------------------------------
+Training iterations: 105000.0	 Average reward: 2582.61
+---------------------------------------
+Evaluation over 10 episodes: 1719.270977
+---------------------------------------
+Training iterations: 110000.0	 Average reward: 1719.27
+---------------------------------------
+Evaluation over 10 episodes: 2221.653473
+---------------------------------------
+Training iterations: 115000.0	 Average reward: 2221.65
+---------------------------------------
+Evaluation over 10 episodes: 2908.644319
+---------------------------------------
+Training iterations: 120000.0	 Average reward: 2908.64
+---------------------------------------
+Evaluation over 10 episodes: 2705.397460
+---------------------------------------
+Training iterations: 125000.0	 Average reward: 2705.40
+---------------------------------------
+Evaluation over 10 episodes: 2574.578362
+---------------------------------------
+Training iterations: 130000.0	 Average reward: 2574.58
+---------------------------------------
+Evaluation over 10 episodes: 2416.237579
+---------------------------------------
+Training iterations: 135000.0	 Average reward: 2416.24
+---------------------------------------
+Evaluation over 10 episodes: 2597.405814
+---------------------------------------
+Training iterations: 140000.0	 Average reward: 2597.41
+---------------------------------------
+Evaluation over 10 episodes: 2847.725852
+---------------------------------------
+Training iterations: 145000.0	 Average reward: 2847.73
+---------------------------------------
+Evaluation over 10 episodes: 2269.042510
+---------------------------------------
+Training iterations: 150000.0	 Average reward: 2269.04
+---------------------------------------
+Evaluation over 10 episodes: 2642.312996
+---------------------------------------
+Training iterations: 155000.0	 Average reward: 2642.31
+---------------------------------------
+Evaluation over 10 episodes: 1886.947074
+---------------------------------------
+Training iterations: 160000.0	 Average reward: 1886.95
+---------------------------------------
+Evaluation over 10 episodes: 2349.159520
+---------------------------------------
+Training iterations: 165000.0	 Average reward: 2349.16
+---------------------------------------
+Evaluation over 10 episodes: 2551.716506
+---------------------------------------
+Training iterations: 170000.0	 Average reward: 2551.72
+---------------------------------------
+Evaluation over 10 episodes: 2083.256617
+---------------------------------------
+Training iterations: 175000.0	 Average reward: 2083.26
+---------------------------------------
+Evaluation over 10 episodes: 2470.148664
+---------------------------------------
+Training iterations: 180000.0	 Average reward: 2470.15
+---------------------------------------
+Evaluation over 10 episodes: 2397.449022
+---------------------------------------
+Training iterations: 185000.0	 Average reward: 2397.45
+---------------------------------------
+Evaluation over 10 episodes: 2566.872566
+---------------------------------------
+Training iterations: 190000.0	 Average reward: 2566.87
+---------------------------------------
+Evaluation over 10 episodes: 1756.117330
+---------------------------------------
+Training iterations: 195000.0	 Average reward: 1756.12
+---------------------------------------
+Evaluation over 10 episodes: 2234.239902
+---------------------------------------
+Training iterations: 200000.0	 Average reward: 2234.24
+---------------------------------------
+Evaluation over 10 episodes: 2197.660341
+---------------------------------------
+Training iterations: 205000.0	 Average reward: 2197.66
+---------------------------------------
+Evaluation over 10 episodes: 2425.627301
+---------------------------------------
+Training iterations: 210000.0	 Average reward: 2425.63
+---------------------------------------
+Evaluation over 10 episodes: 2779.500725
+---------------------------------------
+Training iterations: 215000.0	 Average reward: 2779.50
+---------------------------------------
+Evaluation over 10 episodes: 2138.503281
+---------------------------------------
+Training iterations: 220000.0	 Average reward: 2138.50
+---------------------------------------
+Evaluation over 10 episodes: 3059.679304
+---------------------------------------
+Training iterations: 225000.0	 Average reward: 3059.68
+---------------------------------------
+Evaluation over 10 episodes: 2241.121113
+---------------------------------------
+Training iterations: 230000.0	 Average reward: 2241.12
+---------------------------------------
+Evaluation over 10 episodes: 2039.379232
+---------------------------------------
+Training iterations: 235000.0	 Average reward: 2039.38
+---------------------------------------
+Evaluation over 10 episodes: 2499.252313
+---------------------------------------
+Training iterations: 240000.0	 Average reward: 2499.25
+---------------------------------------
+Evaluation over 10 episodes: 2085.409477
+---------------------------------------
+Training iterations: 245000.0	 Average reward: 2085.41
+---------------------------------------
+Evaluation over 10 episodes: 2044.392236
+---------------------------------------
+Training iterations: 250000.0	 Average reward: 2044.39
+---------------------------------------
+Evaluation over 10 episodes: 2522.559836
+---------------------------------------
+Training iterations: 255000.0	 Average reward: 2522.56
+---------------------------------------
+Evaluation over 10 episodes: 2345.000539
+---------------------------------------
+Training iterations: 260000.0	 Average reward: 2345.00
+---------------------------------------
+Evaluation over 10 episodes: 2518.538668
+---------------------------------------
+Training iterations: 265000.0	 Average reward: 2518.54
+---------------------------------------
+Evaluation over 10 episodes: 1979.389518
+---------------------------------------
+Training iterations: 270000.0	 Average reward: 1979.39
+---------------------------------------
+Evaluation over 10 episodes: 2716.782843
+---------------------------------------
+Training iterations: 275000.0	 Average reward: 2716.78
+---------------------------------------
+Evaluation over 10 episodes: 2343.392699
+---------------------------------------
+Training iterations: 280000.0	 Average reward: 2343.39
+---------------------------------------
+Evaluation over 10 episodes: 2245.341826
+---------------------------------------
+Training iterations: 285000.0	 Average reward: 2245.34
+---------------------------------------
+Evaluation over 10 episodes: 1573.946456
+---------------------------------------
+Training iterations: 290000.0	 Average reward: 1573.95
+---------------------------------------
+Evaluation over 10 episodes: 1515.898332
+---------------------------------------
+Training iterations: 295000.0	 Average reward: 1515.90
+---------------------------------------
+Evaluation over 10 episodes: 2264.517444
+---------------------------------------
+Training iterations: 300000.0	 Average reward: 2264.52
+---------------------------------------
+Evaluation over 10 episodes: 2208.108582
+---------------------------------------
+Training iterations: 305000.0	 Average reward: 2208.11
+---------------------------------------
+Evaluation over 10 episodes: 1607.385733
+---------------------------------------
+Training iterations: 310000.0	 Average reward: 1607.39
+---------------------------------------
+Evaluation over 10 episodes: 2471.415484
+---------------------------------------
+Training iterations: 315000.0	 Average reward: 2471.42
+---------------------------------------
+Evaluation over 10 episodes: 2412.467690
+---------------------------------------
+Training iterations: 320000.0	 Average reward: 2412.47
+---------------------------------------
+Evaluation over 10 episodes: 1618.108527
+---------------------------------------
+Training iterations: 325000.0	 Average reward: 1618.11
+---------------------------------------
+Evaluation over 10 episodes: 1857.032325
+---------------------------------------
+Training iterations: 330000.0	 Average reward: 1857.03
+---------------------------------------
+Evaluation over 10 episodes: 2002.445812
+---------------------------------------
+Training iterations: 335000.0	 Average reward: 2002.45
+---------------------------------------
+Evaluation over 10 episodes: 1999.816615
+---------------------------------------
+Training iterations: 340000.0	 Average reward: 1999.82
+---------------------------------------
+Evaluation over 10 episodes: 2188.084963
+---------------------------------------
+Training iterations: 345000.0	 Average reward: 2188.08
+---------------------------------------
+Evaluation over 10 episodes: 2319.212178
+---------------------------------------
+Training iterations: 350000.0	 Average reward: 2319.21
+---------------------------------------
+Evaluation over 10 episodes: 1707.704949
+---------------------------------------
+Training iterations: 355000.0	 Average reward: 1707.70
+---------------------------------------
+Evaluation over 10 episodes: 1972.061653
+---------------------------------------
+Training iterations: 360000.0	 Average reward: 1972.06
+---------------------------------------
+Evaluation over 10 episodes: 2460.130082
+---------------------------------------
+Training iterations: 365000.0	 Average reward: 2460.13
+---------------------------------------
+Evaluation over 10 episodes: 2294.298498
+---------------------------------------
+Training iterations: 370000.0	 Average reward: 2294.30
+---------------------------------------
+Evaluation over 10 episodes: 2002.105340
+---------------------------------------
+Training iterations: 375000.0	 Average reward: 2002.11
+---------------------------------------
+Evaluation over 10 episodes: 2466.146463
+---------------------------------------
+Training iterations: 380000.0	 Average reward: 2466.15
+---------------------------------------
+Evaluation over 10 episodes: 2266.442693
+---------------------------------------
+Training iterations: 385000.0	 Average reward: 2266.44
+---------------------------------------
+Evaluation over 10 episodes: 2554.311334
+---------------------------------------
+Training iterations: 390000.0	 Average reward: 2554.31
+---------------------------------------
+Evaluation over 10 episodes: 2371.830468
+---------------------------------------
+Training iterations: 395000.0	 Average reward: 2371.83

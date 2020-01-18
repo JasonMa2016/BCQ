@@ -125,4 +125,4 @@ class BC(object):
         loss.backward()
         self.actor_optimizer.step()
 
-        return loss.detach().numpy()
+        return loss.to('cpu').detach().numpy()

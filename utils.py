@@ -35,3 +35,19 @@ class ReplayBuffer(object):
 
 	def load(self, filename):
 		self.storage = np.load("./buffers/"+filename+".npy", allow_pickle=True)
+
+
+# Runs policy for X episodes and returns average reward
+def evaluate_policy(env, policy, eval_episodes=10):
+	avg_reward = 0.
+	for _ in range(eval_episodes):
+		obs = env.reset()
+		done = False
+		while not done:
+			action = policy.select_action(np.array(obs))
+			obs, reward, done, _ = env.step(action)
+			avg_reward += reward
+
+	avg_reward /= eval_episodes
+
+	return avg_reward

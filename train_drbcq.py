@@ -3,29 +3,12 @@ import numpy as np
 import torch
 import argparse
 import os
+import time
 
 import utils
 import DDPG
 import BCQ
 from BC import Policy
-
-# Runs policy for X episodes and returns average reward
-def evaluate_policy(policy, eval_episodes=10):
-    avg_reward = 0.
-    for _ in range(eval_episodes):
-        obs = env.reset()
-        done = False
-        while not done:
-            action = policy.select_action(np.array(obs))
-            obs, reward, done, _ = env.step(action)
-            avg_reward += reward
-
-    avg_reward /= eval_episodes
-
-    print("---------------------------------------")
-    print("Evaluation over %d episodes: %f" % (eval_episodes, avg_reward))
-    print("---------------------------------------")
-    return avg_reward
 
 
 if __name__ == "__main__":
@@ -76,10 +59,13 @@ if __name__ == "__main__":
 
     training_iters = 0
     while training_iters < args.max_timesteps:
+        t0 = time.time()
         pol_vals = policy.train(replay_buffer, iterations=int(args.eval_freq))
-        avg_reward = evaluate_policy(policy)
+        t1 = time.time()
+        avg_reward = utils.evaluate_policy(policy)
         evaluations.append(avg_reward)
         np.save("./results/" + file_name, evaluations)
 
         training_iters += args.eval_freq
-        print("Training iterations: {}\t Average reward: {:.2f}".format(str(training_iters), avg_reward))
+        print("Training iterations: {}\tTraining time: {:.2f}\tAverage reward: {:.2f}".format(str(training_iters),
+                                                                                              t1 - t0, avg_reward))
