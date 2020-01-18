@@ -22,7 +22,7 @@ if __name__ == "__main__":
     parser.add_argument("--max_timesteps", default=1e6, type=float)  # Max time steps to run environment for
     args = parser.parse_args()
 
-    file_name = "DRBCQ_traj%s_%s_%s" % (args.env_name, args.num_trajs, str(args.seed))
+    file_name = "DRBCQ_traj%s_%s_%s" % (args.num_trajs, args.env_name, str(args.seed))
     buffer_name = "%s_traj25_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
     expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
 
