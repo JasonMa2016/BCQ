@@ -75,12 +75,16 @@ if __name__ == "__main__":
     # single BC
     imitator = BC(args, state_dim, action_dim, max_action)
     imitator.set_expert(flat_expert_trajs)
+    evaluations = []
     for i_iter in range(2000):
         t0 = time.time()
         loss = imitator.train()
         t1 = time.time()
-        if i_iter % 10 == 0:
-            print('{}\tT_update:{:.4f}\t training loss:{:.2f}'.format(
+        if i_iter % 100 == 0:
+            rewards = utils.evaluate_policy(env, imitator.actor())
+            evaluations.append(rewards)
+            np.save("./results/" + file_name, evaluations)
+            print('Training iteration {}\tT_update:{:.4f}\t training loss:{:.2f}'.format(
             i_iter, t1-t0, loss))
 
     imitator.actor.to('cpu')
@@ -92,30 +96,31 @@ if __name__ == "__main__":
     policy_rewards = utils.evaluate_policy(env, imitator.actor)
     print("{} episodes\t reward avg:{:.2f}\t reward std:{:.2f}".format(len(policy_rewards), policy_rewards.mean(),
                                                                        policy_rewards.std()))
-    # # ensemble
-    # expert_traj = np.array(flat_expert_trajs)
-    # for sample in range(5):
-    #     print("=======================================")
-    #     print("BC Imitator {}".format(sample+1))
-    #     indices = np.random.choice(len(expert_traj), len(expert_traj))
-    #     # print(indices)
-    #     # print(expert_traj)
-    #     current_expert_traj = expert_traj[indices.astype(int)]
-    #     imitator = BC(args, state_dim, action_dim, max_action)
-    #     imitator.set_expert(expert_traj)
-    #
-    #     for i_iter in range(2000):
-    #         t0 = time.time()
-    #         loss = imitator.train()
-    #         t1 = time.time()
-    #         if i_iter % 200 == 0:
-    #             print('{}\tT_update:{:.4f}\t training loss:{:.2f}'.format(
-    #             i_iter, t1-t0, loss))
-    #
-    #     imitator.actor.to('cpu')
-    #     torch.save(imitator.actor.state_dict(), 'imitator_models/{}_traj{}_sample{}_seed{}.p'.format(args.env_name,
-    #                                                              args.num_trajs,
-    #                                                              sample,
-    #                                                              args.seed))
-    #     print("=======================================")
-    #     print("")
+
+    # ensemble
+    expert_traj = np.array(flat_expert_trajs)
+    for sample in range(5):
+        print("=======================================")
+        print("BC Imitator {}".format(sample+1))
+        indices = np.random.choice(len(expert_traj), len(expert_traj))
+        # print(indices)
+        # print(expert_traj)
+        current_expert_traj = expert_traj[indices.astype(int)]
+        imitator = BC(args, state_dim, action_dim, max_action)
+        imitator.set_expert(expert_traj)
+
+        for i_iter in range(2000):
+            t0 = time.time()
+            loss = imitator.train()
+            t1 = time.time()
+            if i_iter % 200 == 0:
+                print('{}\tT_update:{:.4f}\t training loss:{:.2f}'.format(
+                i_iter, t1-t0, loss))
+
+        imitator.actor.to('cpu')
+        torch.save(imitator.actor.state_dict(), 'imitator_models/{}_traj{}_sample{}_seed{}.p'.format(args.env_name,
+                                                                 args.num_trajs,
+                                                                 sample,
+                                                                 args.seed))
+        print("=======================================")
+        print("")

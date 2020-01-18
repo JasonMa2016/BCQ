@@ -48,14 +48,15 @@ def evaluate_policy(env, policy, eval_episodes=50):
 		episode_reward = 0
 		obs = env.reset()
 		done = False
-		while not done:
-			try:
-				action = policy.select_action(np.array(obs))
-				obs, reward, done, _ = env.step(action)
-			except:
-				action = policy.select_action(torch.FloatTensor(obs).unsqueeze(dim=0))
-				obs, reward, done, _ = env.step(action.detach().numpy())
-			episode_reward += reward
-		rewards.append(episode_reward)
+		with torch.no_grad():
+			while not done:
+				try:
+					action = policy.select_action(np.array(obs))
+					obs, reward, done, _ = env.step(action)
+				except:
+					action = policy.select_action(torch.FloatTensor(obs).unsqueeze(dim=0))
+					obs, reward, done, _ = env.step(action.detach().numpy())
+				episode_reward += reward
+			rewards.append(episode_reward)
 	rewards = np.array(rewards)
 	return rewards
