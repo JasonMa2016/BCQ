@@ -66,8 +66,8 @@ if __name__ == "__main__":
             expert_traj.append((obs, new_obs, action, reward, done_bool))
 
             if done:
-                print("Total T: %d Episode Num: %d Episode T: %d Reward: %f" % (
-                    total_timesteps, episode_num, episode_timesteps, episode_reward))
+                # print("Total T: %d Episode Num: %d Episode T: %d Reward: %f" % (
+                #     total_timesteps, episode_num, episode_timesteps, episode_reward))
                 break
             obs = new_obs
             episode_timesteps += 1
