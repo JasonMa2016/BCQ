@@ -52,7 +52,7 @@ if __name__ == "__main__":
     args.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
     file_name = "BCQ_%s_%s" % (args.env_name, str(args.seed))
-    buffer_name = "%s_Traj25_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
+    buffer_name = "%s_traj25_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
     expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
 
     # create a flat list
@@ -81,11 +81,13 @@ if __name__ == "__main__":
         loss = imitator.train()
         t1 = time.time()
         if i_iter % 100 == 0:
-            rewards = utils.evaluate_policy(env, imitator.actor())
+            imitator.actor.to('cpu')
+            rewards = utils.evaluate_policy(env, imitator.actor)
             evaluations.append(rewards)
             np.save("./results/" + file_name, evaluations)
             print('Training iteration {}\tT_update:{:.4f}\t training loss:{:.2f}'.format(
             i_iter, t1-t0, loss))
+            imitator.actor.to('device')
 
     imitator.actor.to('cpu')
     torch.save(imitator.actor.state_dict(), 'imitator_models/{}_traj{}_seed{}.p'.format(args.env_name,
