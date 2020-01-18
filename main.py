@@ -57,10 +57,10 @@ if __name__ == "__main__":
         t0 = time.time()
         pol_vals = policy.train(replay_buffer, iterations=int(args.eval_freq))
         t1 = time.time()
-        avg_reward = utils.evaluate_policy(policy)
-        evaluations.append(avg_reward)
+        rewards = utils.evaluate_policy(env, policy)
+        evaluations.append(rewards)
         np.save("./results/" + file_name, evaluations)
 
         training_iters += args.eval_freq
-        print("Training iterations: {}\tTraining time: {:.2f}\tAverage reward: {:.2f}".format(str(training_iters),
-                                                                                          t1-t0,avg_reward))
+        print("Training iterations: {}\tTraining time: {:.2f}\tReward average: {:.2f}\tReward std: {:.2f}".format(str(training_iters),
+                                                                                          t1-t0,rewards.mean(),rewards.std()))

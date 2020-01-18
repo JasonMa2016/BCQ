@@ -40,27 +40,28 @@ if __name__ == "__main__":
 	# Initialize and load policy
 	policy = DDPG.DDPG(state_dim, action_dim, max_action)
 	policy.load(file_name, "./pytorch_models")
+	# print(utils.evaluate_policy(env, policy))
 
 	# Initialize buffer
 	replay_buffer = utils.ReplayBuffer()
-	
+
 	total_timesteps = 0
 	episode_num = 0
-	done = True 
+	done = True
 
 	while total_timesteps < args.buffer_size:
-		
-		if done: 
 
-			if total_timesteps != 0: 
+		if done:
+
+			if total_timesteps != 0:
 				print("Total T: %d Episode Num: %d Episode T: %d Reward: %f"% (total_timesteps, episode_num, episode_timesteps, episode_reward))
-			
+
 			# Reset environment
 			obs = env.reset()
 			done = False
 			episode_reward = 0
 			episode_timesteps = 0
-			episode_num += 1 
+			episode_num += 1
 		#
 		# # Add noise to actions
 		# if np.random.uniform(0, 1) < args.noise1:
@@ -71,7 +72,7 @@ if __name__ == "__main__":
 		# 		action = (action + np.random.normal(0, args.noise2, size=env.action_space.shape[0])).clip(env.action_space.low, env.action_space.high)
 		action = policy.select_action(np.array(obs))
 		# Perform action
-		new_obs, reward, done, _ = env.step(action) 
+		new_obs, reward, done, _ = env.step(action)
 		done_bool = 0 if episode_timesteps + 1 == env._max_episode_steps else float(done)
 		episode_reward += reward
 

@@ -18,11 +18,21 @@ if __name__ == "__main__":
     parser.add_argument("--seed", default=0, type=int)  # Sets Gym, PyTorch and Numpy seeds
     parser.add_argument("--buffer_type", default="Robust")  # Prepends name to filename.
     parser.add_argument("--eval_freq", default=5e3, type=float)  # How often (time steps) we evaluate
+    parser.add_argument("--num_trajs", default=1, type=int)            # Number of expert trajectories to use
     parser.add_argument("--max_timesteps", default=1e6, type=float)  # Max time steps to run environment for
     args = parser.parse_args()
 
-    file_name = "DRBCQ_%s_%s" % (args.env_name, str(args.seed))
-    buffer_name = "%s_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
+    file_name = "DRBCQ_traj%s_%s_%s" % (args.env_name, args.num_trajs, str(args.seed))
+    buffer_name = "%s_traj25_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
+    expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
+
+    # create a flat list
+    flat_expert_trajs = []
+    expert_trajs = expert_trajs[:args.num_trajs]
+    for expert_traj in expert_trajs:
+        for state_action in expert_traj:
+            flat_expert_trajs.append(state_action)
+
     print("---------------------------------------")
     print("Settings: " + file_name)
     print("---------------------------------------")
@@ -44,13 +54,14 @@ if __name__ == "__main__":
     policy = BCQ.DRBCQ(state_dim, action_dim, max_action)
     model_paths = []
     for sample in range(5):
-        model_path = 'imitator_models/{}_sample{}_seed{}.p'.format(args.env_name, sample, args.seed)
+        model_path = 'imitator_models/{}_traj{}_sample{}_seed{}.p'.format(args.env_name, args.num_trajs, sample, args.seed)
         model_paths.append(model_path)
     policy.set_ensemble(model_paths)
 
     # Initialize batch
+
     replay_buffer = utils.ReplayBuffer()
-    replay_buffer.load(buffer_name)
+    replay_buffer.set_expert(flat_expert_trajs)
 
     evaluations = []
 
