@@ -85,9 +85,9 @@ if __name__ == "__main__":
             rewards = utils.evaluate_policy(env, imitator.actor)
             evaluations.append(rewards)
             np.save("./results/" + file_name, evaluations)
-            print('Training iteration {}\tT_update:{:.4f}\t training loss:{:.2f}'.format(
-            i_iter, t1-t0, loss))
-            imitator.actor.to('device')
+            print('Training iteration {}\tT_update:{:.4f}\t reward avg:{:.2f}\t reward std:{:.2f}\t training loss:{:.2f}'.format(
+            i_iter, t1-t0, rewards.mean(), rewards.std(), loss))
+            imitator.actor.to(args.device)
 
     imitator.actor.to('cpu')
     torch.save(imitator.actor.state_dict(), 'imitator_models/{}_traj{}_seed{}.p'.format(args.env_name,
