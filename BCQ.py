@@ -1,7 +1,9 @@
+import pickle
 import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from BC import Policy
 import utils
 
 
@@ -190,6 +192,94 @@ class BCQ(object):
 
 
 			# Update Target Networks 
+			for param, target_param in zip(self.critic.parameters(), self.critic_target.parameters()):
+				target_param.data.copy_(tau * param.data + (1 - tau) * target_param.data)
+
+			for param, target_param in zip(self.actor.parameters(), self.actor_target.parameters()):
+				target_param.data.copy_(tau * param.data + (1 - tau) * target_param.data)
+
+
+class DRBCQ(BCQ):
+	def __init__(self,state_dim, action_dim, max_action):
+		super(DRBCQ, self).__init__(state_dim, action_dim, max_action)
+		self.ensemble = []
+		self.state_dim = state_dim
+		self.action_dim = action_dim
+
+	def set_ensemble(self, model_paths):
+		for model_path in model_paths:
+			imitator = Policy(self.state_dim, self.action_dim)
+			imitator.load_state_dict(
+				torch.load(model_path))
+			self.ensemble.append(imitator)
+
+	def train(self, replay_buffer, iterations, batch_size=100, discount=0.99, tau=0.005):
+
+		for it in range(iterations):
+
+			# Sample replay buffer / batch
+			state_np, next_state_np, action, reward, done = replay_buffer.sample(batch_size)
+
+			# change reward
+			new_reward = []
+			for imitator in self.ensemble:
+				with torch.no_grad():
+					action_probs = imitator.get_log_prob(torch.FloatTensor(state_np), torch.FloatTensor(action))
+					new_reward.append(action_probs)
+			new_reward = torch.stack(new_reward, dim=2)
+			reward = torch.var(new_reward, dim=2)
+
+			state = torch.FloatTensor(state_np).to(device)
+			action = torch.FloatTensor(action).to(device)
+			next_state = torch.FloatTensor(next_state_np).to(device)
+			reward = torch.FloatTensor(reward).to(device)
+			done = torch.FloatTensor(1 - done).to(device)
+
+			# Variational Auto-Encoder Training
+			recon, mean, std = self.vae(state, action)
+			recon_loss = F.mse_loss(recon, action)
+			KL_loss = -0.5 * (1 + torch.log(std.pow(2)) - mean.pow(2) - std.pow(2)).mean()
+			vae_loss = recon_loss + 0.5 * KL_loss
+
+			self.vae_optimizer.zero_grad()
+			vae_loss.backward()
+			self.vae_optimizer.step()
+
+			# Critic Training
+			with torch.no_grad():
+
+				# Duplicate state 10 times
+				state_rep = torch.FloatTensor(np.repeat(next_state_np, 10, axis=0)).to(device)
+
+				# Compute value of perturbed actions sampled from the VAE
+				target_Q1, target_Q2 = self.critic_target(state_rep,
+														  self.actor_target(state_rep, self.vae.decode(state_rep)))
+
+				# Soft Clipped Double Q-learning
+				target_Q = 0.75 * torch.min(target_Q1, target_Q2) + 0.25 * torch.max(target_Q1, target_Q2)
+				target_Q = target_Q.view(batch_size, -1).max(1)[0].view(-1, 1)
+
+				target_Q = reward + done * discount * target_Q
+
+			current_Q1, current_Q2 = self.critic(state, action)
+			critic_loss = F.mse_loss(current_Q1, target_Q) + F.mse_loss(current_Q2, target_Q)
+
+			self.critic_optimizer.zero_grad()
+			critic_loss.backward()
+			self.critic_optimizer.step()
+
+			# Pertubation Model / Action Training
+			sampled_actions = self.vae.decode(state)
+			perturbed_actions = self.actor(state, sampled_actions)
+
+			# Update through DPG
+			actor_loss = -self.critic.q1(state, perturbed_actions).mean()
+
+			self.actor_optimizer.zero_grad()
+			actor_loss.backward()
+			self.actor_optimizer.step()
+
+			# Update Target Networks
 			for param, target_param in zip(self.critic.parameters(), self.critic_target.parameters()):
 				target_param.data.copy_(tau * param.data + (1 - tau) * target_param.data)
 

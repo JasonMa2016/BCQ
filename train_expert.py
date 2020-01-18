@@ -12,7 +12,7 @@ import DDPG
 if __name__ == "__main__":
 	
 	parser = argparse.ArgumentParser()
-	parser.add_argument("--env_name", default="Hopper-v1")				# OpenAI gym environment name
+	parser.add_argument("--env_name", default="Hopper-v2")				# OpenAI gym environment name
 	parser.add_argument("--seed", default=0, type=int)					# Sets Gym, PyTorch and Numpy seeds
 	parser.add_argument("--max_timesteps", default=1e6, type=float)		# Max time steps to run environment for
 	parser.add_argument("--start_timesteps", default=1e3, type=int)		# How many time steps purely random policy is run for
@@ -20,9 +20,9 @@ if __name__ == "__main__":
 	args = parser.parse_args()
 
 	file_name = "DDPG_%s_%s" % (args.env_name, str(args.seed))
-	print "---------------------------------------"
-	print "Settings: " + file_name
-	print "---------------------------------------"
+	print("---------------------------------------")
+	print("Settings: " + file_name)
+	print("---------------------------------------")
 
 	if not os.path.exists("./pytorch_models"):
 		os.makedirs("./pytorch_models")
@@ -51,7 +51,7 @@ if __name__ == "__main__":
 		if done: 
 
 			if total_timesteps != 0: 
-				print("Total T: %d Episode Num: %d Episode T: %d Reward: %f") % (total_timesteps, episode_num, episode_timesteps, episode_reward)
+				print("Total T: %d Episode Num: %d Episode T: %d Reward: %f" % (total_timesteps, episode_num, episode_timesteps, episode_reward))
 				policy.train(replay_buffer, episode_timesteps)
 			
 			# Save policy

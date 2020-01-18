@@ -11,7 +11,7 @@ import DDPG
 if __name__ == "__main__":
 	
 	parser = argparse.ArgumentParser()
-	parser.add_argument("--env_name", default="Hopper-v1")				# OpenAI gym environment name
+	parser.add_argument("--env_name", default="Hopper-v2")				# OpenAI gym environment name
 	parser.add_argument("--seed", default=0, type=int)					# Sets Gym, PyTorch and Numpy seeds
 	parser.add_argument("--buffer_size", default=1e5, type=float)		# Max time steps to run environment for
 	parser.add_argument("--noise1", default=0.3, type=float)			# Probability of selecting random action
@@ -20,9 +20,9 @@ if __name__ == "__main__":
 
 	file_name = "DDPG_%s_%s" % (args.env_name, str(args.seed))
 	buffer_name = "Robust_%s_%s" % (args.env_name, str(args.seed))
-	print "---------------------------------------"
-	print "Settings: " + file_name
-	print "---------------------------------------"
+	print("---------------------------------------")
+	print("Settings: " + file_name)
+	print("---------------------------------------")
 
 	if not os.path.exists("./buffers"):
 		os.makedirs("./buffers")
@@ -53,7 +53,7 @@ if __name__ == "__main__":
 		if done: 
 
 			if total_timesteps != 0: 
-				print("Total T: %d Episode Num: %d Episode T: %d Reward: %f") % (total_timesteps, episode_num, episode_timesteps, episode_reward)
+				print("Total T: %d Episode Num: %d Episode T: %d Reward: %f"% (total_timesteps, episode_num, episode_timesteps, episode_reward))
 			
 			# Reset environment
 			obs = env.reset()
@@ -61,15 +61,15 @@ if __name__ == "__main__":
 			episode_reward = 0
 			episode_timesteps = 0
 			episode_num += 1 
-		
-		# Add noise to actions
-		if np.random.uniform(0, 1) < args.noise1:
-			action = env.action_space.sample()
-		else:
-			action = policy.select_action(np.array(obs))
-			if args.noise2 != 0: 
-				action = (action + np.random.normal(0, args.noise2, size=env.action_space.shape[0])).clip(env.action_space.low, env.action_space.high)
-
+		#
+		# # Add noise to actions
+		# if np.random.uniform(0, 1) < args.noise1:
+		# 	action = env.action_space.sample()
+		# else:
+		# 	action = policy.select_action(np.array(obs))
+		# 	if args.noise2 != 0:
+		# 		action = (action + np.random.normal(0, args.noise2, size=env.action_space.shape[0])).clip(env.action_space.low, env.action_space.high)
+		action = policy.select_action(np.array(obs))
 		# Perform action
 		new_obs, reward, done, _ = env.step(action) 
 		done_bool = 0 if episode_timesteps + 1 == env._max_episode_steps else float(done)
