@@ -17,9 +17,9 @@ if __name__ == "__main__":
     parser.add_argument("--env_name", default="Hopper-v2")  # OpenAI gym environment name
     parser.add_argument("--seed", default=0, type=int)  # Sets Gym, PyTorch and Numpy seeds
     parser.add_argument("--buffer_type", default="Robust")  # Prepends name to filename.
-    parser.add_argument("--eval_freq", default=5e3, type=float)  # How often (time steps) we evaluate
+    parser.add_argument("--eval_freq", default=100, type=float)  # How often (time steps) we evaluate
     parser.add_argument("--num_trajs", default=1, type=int)            # Number of expert trajectories to use
-    parser.add_argument("--max_timesteps", default=1e6, type=float)  # Max time steps to run environment for
+    parser.add_argument("--max_timesteps", default=2e3, type=float)  # Max time steps to run environment for
     args = parser.parse_args()
 
     file_name = "DRBCQ_traj%s_%s_%s" % (args.num_trajs, args.env_name, str(args.seed))
@@ -71,7 +71,7 @@ if __name__ == "__main__":
     training_iters = 0
     while training_iters < args.max_timesteps:
         t0 = time.time()
-        pol_vals = policy.train(replay_buffer, iterations=int(args.eval_freq))
+        pol_vals = policy.train(replay_buffer, iterations=int(args.eval_freq), batch_size=len(replay_buffer.storage))
         t1 = time.time()
         rewards = utils.evaluate_policy(env, policy)
         evaluations.append(rewards)
