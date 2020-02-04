@@ -61,6 +61,7 @@ if __name__ == "__main__":
         evaluations.append(rewards)
         np.save("./results/" + file_name, evaluations)
 
+
         training_iters += args.eval_freq
         print("Training iterations: {}\tTraining time: {:.2f}\tReward average: {:.2f}\tReward std: {:.2f}".format(str(training_iters),
                                                                                           t1-t0,rewards.mean(),rewards.std()))
