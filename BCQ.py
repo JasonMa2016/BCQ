@@ -8,7 +8,7 @@ import utils
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
+print(device)
 
 class Actor(nn.Module):
 	def __init__(self, state_dim, action_dim, max_action):

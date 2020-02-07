@@ -39,7 +39,7 @@ if __name__ == "__main__":
     # Initialize and load policy
     policy = DDPG.DDPG(state_dim, action_dim, max_action)
     policy.load(file_name, "./pytorch_models")
-    print("DDPG expert performance: " + str(utils.evaluate_policy(env, policy)))
+    # print("DDPG expert performance: " + str(utils.evaluate_policy(env, policy)))
 
     # Initialize buffer
     replay_buffer = utils.ReplayBuffer()
@@ -48,6 +48,8 @@ if __name__ == "__main__":
     episode_num = 0
     done = True
     expert_trajs = []
+    expert_rewards = []
+
     while episode_num < args.num_trajs:
 
         expert_traj = []
@@ -66,8 +68,8 @@ if __name__ == "__main__":
             expert_traj.append((obs, new_obs, action, reward, done_bool))
 
             if done:
-                # print("Total T: %d Episode Num: %d Episode T: %d Reward: %f" % (
-                #     total_timesteps, episode_num, episode_timesteps, episode_reward))
+                print("Total T: %d Episode Num: %d Episode T: %d Reward: %f" % (
+                    total_timesteps, episode_num, episode_timesteps, episode_reward))
                 break
             obs = new_obs
             episode_timesteps += 1
@@ -75,8 +77,11 @@ if __name__ == "__main__":
 
 
         # Store data in replay buffer
+        expert_rewards.append(episode_reward)
         replay_buffer.add(expert_traj)
-
+    print(expert_rewards)
+    replay_buffer.storage = [x for _,x in sorted(zip(expert_rewards,replay_buffer.storage), reverse=True)]
 
     # Save final buffer
     replay_buffer.save(buffer_name)
+    replay_buffer.save_rewards(buffer_name, sorted(expert_rewards, reverse=True))
