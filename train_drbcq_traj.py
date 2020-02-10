@@ -17,9 +17,9 @@ if __name__ == "__main__":
     parser.add_argument("--env_name", default="Hopper-v2")  # OpenAI gym environment name
     parser.add_argument("--seed", default=0, type=int)  # Sets Gym, PyTorch and Numpy seeds
     parser.add_argument("--buffer_type", default="Robust")  # Prepends name to filename.
-    parser.add_argument("--eval_freq", default=100, type=float)  # How often (time steps) we evaluate
+    parser.add_argument("--eval_freq", default=1e3, type=float)  # How often (time steps) we evaluate
     parser.add_argument("--num_trajs", default=5, type=int)            # Number of expert trajectories to use
-    parser.add_argument("--max_timesteps", default=2e3, type=float)  # Max time steps to run environment for
+    parser.add_argument("--max_timesteps", default=1e6, type=float)  # Max time steps to run environment for
     args = parser.parse_args()
 
     file_name = "DRBCQ_traj%s_%s_%s" % (args.num_trajs, args.env_name, str(args.seed))
@@ -38,6 +38,7 @@ if __name__ == "__main__":
 
     print("---------------------------------------")
     print("Settings: " + file_name)
+    print("")
     print("---------------------------------------")
 
     if not os.path.exists("./results"):
