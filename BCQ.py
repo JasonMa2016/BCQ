@@ -227,7 +227,7 @@ class DRBCQ(BCQ):
 					action_probs = imitator.get_log_prob(torch.FloatTensor(state_np), torch.FloatTensor(action))
 					new_reward.append(action_probs)
 			new_reward = torch.stack(new_reward, dim=2)
-			reward = torch.var(new_reward, dim=2)
+			reward = - torch.var(new_reward, dim=2)
 
 			state = torch.FloatTensor(state_np).to(device)
 			action = torch.FloatTensor(action).to(device)

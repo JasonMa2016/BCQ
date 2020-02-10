@@ -25,6 +25,9 @@ if __name__ == "__main__":
     file_name = "DRBCQ_traj%s_%s_%s" % (args.num_trajs, args.env_name, str(args.seed))
     buffer_name = "%s_traj25_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
     expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
+    expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
+    print("Expert rewards: {}".format(expert_rewards[:args.num_trajs]))
+    print("avg: {} std: {}".format(np.mean(expert_rewards[:args.num_trajs]), np.std(expert_rewards[:args.num_trajs])))
 
     # create a flat list
     flat_expert_trajs = []

@@ -79,7 +79,7 @@ if __name__ == "__main__":
         # Store data in replay buffer
         expert_rewards.append(episode_reward)
         replay_buffer.add(expert_traj)
-    print(expert_rewards)
+    # print(expert_rewards)
     replay_buffer.storage = [x for _,x in sorted(zip(expert_rewards,replay_buffer.storage), reverse=True)]
 
     # Save final buffer

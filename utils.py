@@ -14,8 +14,8 @@ class ReplayBuffer(object):
 		self.storage.append(data)
 
 	def sample(self, batch_size):
-		# ind = np.random.randint(0, len(self.storage), size=batch_size)
-		ind = np.random.choice(batch_size, batch_size, replace=False)
+		ind = np.random.randint(0, len(self.storage), size=batch_size)
+		# ind = np.random.choice(batch_size, batch_size, replace=False)
 		state, next_state, action, reward, done = [], [], [], [], []
 
 		for i in ind: 
@@ -43,6 +43,7 @@ class ReplayBuffer(object):
 
 	def set_expert(self, expert_traj):
 		self.storage = expert_traj
+
 
 # Runs policy for X episodes and returns average reward
 def evaluate_policy(env, policy, eval_episodes=50):
