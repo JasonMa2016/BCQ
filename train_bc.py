@@ -48,18 +48,24 @@ if __name__ == "__main__":
     parser.add_argument("--num_trajs", default=5, type=int)            # Number of expert trajectories to use
     parser.add_argument("--eval_freq", default=5e3, type=float)         # How often (time steps) we evaluate
     parser.add_argument("--max_timesteps", default=1e6, type=float)     # Max time steps to run environment for
-    parser.add_argument("--ensemble", action='store_true', default=False)
+    parser.add_argument("--ensemble", action='store_true', default=True)
+    parser.add_argument("--good", action='store_true', default=False)
     args = parser.parse_args()
     args.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
-    file_name = "BCQ_%s_%s" % (args.env_name, str(args.seed))
+    expert_type = 'good' if args.good else 'mixed'
+    file_name = "BC_%s_%s_%s" % (args.env_name, str(args.seed), expert_type)
     buffer_name = "%s_traj25_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
     expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
     expert_rewards = np.load("./buffers/"+buffer_name+ "_rewards" + ".npy", allow_pickle=True)
 
+    # print(expert_rewards)
     # create a flat list
     flat_expert_trajs = []
-    expert_trajs = expert_trajs[:args.num_trajs]
+    if args.good:
+        expert_trajs = expert_trajs[:args.num_trajs]
+    else:
+        expert_trajs = np.concatenate((expert_trajs[:args.num_trajs],expert_trajs[-3:]), axis=0)
     for expert_traj in expert_trajs:
         for state_action in expert_traj:
             flat_expert_trajs.append(state_action)
@@ -103,7 +109,7 @@ if __name__ == "__main__":
     else:
         # ensemble
         expert_traj = np.array(flat_expert_trajs)
-        for sample in range(5):
+        for sample in range(10):
             print("=======================================")
             print("BC Imitator {}".format(sample+1))
             indices = np.random.choice(len(expert_traj), len(expert_traj))
@@ -113,12 +119,12 @@ if __name__ == "__main__":
             imitator = BC(args, state_dim, action_dim, max_action)
             imitator.set_expert(expert_traj)
             evaluations = []
-
-            for i_iter in range(5000):
+            file_name = 'BC_{}_traj{}_seed{}_sample{}_{}'.format(args.env_name, args.num_trajs, args.seed, sample, expert_type)
+            for i_iter in range(20000):
                 t0 = time.time()
                 loss = imitator.train()
                 t1 = time.time()
-                if i_iter % 1000 == 0:
+                if i_iter % 2000 == 0:
                     imitator.actor.to('cpu')
                     rewards = utils.evaluate_policy(env, imitator.actor)
                     evaluations.append(rewards)
@@ -128,9 +134,6 @@ if __name__ == "__main__":
                             i_iter, t1 - t0, rewards.mean(), rewards.std(), loss))
                     imitator.actor.to(args.device)
             imitator.actor.to('cpu')
-            torch.save(imitator.actor.state_dict(), 'imitator_models/{}_traj{}_sample{}_seed{}.p'.format(args.env_name,
-                                                                     args.num_trajs,
-                                                                     sample,
-                                                                     args.seed))
+            torch.save(imitator.actor.state_dict(), 'imitator_models/{}.p'.format(file_name))
             print("=======================================")
             print("")

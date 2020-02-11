@@ -64,3 +64,6 @@ def evaluate_policy(env, policy, eval_episodes=50):
 			rewards.append(episode_reward)
 	rewards = np.array(rewards)
 	return rewards
+
+def to_device(device, *args):
+    return [x.to(device) for x in args]

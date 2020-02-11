@@ -7,7 +7,7 @@ import time
 
 import utils
 import DDPG
-import BCQ
+import DRIL
 from BC import Policy
 
 
@@ -17,31 +17,21 @@ if __name__ == "__main__":
     parser.add_argument("--env_name", default="Hopper-v2")  # OpenAI gym environment name
     parser.add_argument("--seed", default=0, type=int)  # Sets Gym, PyTorch and Numpy seeds
     parser.add_argument("--buffer_type", default="Robust")  # Prepends name to filename.
-    parser.add_argument("--eval_freq", default=2e3, type=float)  # How often (time steps) we evaluate
+    parser.add_argument("--eval_freq", default=1e3, type=float)  # How often (time steps) we evaluate
     parser.add_argument("--num_trajs", default=5, type=int)            # Number of expert trajectories to use
-    parser.add_argument("--num_imitators", default=5, type=int)
-    parser.add_argument("--max_timesteps", default=2e5, type=float)  # Max time steps to run environment for
-    parser.add_argument("--good", action='store_true', default=False)
-
+    parser.add_argument("--max_timesteps", default=1e6, type=float)  # Max time steps to run environment for
     args = parser.parse_args()
-    expert_type = 'good' if args.good else 'mixed'
-    file_name = "DRBCQ_traj%s_%s_%s_%s" % (args.num_trajs, args.env_name, str(args.seed), expert_type)
+
+    file_name = "DRIL_traj%s_%s_%s" % (args.num_trajs, args.env_name, str(args.seed))
     buffer_name = "%s_traj25_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
     expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
     expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
+    print("Expert rewards: {}".format(expert_rewards[:args.num_trajs]))
+    print("avg: {} std: {}".format(np.mean(expert_rewards[:args.num_trajs]), np.std(expert_rewards[:args.num_trajs])))
 
     # create a flat list
     flat_expert_trajs = []
-    if args.good:
-        expert_trajs = expert_trajs[:args.num_trajs]
-        expert_rewards = expert_rewards[:args.num_trajs]
-    else:
-        expert_trajs = np.concatenate((expert_trajs[:args.num_trajs],expert_trajs[-3:]), axis=0)
-        expert_rewards = np.concatenate((expert_rewards[:args.num_trajs], expert_rewards[-3:]), axis=0)
-
-    print("Expert rewards: {}".format(expert_rewards))
-    print("avg: {} std: {}".format(np.mean(expert_rewards), np.std(expert_rewards)))
-
+    expert_trajs = expert_trajs[:args.num_trajs]
     for expert_traj in expert_trajs:
         for state_action in expert_traj:
             flat_expert_trajs.append(state_action)
@@ -65,10 +55,10 @@ if __name__ == "__main__":
     max_action = float(env.action_space.high[0])
 
     # Initialize policy and imitator ensemble
-    policy = BCQ.DRBCQ(state_dim, action_dim, max_action)
+    policy = DRIL.DRIL(state_dim, action_dim, max_action)
     model_paths = []
-    for sample in range(args.num_imitators):
-        model_path = 'imitator_models/BC_{}_traj{}_seed{}_sample{}_{}.p'.format(args.env_name, args.num_trajs,args.seed, sample, expert_type)
+    for sample in range(5):
+        model_path = 'imitator_models/{}_traj{}_sample{}_seed{}.p'.format(args.env_name, args.num_trajs, sample, args.seed)
         model_paths.append(model_path)
     policy.set_ensemble(model_paths)
 
