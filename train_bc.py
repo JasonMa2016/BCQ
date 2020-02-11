@@ -47,8 +47,8 @@ if __name__ == "__main__":
     parser.add_argument("--buffer_type", default="Robust")              # Prepends name to filename.
     parser.add_argument("--num_trajs", default=5, type=int)            # Number of expert trajectories to use
     parser.add_argument("--eval_freq", default=5e3, type=float)         # How often (time steps) we evaluate
-    parser.add_argument("--max_timesteps", default=1e6, type=float)     # Max time steps to run environment for
-    parser.add_argument("--ensemble", action='store_true', default=True)
+    # parser.add_argument("--max_timesteps", default=1e6, type=float)     # Max time steps to run environment for
+    parser.add_argument("--ensemble", action='store_true', default=False)
     parser.add_argument("--good", action='store_true', default=False)
     parser.add_argument("--max_iters", default=20000, type=int)
 
