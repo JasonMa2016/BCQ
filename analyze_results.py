@@ -1,5 +1,9 @@
 import numpy as np
 import argparse
+import seaborn as sns
+sns.set()
+import matplotlib.pyplot as plt
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--env_name", default="Hopper-v2")  # OpenAI gym environment name
@@ -11,4 +15,19 @@ if __name__ == "__main__":
     results = np.load("./results/" + "{}_traj{}_{}_{}.npy".format(args.model, args.num_trajs,
                                                                   args.env_name, args.seed))
     print(np.mean(results, axis=1))
+    print(np.shape(results))
+
+    results = np.load("./results/" + "{}_traj{}_{}_{}_good.npy".format(args.model, args.num_trajs,
+                                                                  args.env_name, args.seed))
+    print(np.mean(results, axis=1))
+    print(np.shape(results))
+
+
+    results = np.load("./results/" + "{}_traj{}_{}_{}_mixed.npy".format(args.model, args.num_trajs,
+                                                                  args.env_name, args.seed))
+    print(np.mean(results, axis=1))
+    print(np.shape(results))
+
+
+
     # print(np.std(results,axis=1))
