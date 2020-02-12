@@ -59,6 +59,8 @@ if __name__ == "__main__":
 
     trajs = {}
     for i in range(len(expert_trajs)):
+        # if i < 5 or (i > 9 and i < 20):
+        #     continue
         trajs[i] = expert_trajs[i]
 
     tips = sns.load_dataset('tips')
@@ -75,8 +77,9 @@ if __name__ == "__main__":
     imitator_ensemble = []
     model_paths = []
 
-    for sample in range(5):
-        model_path = '../imitator_models/{}_traj{}_sample{}_seed{}.p'.format(args.env_name, args.num_trajs, sample, args.seed)
+    for sample in range(10):
+        model_path = '../imitator_models/BC_{}_traj{}_seed{}_sample{}_mixed.p'.format(args.env_name, args.num_trajs,
+                                                                                     args.seed, sample)
         model_paths.append(model_path)
 
     # create BC imitator ensemble
@@ -97,11 +100,13 @@ if __name__ == "__main__":
                 new_reward.append(action_probs)
         new_reward = torch.stack(new_reward, dim=2)
         rewards = np.log(torch.var(new_reward, dim=2))
+        # rewards = torch.var(new_reward, dim=2)
+
         for reward in rewards:
             data.append([traj, np.float(reward)])
     data = pd.DataFrame(data, columns=['type', 'reward'])
 
     sns.boxplot(x='type', y='reward', data=data, whis=np.inf)
-    sns.stripplot(x='type', y='reward', data=data, color=".3")
+    # sns.stripplot(x='type', y='reward', data=data, color=".3")
 
     plt.show()

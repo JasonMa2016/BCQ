@@ -68,9 +68,9 @@ if __name__ == "__main__":
         expert_trajs = expert_trajs[:args.num_trajs]
     else:
         expert_trajs = np.concatenate((expert_trajs[:args.num_trajs],expert_trajs[-3:]), axis=0)
-    for expert_traj in expert_trajs:
-        for state_action in expert_traj:
-            flat_expert_trajs.append(state_action)
+    # for expert_traj in expert_trajs:
+    #     for state_action in expert_traj:
+    #         flat_expert_trajs.append(state_action)
 
     env = gym.make(args.env_name)
 
@@ -103,8 +103,9 @@ if __name__ == "__main__":
                 imitator.actor.to(args.device)
 
         imitator.actor.to('cpu')
-        torch.save(imitator.actor.state_dict(), 'imitator_models/{}.p'.format(file_name))
-
+        torch.save(imitator.actor.state_dict(), 'imitator_models/{}_traj{}_seed{}.p'.format(args.env_name,
+                                                                 args.num_trajs,
+                                                                 args.seed))
         print("=======================================")
         print("BC Imitator performance:")
         policy_rewards = utils.evaluate_policy(env, imitator.actor)
@@ -112,16 +113,20 @@ if __name__ == "__main__":
                                                                            policy_rewards.std()))
     else:
         # ensemble
-        expert_traj = np.array(flat_expert_trajs)
+        # expert_traj = np.array(flat_expert_trajs)
         for sample in range(10):
             print("=======================================")
             print("BC Imitator {}".format(sample+1))
-            indices = np.random.choice(len(expert_traj), len(expert_traj))
+            indices = np.random.choice(len(expert_trajs), len(expert_trajs))
+            flat_expert_trajs = []
+            for indice in indices:
+                for state_action in expert_trajs[indice]:
+                    flat_expert_trajs.append(expert_trajs)
             # print(indices)
             # print(expert_traj)
-            current_expert_traj = expert_traj[indices.astype(int)]
-            imitator = BC(args, state_dim, action_dim, max_action)
-            imitator.set_expert(current_expert_traj)
+            # current_expert_traj = expert_traj[indices.astype(int)]
+            # imitator = BC(args, state_dim, action_dim, max_action)
+            # imitator.set_expert(expert_traj)
             evaluations = []
             file_name = 'BC_{}_traj{}_seed{}_sample{}_{}'.format(args.env_name, args.num_trajs, args.seed, sample, expert_type)
             for i_iter in range(args.max_iters):

@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     expert_type = 'good' if args.good else 'mixed'
-    file_name = "BCQ_traj%s_%s_%s_%s" % (args.num_trajs, args.env_name, str(args.seed), expert_type)
+    file_name = "BCQ_%s_traj%s_seed%s_%s" % (args.env_name, args.num_trajs, str(args.seed), expert_type)
     buffer_name = "%s_traj25_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
     expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
     expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
