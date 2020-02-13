@@ -78,7 +78,7 @@ if __name__ == "__main__":
     model_paths = []
 
     for sample in range(10):
-        model_path = '../imitator_models/BC_{}_traj{}_seed{}_sample{}_mixed.p'.format(args.env_name, args.num_trajs,
+        model_path = '../imitator_models/BC_{}_traj{}_seed{}_sample{}_good.p'.format(args.env_name, args.num_trajs,
                                                                                      args.seed, sample)
         model_paths.append(model_path)
 
