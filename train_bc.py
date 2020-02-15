@@ -57,21 +57,27 @@ if __name__ == "__main__":
 
     expert_type = 'good' if args.good else 'mixed'
     file_name = "BC_%s_%s_%s" % (args.env_name, str(args.seed), expert_type)
-    buffer_name = "%s_traj25_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
+
+    # buffer_name = "%s_traj100_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
+    buffer_name = "%s_traj100_%s_0" % (args.buffer_type, args.env_name)
+
     expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
     expert_rewards = np.load("./buffers/"+buffer_name+ "_rewards" + ".npy", allow_pickle=True)
 
     # print(expert_rewards)
-    # create a flat list
-    flat_expert_trajs = []
-    if args.good:
-        expert_trajs = expert_trajs[:args.num_trajs]
-    else:
-        expert_trajs = np.concatenate((expert_trajs[:args.num_trajs],expert_trajs[-3:]), axis=0)
-    for expert_traj in expert_trajs:
-        for state_action in expert_traj:
-            flat_expert_trajs.append(state_action)
-    print(len(flat_expert_trajs))
+    #
+    # # create a flat list
+    # flat_expert_trajs = []
+    # if args.good:
+    #     expert_trajs = expert_trajs[:args.num_trajs]
+    # else:
+    #     expert_trajs = np.concatenate((expert_trajs[:args.num_trajs],expert_trajs[-3:]), axis=0)
+    # for expert_traj in expert_trajs:
+    #     for state_action in expert_traj:
+    #         flat_expert_trajs.append(state_action)
+    # print(len(flat_expert_trajs))
+    flat_expert_trajs = utils.collect_trajectories_rewards(expert_trajs, good=args.good)
+
     env = gym.make(args.env_name)
 
     env.seed(args.seed)
@@ -81,6 +87,7 @@ if __name__ == "__main__":
     state_dim = env.observation_space.shape[0]
     action_dim = env.action_space.shape[0]
     max_action = float(env.action_space.high[0])
+
     if not args.ensemble:
         # single BC
         imitator = BC(args, state_dim, action_dim, max_action)

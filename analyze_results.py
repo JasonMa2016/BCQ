@@ -12,10 +12,10 @@ if __name__ == "__main__":
     parser.add_argument("--model", default="DRBCQ")
     args = parser.parse_args()
 
-    models = [ 'DRBCQ', 'BC']
+    models = ['BCQ', 'DRBCQ', 'BC']
     types = ['good', 'mixed']
 
-    fig, axs = plt.subplots(1, 2, figsize=(15,5), constrained_layout=True)
+    fig, axs = plt.subplots(1, 3, figsize=(15,5), constrained_layout=True)
 
     # for i, type in enumerate(types):
     #     for model in models:

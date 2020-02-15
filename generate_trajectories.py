@@ -12,7 +12,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--env_name", default="Hopper-v2")  # OpenAI gym environment name
     parser.add_argument("--seed", default=0, type=int)  # Sets Gym, PyTorch and Numpy seeds
-    parser.add_argument("--num_trajs", default=25, type=int)  # Number of trajectories to be collected
+    parser.add_argument("--num_trajs", default=100, type=int)  # Number of trajectories to be collected
     parser.add_argument("--noise1", default=0.3, type=float)  # Probability of selecting random action
     parser.add_argument("--noise2", default=0.3, type=float)  # Std of Gaussian exploration noise
     args = parser.parse_args()

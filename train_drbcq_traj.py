@@ -26,25 +26,29 @@ if __name__ == "__main__":
     args = parser.parse_args()
     expert_type = 'good' if args.good else 'mixed'
     file_name = "DRBCQ_%s_traj%s_seed%s_%s" % (args.env_name, args.num_trajs, str(args.seed), expert_type)
-    buffer_name = "%s_traj25_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
+    # buffer_name = "%s_traj100_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
+    buffer_name = "%s_traj100_%s_0" % (args.buffer_type, args.env_name)
+
     expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
     expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
 
-    # create a flat list
-    flat_expert_trajs = []
-    if args.good:
-        expert_trajs = expert_trajs[:args.num_trajs]
-        expert_rewards = expert_rewards[:args.num_trajs]
-    else:
-        expert_trajs = np.concatenate((expert_trajs[:args.num_trajs],expert_trajs[-3:]), axis=0)
-        expert_rewards = np.concatenate((expert_rewards[:args.num_trajs], expert_rewards[-3:]), axis=0)
+    # # create a flat list
+    # flat_expert_trajs = []
+    # if args.good:
+    #     expert_trajs = expert_trajs[:args.num_trajs]
+    #     expert_rewards = expert_rewards[:args.num_trajs]
+    # else:
+    #     expert_trajs = np.concatenate((expert_trajs[:args.num_trajs],expert_trajs[-3:]), axis=0)
+    #     expert_rewards = np.concatenate((expert_rewards[:args.num_trajs], expert_rewards[-3:]), axis=0)
+    #
+    # print("Expert rewards: {}".format(expert_rewards))
+    # print("avg: {} std: {}".format(np.mean(expert_rewards), np.std(expert_rewards)))
+    #
+    # for expert_traj in expert_trajs:
+    #     for state_action in expert_traj:
+    #         flat_expert_trajs.append(state_action)
 
-    print("Expert rewards: {}".format(expert_rewards))
-    print("avg: {} std: {}".format(np.mean(expert_rewards), np.std(expert_rewards)))
-
-    for expert_traj in expert_trajs:
-        for state_action in expert_traj:
-            flat_expert_trajs.append(state_action)
+    flat_expert_trajs = utils.collect_trajectories_rewards(expert_trajs, good=args.good)
 
     print("---------------------------------------")
     print("Settings: " + file_name)
@@ -68,7 +72,9 @@ if __name__ == "__main__":
     policy = BCQ.DRBCQ(state_dim, action_dim, max_action)
     model_paths = []
     for sample in range(args.num_imitators):
-        model_path = 'imitator_models/BC_{}_traj{}_seed{}_sample{}_{}.p'.format(args.env_name, args.num_trajs,args.seed, sample, expert_type)
+        # model_path = 'imitator_models/BC_{}_traj{}_seed{}_sample{}_{}.p'.format(args.env_name, args.num_trajs,args.seed, sample, expert_type)
+        model_path = 'imitator_models/BC_{}_traj{}_seed0_sample{}_{}.p'.format(args.env_name, args.num_trajs, sample, expert_type)
+
         model_paths.append(model_path)
     policy.set_ensemble(model_paths)
 
