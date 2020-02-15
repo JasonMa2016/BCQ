@@ -1,45 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ed043476-e961-4200-95e0-b4ec649a8c8f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyze_results.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyze_results.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generate_trajectories.py" beforeDir="false" afterPath="$PROJECT_DIR$/generate_trajectories.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mujoco_run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/mujoco_run.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BCQ_Hopper-v2_traj5_seed0_good.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BCQ_Hopper-v2_traj5_seed0_good.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BCQ_Hopper-v2_traj5_seed0_mixed.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BCQ_Hopper-v2_traj5_seed0_mixed.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_0_mixed.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_0_mixed.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_good.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_good.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_mixed.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_mixed.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample0_good.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample0_good.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample0_mixed.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample0_mixed.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample1_good.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample1_good.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample1_mixed.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample1_mixed.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample2_good.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample2_good.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample2_mixed.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample2_mixed.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample3_good.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample3_good.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample3_mixed.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample3_mixed.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample4_good.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample4_good.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample4_mixed.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample4_mixed.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample5_good.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample5_good.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample5_mixed.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample5_mixed.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample6_good.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample6_good.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample6_mixed.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample6_mixed.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample7_good.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample7_good.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample7_mixed.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample7_mixed.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample8_good.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample8_good.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample8_mixed.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample8_mixed.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample9_good.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample9_good.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/BC_Hopper-v2_traj5_seed0_sample9_mixed.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample9_mixed.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/DRBCQ_Hopper-v2_traj5_seed0_good.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/DRBCQ_Hopper-v2_traj5_seed0_good.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/DRBCQ_Hopper-v2_traj5_seed0_mixed.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/DRBCQ_Hopper-v2_traj5_seed0_mixed.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/DRBCQ_traj5_Hopper-v2_0.npy" beforeDir="false" afterPath="$PROJECT_DIR$/results_old/DRBCQ_traj5_Hopper-v2_0.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_bc.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_bc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_bc_v2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_bcq_traj.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_bcq_traj.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_drbcq_traj.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_drbcq_traj.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
-    </list>
+    <list default="true" id="ed043476-e961-4200-95e0-b4ec649a8c8f" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
