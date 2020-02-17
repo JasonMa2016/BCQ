@@ -77,16 +77,16 @@ if __name__ == "__main__":
 
     episode_num = 0
     done = True
-    #
-    # training_iters = 0
-    # while training_iters < args.max_timesteps:
-    #     t0 = time.time()
-    #     pol_vals = policy.train(replay_buffer, iterations=int(args.eval_freq))
-    #     t1 = time.time()
-    #     rewards = utils.evaluate_policy(env, policy)
-    #     evaluations.append(rewards)
-    #     np.save("./results/" + file_name, evaluations)
-    #
-    #     training_iters += args.eval_freq
-    #     print("Training iterations: {}\tTraining time: {:.2f}\tReward average: {:.2f}\tReward std: {:.2f}".format(str(training_iters),
-    #                                                                                       t1-t0,rewards.mean(),rewards.std()))
+
+    training_iters = 0
+    while training_iters < args.max_timesteps:
+        t0 = time.time()
+        pol_vals = policy.train(replay_buffer, iterations=int(args.eval_freq))
+        t1 = time.time()
+        rewards = utils.evaluate_policy(env, policy)
+        evaluations.append(rewards)
+        np.save("./results/" + file_name, evaluations)
+
+        training_iters += args.eval_freq
+        print("Training iterations: {}\tTraining time: {:.2f}\tReward average: {:.2f}\tReward std: {:.2f}".format(str(training_iters),
+                                                                                          t1-t0,rewards.mean(),rewards.std()))

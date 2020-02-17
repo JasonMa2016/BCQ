@@ -68,6 +68,29 @@ def evaluate_policy(env, policy, eval_episodes=50):
 	return rewards
 
 
+def evaluate_policy_with_noise(env, policy, eval_episodes=50, noise=0.3):
+	rewards = []
+	for _ in range(eval_episodes):
+		episode_reward = 0
+		obs = env.reset()
+		done = False
+		with torch.no_grad():
+			while not done:
+				try:
+					action = policy.select_action(np.array(obs))
+					if noise != 0:
+						action = (action + np.random.normal(0, noise, size=env.action_space.shape[0])).clip(
+							env.action_space.low, env.action_space.high)
+					obs, reward, done, _ = env.step(action)
+				except:
+					action = policy.select_action(torch.FloatTensor(obs).unsqueeze(dim=0))
+					obs, reward, done, _ = env.step(action.detach().numpy())
+				episode_reward += reward
+			rewards.append(episode_reward)
+	rewards = np.array(rewards)
+	return rewards
+
+
 def collect_trajectories_rewards(expert_trajs, num_good_traj=5, num_bad_traj=3, good=False):
 
 	# trajs = np.concatenate((expert_trajs[:num_good_traj], expert_trajs[-num_bad_traj:]), axis=0)

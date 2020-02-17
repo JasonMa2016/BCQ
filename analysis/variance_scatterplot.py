@@ -43,10 +43,14 @@ if __name__ == "__main__":
     parser.add_argument("--eval_freq", default=5e3, type=float)         # How often (time steps) we evaluate
     parser.add_argument("--max_timesteps", default=1e6, type=float)     # Max time steps to run environment for
     parser.add_argument("--ensemble", action='store_true', default=False)
+    parser.add_argument("--good", action='store_true', default=False)
+
     args = parser.parse_args()
     args.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
     file_name = "BCQ_%s_%s" % (args.env_name, str(args.seed))
+    expert_type = 'good' if args.good else 'mixed'
+
     buffer_name = "%s_traj25_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
     expert_trajs = np.load("../buffers/"+buffer_name+".npy", allow_pickle=True)
     expert_rewards = np.load("../buffers/"+buffer_name+ "_rewards" + ".npy", allow_pickle=True)
@@ -59,9 +63,8 @@ if __name__ == "__main__":
 
     trajs = {}
     for i in range(len(expert_trajs)):
-        # if i < 5 or (i > 9 and i < 20):
-        #     continue
-        trajs[i] = expert_trajs[i]
+        if i < 5 or (i > 21):
+            trajs[i] = expert_trajs[i]
 
     tips = sns.load_dataset('tips')
     env = gym.make(args.env_name)
@@ -78,8 +81,8 @@ if __name__ == "__main__":
     model_paths = []
 
     for sample in range(10):
-        model_path = '../imitator_models/BC_{}_traj{}_seed{}_sample{}_good.p'.format(args.env_name, args.num_trajs,
-                                                                                     args.seed, sample)
+        model_path = '../imitator_models/BC_{}_traj{}_seed{}_sample{}_{}.p'.format(args.env_name, args.num_trajs,
+                                                                                     args.seed, sample, expert_type)
         model_paths.append(model_path)
 
     # create BC imitator ensemble
@@ -106,7 +109,11 @@ if __name__ == "__main__":
             data.append([traj, np.float(reward)])
     data = pd.DataFrame(data, columns=['type', 'reward'])
 
-    sns.boxplot(x='type', y='reward', data=data, whis=np.inf)
+    sns_plot = sns.boxplot(x='type', y='reward', data=data, whis=np.inf).set(title='{} Uncertain Cost Boxplot'.format(args.env_name),
+                                                                             xlabel='Ranked Trajectories',
+                                                                             ylabel='Uncertain Cost (Log Scale)')
+    # figure = sns_plot.get_figure()
+    # figure.savefig('plots/uncertain_cost_plot.png')
     # sns.stripplot(x='type', y='reward', data=data, color=".3")
 
-    plt.show()
+    plt.savefig('../plots/uncertain_cost_plot_{}.png'.format(expert_type))
