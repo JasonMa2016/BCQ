@@ -152,8 +152,12 @@ class Agent:
         #     total_reward += reward_episode
         #     min_reward = min(min_reward, reward_episode)
         #     max_reward = max(max_reward, reward_episode)
+        to_device(torch.device('cpu'), self.policy)
+
         memory, log = collect_samples(0, None, self.env, self.policy, self.custom_reward, self.mean_action,
                                       self.render, self.running_state, min_batch_size)
+        to_device(self.device, self.policy)
+
         return memory
 
     def collect_samples(self, min_batch_size, return_memory=False):
