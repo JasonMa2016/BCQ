@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import torch
 import gym
 
-import utils
+import utils_local
 from BC import BC, Policy
 
 
@@ -22,10 +22,10 @@ def bc_evaluate_model_with_noise(env_name='Hopper-v2', model_name='BC', num_traj
     imitator = Policy(state_dim, action_dim)
 
     imitator.load_state_dict(torch.load('./imitator_models_old/{}.p'.format(model_name)))
-    rewards_noise = utils.evaluate_policy_with_noise(env, imitator)
+    rewards_noise = utils_local.evaluate_policy_with_noise(env, imitator)
     print(rewards_noise.mean(), rewards_noise.std())
 
-    rewards= utils.evaluate_policy(env, imitator)
+    rewards= utils_local.evaluate_policy(env, imitator)
     print(rewards.mean(), rewards.std())
 
 def bc_model_performance_plot(env_name='Hopper-v2', num_trajs=5, seed=0, samples=10):
@@ -65,26 +65,56 @@ if __name__ == "__main__":
     models = ['BCQ', 'DRBCQ', 'BC']
     types = ['mixed', 'good']
 
-    fig, axs = plt.subplots(1, 2, figsize=(15,5), constrained_layout=True)
-    # for i, seed in enumerate([1,2]):
+    # fig, axs = plt.subplots(1, 3, figsize=(15,5), constrained_layout=True)
+    # # for i, seed in enumerate([1,2]):
     # for i, type in enumerate(types):
     #     for model in models:
     #         if model == 'BC':
-    #             file_name = "./results_old/" + "{}_{}_traj{}_seed0_sample0_{}.npy".format(model, args.env_name, args.num_trajs,
+    #             file_name = "./results/" + "{}_{}_traj{}_seed0_sample0_{}.npy".format(model, args.env_name, args.num_trajs,
     #                                                                    type)
     #             model_performance = np.load(file_name)
     #             axs[i].plot([10*i for i in range(10)], np.mean(model_performance, axis=1), label=model)
     #             axs[i].set_title('{} {} Training Curve'.format(type, args.env_name))
     #             axs[i].legend(loc='upper right')
     #         else:
-    #             file_name = "./results_old/" + "{}_{}_traj{}_seed{}_{}.npy".format(model, args.env_name, args.num_trajs, args.seed,
+    #             file_name = "./results/" + "{}_{}_traj{}_seed{}_{}.npy".format(model, args.env_name, args.num_trajs, args.seed,
     #                                                                    type)
     #             model_performance = np.load(file_name)
     #             axs[i].plot([i for i in range(100)],np.mean(model_performance, axis=1), label=model)
     #             axs[i].set_title('{} {} Training Curve'.format(type, args.env_name))
     #             axs[i].legend(loc='upper right')
 
-    bc_model_performance_plot()
+    fig, axs = plt.subplots(1, 3, figsize=(15,5), constrained_layout=True)
+    for i, seed in enumerate([0,1,2]):
+        for type in ['good']:
+            for model in models:
+                if model == 'BC':
+                    file_name = "./results/" + "{}_{}_traj{}_seed0_sample0_{}.npy".format(model, args.env_name, args.num_trajs,
+                                                                           type)
+                    model_performance = np.load(file_name)
+                    axs[i].plot([10*i for i in range(10)], np.mean(model_performance, axis=1), label=model)
+                    axs[i].set_title('{} {} Training Curve'.format(type, args.env_name))
+                    axs[i].legend(loc='upper right')
+                else:
+                    file_name = "./results/" + "{}_{}_traj{}_seed{}_{}.npy".format(model, args.env_name, args.num_trajs, seed,
+                                                                           type)
+                    model_performance = np.load(file_name)
+                    axs[i].plot([i for i in range(model_performance.shape[0])],np.mean(model_performance, axis=1), label=model)
+                    axs[i].set_title('{} {} Training Curve'.format(type, args.env_name))
+                    axs[i].legend(loc='upper right')
+
+    # compare good vs mixed
+    fig, axs = plt.subplots(1, 3, figsize=(15,5), constrained_layout=True)
+    for i, seed in enumerate([0,1,2]):
+        for type in ['good', 'mixed']:
+                file_name = "./results/" + "DRBCQ_{}_traj{}_seed{}_{}.npy".format(args.env_name, args.num_trajs, seed,
+                                                                       type)
+                model_performance = np.load(file_name)
+                axs[i].plot([i for i in range(model_performance.shape[0])],np.mean(model_performance, axis=1), label=type)
+                axs[i].set_title('DRBCQ Training Curve'.format(args.env_name))
+                axs[i].legend(loc='upper right')
+
+    # bc_model_performance_plot()
     # bc_evaluate_model_with_noise()
     # for i, model in enumerate(models):
     #     for type in types:
@@ -100,6 +130,6 @@ if __name__ == "__main__":
     #         axs[i].legend(loc='upper right')
     # plt.show()
 
-    plt.savefig('plots/{}.png'.format(args.env_name))
+    plt.savefig('plots/{}_compare.png'.format(args.env_name))
 
     # print(np.std(results,axis=1))

@@ -4,7 +4,7 @@ import torch
 import argparse
 import os
 
-import utils
+import utils_local
 import DDPG
 
 if __name__ == "__main__":
@@ -42,7 +42,7 @@ if __name__ == "__main__":
     # print("DDPG expert performance: " + str(utils.evaluate_policy(env, policy)))
 
     # Initialize buffer
-    replay_buffer = utils.ReplayBuffer()
+    replay_buffer = utils_local.ReplayBuffer()
 
     total_timesteps = 0
     episode_num = 0

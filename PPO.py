@@ -41,11 +41,14 @@ class PPO(object):
         :param batch:
         :return:
         """
-
-        states = torch.DoubleTensor(np.stack(batch.state)).to(self.device)
-        actions = torch.DoubleTensor(np.stack(batch.action)).to(self.device)
-        rewards = torch.DoubleTensor(np.stack(batch.reward)).to(self.device)
-        masks = torch.DoubleTensor(np.stack(batch.mask)).to(self.device)
+        # states = torch.FloatTensor(np.stack(batch.state)).to(self.device)
+        # actions = torch.FloatTensor(np.stack(batch.action)).to(self.device)
+        # rewards = torch.FloatTensor(np.stack(batch.reward)).to(self.device)
+        # masks = torch.FloatTensor(np.stack(batch.mask)).to(self.device)
+        states = torch.FloatTensor(batch['states']).to(self.device)
+        actions = torch.FloatTensor(batch['actions']).to(self.device)
+        rewards = torch.FloatTensor(batch['rewards']).to(self.device)
+        masks = torch.FloatTensor(batch['masks']).to(self.device)
 
         with torch.no_grad():
             values = self.critic(states)

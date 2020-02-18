@@ -5,7 +5,7 @@ import argparse
 import os
 import time
 
-import utils
+import utils_local
 import DDPG
 import BCQ
 
@@ -60,7 +60,7 @@ if __name__ == "__main__":
     policy = BCQ.BCQ(state_dim, action_dim, max_action)
 
     # Load buffer
-    replay_buffer = utils.ReplayBuffer()
+    replay_buffer = utils_local.ReplayBuffer()
     replay_buffer.load(buffer_name)
     
     evaluations = []

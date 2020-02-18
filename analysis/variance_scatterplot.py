@@ -81,7 +81,7 @@ if __name__ == "__main__":
     model_paths = []
 
     for sample in range(10):
-        model_path = '../imitator_models/BC_{}_traj{}_seed{}_sample{}_{}.p'.format(args.env_name, args.num_trajs,
+        model_path = '../imitator_models_old/BC_{}_traj{}_seed{}_sample{}_{}.p'.format(args.env_name, args.num_trajs,
                                                                                      args.seed, sample, expert_type)
         model_paths.append(model_path)
 
@@ -102,7 +102,7 @@ if __name__ == "__main__":
                 action_probs = imitator.get_log_prob(torch.FloatTensor(state_np), torch.FloatTensor(action))
                 new_reward.append(action_probs)
         new_reward = torch.stack(new_reward, dim=2)
-        rewards = np.log(torch.var(new_reward, dim=2))
+        rewards = np.log2(torch.var(new_reward, dim=2))
         # rewards = torch.var(new_reward, dim=2)
 
         for reward in rewards:

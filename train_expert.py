@@ -4,7 +4,7 @@ import gym
 import argparse
 import os
 
-import utils
+import utils_local
 import DDPG
 
 # Shortened version of code originally found at https://github.com/sfujim/TD3
@@ -40,7 +40,7 @@ if __name__ == "__main__":
 
 	# Initialize policy and buffer
 	policy = DDPG.DDPG(state_dim, action_dim, max_action)
-	replay_buffer = utils.ReplayBuffer()
+	replay_buffer = utils_local.ReplayBuffer()
 	
 	total_timesteps = 0
 	episode_num = 0

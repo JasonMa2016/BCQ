@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from BC import Policy
-import utils
+import utils_local
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

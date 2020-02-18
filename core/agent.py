@@ -27,8 +27,8 @@ def collect_samples(pid, queue, env, policy, custom_reward,
         reward_episode = 0
 
         for t in range(10000):
-            state_var = torch.DoubleTensor(state).unsqueeze(0)
-            # state_var = torch.FloatTensor(state).unsqueeze(0)
+            # state_var = torch.DoubleTensor(state).unsqueeze(0)
+            state_var = torch.FloatTensor(state).unsqueeze(0)
             with torch.no_grad():
                 if mean_action:
                     action = policy(state_var)[0][0].numpy()
@@ -115,6 +115,47 @@ class Agent:
         self.render = render
         self.num_threads = num_threads
 
+    def simple_collect_samples(self, min_batch_size):
+        # memory = []
+        # num_steps = 0
+        # total_reward = 0
+        # while num_steps < min_batch_size:
+        #     state = self.env.reset()
+        #
+        #     reward_episode = 0
+        #
+        #     for t in range(10000):
+        #         # state_var = torch.DoubleTensor(state).unsqueeze(0)
+        #         state_var = torch.FloatTensor(state).unsqueeze(0)
+        #         with torch.no_grad():
+        #             if self.mean_action:
+        #                 action = self.policy(state_var)[0][0].numpy()
+        #             else:
+        #                 action = self.policy.select_action(state_var)[0].numpy()
+        #
+        #         action = int(action) if self.policy.is_disc_action else action.astype(np.float32)
+        #         # next_state, reward, done, _ = env.step([action])
+        #         next_state, reward, done, _ = self.env.step(action)
+        #         reward_episode += reward
+        #
+        #         mask = 0 if done else 1
+        #
+        #         memory.push(state, action, mask, next_state, reward)
+        #
+        #         if done:
+        #             break
+        #
+        #         state = next_state
+        #
+        #     # log stats
+        #     num_steps += (t + 1)
+        #     total_reward += reward_episode
+        #     min_reward = min(min_reward, reward_episode)
+        #     max_reward = max(max_reward, reward_episode)
+        memory, log = collect_samples(0, None, self.env, self.policy, self.custom_reward, self.mean_action,
+                                      self.render, self.running_state, min_batch_size)
+        return memory
+
     def collect_samples(self, min_batch_size, return_memory=False):
         t_start = time.time()
         to_device(torch.device('cpu'), self.policy)
@@ -139,6 +180,8 @@ class Agent:
 
         for worker_memory in worker_memories:
             memory.append(worker_memory)
+        if return_memory:
+            return memory
         batch = memory.sample()
         if self.num_threads > 1:
             log_list = [log] + worker_logs
@@ -149,6 +192,5 @@ class Agent:
         log['action_mean'] = np.mean(np.vstack(batch.action), axis=0)
         log['action_min'] = np.min(np.vstack(batch.action), axis=0)
         log['action_max'] = np.max(np.vstack(batch.action), axis=0)
-        if return_memory:
-            return memory, log
+
         return batch, log

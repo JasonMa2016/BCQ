@@ -108,7 +108,7 @@ def collect_trajectories_rewards(expert_trajs, num_good_traj=5, num_bad_traj=3, 
 	for expert_traj in expert_trajs[-num_bad_traj:]:
 		for state_action in expert_traj:
 			flat_trajs['mixed'].append(state_action)
-	print(len(flat_trajs['mixed']), len(flat_trajs['good']))
+	# print(len(flat_trajs['mixed']), len(flat_trajs['good']))
 
 	n = len(flat_trajs['mixed'])
 	index = num_good_traj
@@ -122,7 +122,7 @@ def collect_trajectories_rewards(expert_trajs, num_good_traj=5, num_bad_traj=3, 
 				equal = True
 				break
 		index += 1
-	print(len(flat_trajs['mixed']), len(flat_trajs['good']))
+	# print(len(flat_trajs['mixed']), len(flat_trajs['good']))
 
 	if good:
 		return flat_trajs['good']

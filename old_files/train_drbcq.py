@@ -5,7 +5,7 @@ import argparse
 import os
 import time
 
-import utils
+import utils_local
 import DDPG
 import BCQ
 from BC import Policy
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     policy.set_ensemble(model_paths)
 
     # Initialize batch
-    replay_buffer = utils.ReplayBuffer()
+    replay_buffer = utils_local.ReplayBuffer()
     replay_buffer.load(buffer_name)
 
     evaluations = []
@@ -62,7 +62,7 @@ if __name__ == "__main__":
         t0 = time.time()
         pol_vals = policy.train(replay_buffer, iterations=int(args.eval_freq))
         t1 = time.time()
-        rewards = utils.evaluate_policy(env, policy)
+        rewards = utils_local.evaluate_policy(env, policy)
         evaluations.append(rewards)
         np.save("./results/" + file_name, evaluations)
 

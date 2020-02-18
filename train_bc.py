@@ -11,7 +11,7 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 
-import utils
+import utils_local
 import DDPG
 import BCQ
 from BC import BC
@@ -76,7 +76,7 @@ if __name__ == "__main__":
     #     for state_action in expert_traj:
     #         flat_expert_trajs.append(state_action)
     # print(len(flat_expert_trajs))
-    flat_expert_trajs = utils.collect_trajectories_rewards(expert_trajs, good=args.good)
+    flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, good=args.good)
 
     env = gym.make(args.env_name)
 
@@ -102,7 +102,7 @@ if __name__ == "__main__":
             t1 = time.time()
             if i_iter % 2000 == 0:
                 imitator.actor.to('cpu')
-                rewards = utils.evaluate_policy(env, imitator.actor)
+                rewards = utils_local.evaluate_policy(env, imitator.actor)
                 evaluations.append(rewards)
                 np.save("./results/" + file_name, evaluations)
                 print('Training iteration {}\tT_update:{:.4f}\t reward avg:{:.2f}\t reward std:{:.2f}\t training loss:{:.2f}'.format(
@@ -114,7 +114,7 @@ if __name__ == "__main__":
 
         print("=======================================")
         print("BC Imitator performance:")
-        policy_rewards = utils.evaluate_policy(env, imitator.actor)
+        policy_rewards = utils_local.evaluate_policy(env, imitator.actor)
         print("{} episodes\t reward avg:{:.2f}\t reward std:{:.2f}".format(len(policy_rewards), policy_rewards.mean(),
                                                                            policy_rewards.std()))
     else:
@@ -137,7 +137,7 @@ if __name__ == "__main__":
                 t1 = time.time()
                 if i_iter % 2000 == 0:
                     imitator.actor.to('cpu')
-                    rewards = utils.evaluate_policy(env, imitator.actor)
+                    rewards = utils_local.evaluate_policy(env, imitator.actor)
                     evaluations.append(rewards)
                     np.save("./results/" + file_name, evaluations)
                     print(
