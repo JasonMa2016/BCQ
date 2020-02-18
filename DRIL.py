@@ -122,10 +122,9 @@ class DRIL(object):
         for imitator in self.ensemble:
             with torch.no_grad():
                 action_log_probs = imitator.get_log_prob(torch.FloatTensor(states), torch.FloatTensor(actions))
-                action_probs = torch.exp(action_log_probs)
-                new_reward.append(action_probs)
+                new_reward.append(action_log_probs)
         new_reward = torch.stack(new_reward, dim=2)
-        # rewards = - torch.var(new_reward, dim=2)
+        rewards = - torch.var(new_reward, dim=2)
         batch = {
             'states': states,
             'actions': actions,

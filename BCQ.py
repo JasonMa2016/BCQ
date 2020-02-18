@@ -212,26 +212,30 @@ class DRBCQ(BCQ):
 				torch.load(model_path))
 			self.ensemble.append(imitator)
 
-	def train(self, replay_buffer, iterations, batch_size=100, discount=0.99, tau=0.005):
+	def train(self, replay_buffer, iterations, random=False, batch_size=100, discount=0.99, tau=0.005):
 
 		for it in range(iterations):
 
 			# Sample replay buffer / batch
 			state_np, next_state_np, action, reward, done = replay_buffer.sample(batch_size)
+			reward = torch.FloatTensor(reward).to(device)
 
-			# change reward
-			new_reward = []
-			for imitator in self.ensemble:
-				with torch.no_grad():
-					action_probs = imitator.get_log_prob(torch.FloatTensor(state_np), torch.FloatTensor(action))
-					new_reward.append(action_probs)
-			new_reward = torch.stack(new_reward, dim=2)
-			reward = - torch.var(new_reward, dim=2)
+			if random:
+				reward = torch.FloatTensor(np.random.random(reward.size())).to(device)
+			else:
+				# change reward
+				new_reward = []
+				for imitator in self.ensemble:
+					with torch.no_grad():
+						action_probs = imitator.get_log_prob(torch.FloatTensor(state_np), torch.FloatTensor(action))
+						new_reward.append(action_probs)
+				new_reward = torch.stack(new_reward, dim=2)
+				reward = - torch.var(new_reward, dim=2)
+				reward = torch.FloatTensor(reward).to(device)
 
 			state = torch.FloatTensor(state_np).to(device)
 			action = torch.FloatTensor(action).to(device)
 			next_state = torch.FloatTensor(next_state_np).to(device)
-			reward = torch.FloatTensor(reward).to(device)
 			done = torch.FloatTensor(1 - done).to(device)
 
 			# Variational Auto-Encoder Training
