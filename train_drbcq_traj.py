@@ -19,6 +19,7 @@ if __name__ == "__main__":
     parser.add_argument("--buffer_type", default="Robust")  # Prepends name to filename.
     parser.add_argument("--eval_freq", default=1e3, type=float)  # How often (time steps) we evaluate
     parser.add_argument("--num_trajs", default=5, type=int)            # Number of expert trajectories to use
+    parser.add_argument("--num_bad_trajs", default=5, type=int)            # Number of Bad expert trajectories to use
     parser.add_argument("--num_imitators", default=5, type=int)     # Number of BC imitators in the ensemble
     parser.add_argument("--max_timesteps", default=1e5, type=float)  # Max time steps to run environment for
     parser.add_argument("--good", action='store_true', default=False) # Good or mixed expert trajectories
@@ -26,7 +27,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     expert_type = 'good' if args.good else 'mixed'
-    file_name = "DRBCQ_%s_traj%s_seed%s_%s" % (args.env_name, args.num_trajs, str(args.seed), expert_type)
+    file_name = "DRBCQ_%s_traj%s_badtraj%s_imit%s_seed%s_%s" % (args.env_name, args.num_trajs, args.num_bad_trajs,
+                                                                args.num_imitators, str(args.seed), expert_type)
     if args.random:
         file_name += '_random'
     # buffer_name = "%s_traj100_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
@@ -35,7 +37,9 @@ if __name__ == "__main__":
     expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
     expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
 
-    flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, good=args.good)
+    flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, num_good_traj=args.num_trajs,
+                                                                 num_bad_traj= args.num_bad_trajs,
+                                                                 good=args.good)
 
     print("---------------------------------------")
     print("Settings: " + file_name)
@@ -79,18 +83,11 @@ if __name__ == "__main__":
     while training_iters < args.max_timesteps:
         t0 = time.time()
         pol_vals = imitator.train(replay_buffer, iterations=int(args.eval_freq), random=args.random)
-        # t1 = time.time()
-        # training_time = t1-t0
-        # print(t1-t0)
-        # t0 = time.time()
-        rewards = utils_local.evaluate_policy(env, imitator, eval_episodes=10)
-        # t1 = time.time()
-        # print(t1-t0)
-        evaluations.append(rewards)
-        # t0 = time.time()
-        np.save("./results/" + file_name, evaluations)
         t1 = time.time()
-        # print(t1-t0)
+        rewards = utils_local.evaluate_policy(env, imitator)
+        evaluations.append(rewards)
+        np.save("./results/" + file_name, evaluations)
+
         training_iters += args.eval_freq
         print("Training iterations: {}\tTraining time: {:.2f}\tReward average: {:.2f}\tReward std: {:.2f}".format(str(training_iters),
                                                                                           t1-t0,rewards.mean(),rewards.std()))
