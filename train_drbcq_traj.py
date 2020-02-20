@@ -79,11 +79,18 @@ if __name__ == "__main__":
     while training_iters < args.max_timesteps:
         t0 = time.time()
         pol_vals = imitator.train(replay_buffer, iterations=int(args.eval_freq), random=args.random)
-        t1 = time.time()
-        rewards = utils_local.evaluate_policy(env, imitator)
+        # t1 = time.time()
+        # training_time = t1-t0
+        # print(t1-t0)
+        # t0 = time.time()
+        rewards = utils_local.evaluate_policy(env, imitator, eval_episodes=10)
+        # t1 = time.time()
+        # print(t1-t0)
         evaluations.append(rewards)
+        # t0 = time.time()
         np.save("./results/" + file_name, evaluations)
-
+        t1 = time.time()
+        # print(t1-t0)
         training_iters += args.eval_freq
         print("Training iterations: {}\tTraining time: {:.2f}\tReward average: {:.2f}\tReward std: {:.2f}".format(str(training_iters),
                                                                                           t1-t0,rewards.mean(),rewards.std()))
