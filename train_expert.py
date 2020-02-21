@@ -12,10 +12,10 @@ import DDPG
 if __name__ == "__main__":
 	
 	parser = argparse.ArgumentParser()
-	parser.add_argument("--env_name", default="Hopper-v2")				# OpenAI gym environment name
+	parser.add_argument("--env_name", default="HalfCheetah-v2")				# OpenAI gym environment name
 	parser.add_argument("--seed", default=0, type=int)					# Sets Gym, PyTorch and Numpy seeds
 	parser.add_argument("--max_timesteps", default=1e6, type=float)		# Max time steps to run environment for
-	parser.add_argument("--start_timesteps", default=1e3, type=int)		# How many time steps purely random policy is run for
+	parser.add_argument("--start_timesteps", default=5e3, type=int)		# How many time steps purely random policy is run for
 	parser.add_argument("--expl_noise", default=0.1, type=float)		# Std of Gaussian exploration noise
 	args = parser.parse_args()
 
@@ -43,9 +43,12 @@ if __name__ == "__main__":
 	replay_buffer = utils_local.ReplayBuffer()
 	
 	total_timesteps = 0
+	episode_reward = 0
 	episode_num = 0
 	done = True 
 
+	expert_rewards = []
+	expert_timesteps = []
 	while total_timesteps < args.max_timesteps:
 		
 		if done: 
@@ -57,7 +60,10 @@ if __name__ == "__main__":
 			# Save policy
 			if total_timesteps % 1e5 == 0:
 				policy.save(file_name, directory="./pytorch_models")
-			
+
+			expert_rewards.append(episode_reward)
+			expert_timesteps.append(total_timesteps)
+
 			# Reset environment
 			obs = env.reset()
 			done = False
@@ -85,6 +91,9 @@ if __name__ == "__main__":
 
 		episode_timesteps += 1
 		total_timesteps += 1
-		
+
+	np.save("./expert_results/" + file_name + '_rewards', expert_rewards)
+	np.save("./expert_results/" + file_name + '_timesteps', expert_timesteps)
+
 	# Save final policy
 	policy.save("%s" % (file_name), directory="./pytorch_models")
