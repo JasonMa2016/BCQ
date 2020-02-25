@@ -11,6 +11,28 @@ import utils_local
 from BC import BC, Policy
 
 
+def plot_model_reward_over_timesteps(env_name='Hopper-v2', model_name='BC', num_trajs=5, seed=0, type='good'):
+    file_name = 'results/{}_{}_traj{}_seed{}_{}'.format(model_name, env_name, num_trajs, seed, type)
+    reward = np.load(file_name + '_rewards.npy')
+    timestep = np.load(file_name + '_timesteps.npy')
+    fig, ax = plt.subplots(figsize=(8, 4))
+    ax.plot(timestep, reward, label='new')
+
+    file_name = 'results/SQIL_ORIGINAL_DDPG_{}_traj{}_seed{}_{}'.format(env_name, num_trajs, seed, type)
+    reward = np.load(file_name + '_rewards.npy')
+    timestep = np.load(file_name + '_timesteps.npy')
+
+    ax.plot(timestep, reward, label='original')
+
+    ax.set_title(file_name)
+    ax.legend(loc='best')
+    ax.set_xlabel('Training Steps')
+    ax.set_ylabel('Rewards')
+    plt.savefig('plots/SQIL_improvement_{}.png'.format(seed))
+    plt.close()
+    return
+
+
 def bc_evaluate_model_with_noise(env_name='Hopper-v2', model_name='BC', num_trajs=5, seed=0):
     expert_type = 'good'
     model_name = '{}_{}_traj{}_seed{}_{}'.format(model_name, env_name, num_trajs, seed, expert_type)
@@ -54,6 +76,105 @@ def bc_model_performance_plot(env_name='Hopper-v2', num_trajs=5, seed=0, samples
     plt.savefig('plots/BC-{}.png'.format(env_name))
 
 
+def model_performance_plot(env_name='Hopper-v2', num_trajs=5, seed=0, samples=10):
+    '''
+    Plot model performance over seeds.
+    :param env_name:
+    :param num_trajs:
+    :param seed:
+    :param samples:
+    :return:
+    '''
+
+
+def drbcq_performance_random(model='DRBCQ', env_name='Hopper-v2', num_trajs=5, seed=0):
+    '''
+    Compare uncertainty cost vs. random reward
+    :param env_name:
+    :param num_trajs:
+    :param seed:
+    :param samples:
+    :return:
+    '''
+
+    fig, ax = plt.subplots(figsize=(8, 4))
+    types = ['uncertainty cost', 'random']
+    for type in types:
+        performance = []
+        for seed in range(5):
+
+            if type == 'random':
+                file_name = "./results/" + "{}_{}_traj{}_seed{}_good_random.npy".format(model, env_name, num_trajs, seed,
+                                                                           type)
+            else:
+                file_name = "./results/" + "{}_{}_traj{}_seed{}_good.npy".format(model, env_name, num_trajs, seed,
+                                                                           type)
+            model_performance = np.load(file_name)
+            performance.append(np.mean(model_performance, axis=1))
+
+        performance = np.array(performance)
+        perf_mu = np.mean(performance, axis=1)
+        perf_std = np.std(performance, axis=1)
+        ax.plot([(i+1)*1000 for i in range(len(performance))], np.mean(performance, axis=1), label=type)
+        ax.fill_between([(i+1)*1000 for i in range(len(performance))], perf_mu+perf_std, perf_mu-perf_std, alpha=0.4)
+
+    performance = []
+    for seed in range(5):
+        file_name = "./results/" + "BCQ_{}_traj{}_seed{}_good.npy".format(env_name, num_trajs, seed,
+                                                                       type)
+        model_performance = np.load(file_name)
+        performance.append(np.mean(model_performance, axis=1))
+
+    performance = np.array(performance)
+    perf_mu = np.mean(performance, axis=1)
+    perf_std = np.std(performance, axis=1)
+    ax.plot([(i+1)*1000 for i in range(len(performance))], np.mean(performance, axis=1), label='BCQ')
+    ax.fill_between([(i+1)*1000 for i in range(len(performance))], perf_mu+perf_std, perf_mu-perf_std, alpha=0.4)
+
+    ax.legend(loc='best')
+    ax.set_title('DRBCQ {} Reward Ablation Plot'.format(env_name))
+    ax.set_xlabel('Training Iterations')
+    ax.set_ylabel('Rewards')
+    # plt.show()
+    plt.savefig('plots/DRBCQ_{}_reward_ablation.png'.format(env_name))
+
+
+def drbcq_performance_bad_traj(model='DRBCQ', env_name='Hopper-v2', num_trajs=5):
+    '''
+    Compare uncertainty cost vs. random reward
+    :param env_name:
+    :param num_trajs:
+    :param seed:
+    :param samples:
+    :return:
+    '''
+
+    fig, ax = plt.subplots(figsize=(8, 4))
+
+    for bad_traj in [5,10,15]:
+        performance = []
+        for seed in range(5):
+            file_name = "./results/" + "{}_{}_traj{}_badtraj{}_imit5_seed{}_mixed.npy".format(model, env_name, num_trajs, bad_traj,
+                                                                                              seed)
+
+            model_performance = np.load(file_name)
+            performance.append(np.mean(model_performance, axis=1))
+
+        performance = np.array(performance)
+        perf_mu = np.mean(performance, axis=1)
+        perf_std = np.std(performance, axis=1)
+        ax.plot([(i+1)*1000 for i in range(len(performance))], np.mean(performance, axis=1), label=bad_traj)
+        ax.fill_between([(i+1)*1000 for i in range(len(performance))], perf_mu+perf_std, perf_mu-perf_std, alpha=0.4)
+
+    ax.legend(loc='best')
+    ax.set_title('DRBCQ {} Reward Ablation Plot'.format(env_name))
+    ax.set_xlabel('Training Iterations')
+    ax.set_ylabel('Rewards')
+
+    # plt.show()
+    plt.savefig('plots/DRBCQ_{}_bad_traj.png'.format(env_name))
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--env_name", default="Hopper-v2")  # OpenAI gym environment name
@@ -64,6 +185,10 @@ if __name__ == "__main__":
 
     models = ['BCQ', 'DRBCQ', 'BC']
     types = ['mixed', 'good']
+
+    plot_model_reward_over_timesteps(model_name='SQIL_DDPG', seed=2)
+    # drbcq_performance_random()
+    # drbcq_performance_bad_traj()
 
     # fig, axs = plt.subplots(1, 3, figsize=(15,5), constrained_layout=True)
     # # for i, seed in enumerate([1,2]):
@@ -84,35 +209,35 @@ if __name__ == "__main__":
     #             axs[i].set_title('{} {} Training Curve'.format(type, args.env_name))
     #             axs[i].legend(loc='upper right')
 
-    fig, axs = plt.subplots(1, 3, figsize=(15,5), constrained_layout=True)
-    for i, seed in enumerate([0,1,2]):
-        for type in ['good']:
-            for model in models:
-                if model == 'BC':
-                    file_name = "./results/" + "{}_{}_traj{}_seed0_sample0_{}.npy".format(model, args.env_name, args.num_trajs,
-                                                                           type)
-                    model_performance = np.load(file_name)
-                    axs[i].plot([10*i for i in range(10)], np.mean(model_performance, axis=1), label=model)
-                    axs[i].set_title('{} {} Training Curve'.format(type, args.env_name))
-                    axs[i].legend(loc='upper right')
-                else:
-                    file_name = "./results/" + "{}_{}_traj{}_seed{}_{}.npy".format(model, args.env_name, args.num_trajs, seed,
-                                                                           type)
-                    model_performance = np.load(file_name)
-                    axs[i].plot([i for i in range(model_performance.shape[0])],np.mean(model_performance, axis=1), label=model)
-                    axs[i].set_title('{} {} Training Curve'.format(type, args.env_name))
-                    axs[i].legend(loc='upper right')
-
-    # compare good vs mixed
-    fig, axs = plt.subplots(1, 3, figsize=(15,5), constrained_layout=True)
-    for i, seed in enumerate([0,1,2]):
-        for type in ['good', 'mixed']:
-                file_name = "./results/" + "DRBCQ_{}_traj{}_seed{}_{}.npy".format(args.env_name, args.num_trajs, seed,
-                                                                       type)
-                model_performance = np.load(file_name)
-                axs[i].plot([i for i in range(model_performance.shape[0])],np.mean(model_performance, axis=1), label=type)
-                axs[i].set_title('DRBCQ Training Curve'.format(args.env_name))
-                axs[i].legend(loc='upper right')
+    # fig, axs = plt.subplots(1, 3, figsize=(15,5), constrained_layout=True)
+    # for i, seed in enumerate([0,1,2]):
+    #     for type in ['good']:
+    #         for model in models:
+    #             if model == 'BC':
+    #                 file_name = "./results/" + "{}_{}_traj{}_seed0_sample0_{}.npy".format(model, args.env_name, args.num_trajs,
+    #                                                                        type)
+    #                 model_performance = np.load(file_name)
+    #                 axs[i].plot([10*i for i in range(10)], np.mean(model_performance, axis=1), label=model)
+    #                 axs[i].set_title('{} {} Training Curve'.format(type, args.env_name))
+    #                 axs[i].legend(loc='upper right')
+    #             else:
+    #                 file_name = "./results/" + "{}_{}_traj{}_seed{}_{}.npy".format(model, args.env_name, args.num_trajs, seed,
+    #                                                                        type)
+    #                 model_performance = np.load(file_name)
+    #                 axs[i].plot([i for i in range(model_performance.shape[0])],np.mean(model_performance, axis=1), label=model)
+    #                 axs[i].set_title('{} {} Training Curve'.format(type, args.env_name))
+    #                 axs[i].legend(loc='upper right')
+    #
+    # # compare good vs mixed
+    # fig, axs = plt.subplots(1, 3, figsize=(15,5), constrained_layout=True)
+    # for i, seed in enumerate([0,1,2]):
+    #     for type in ['good', 'mixed']:
+    #             file_name = "./results/" + "DRBCQ_{}_traj{}_seed{}_{}.npy".format(args.env_name, args.num_trajs, seed,
+    #                                                                    type)
+    #             model_performance = np.load(file_name)
+    #             axs[i].plot([i for i in range(model_performance.shape[0])],np.mean(model_performance, axis=1), label=type)
+    #             axs[i].set_title('DRBCQ Training Curve'.format(args.env_name))
+    #             axs[i].legend(loc='upper right')
 
     # bc_model_performance_plot()
     # bc_evaluate_model_with_noise()
@@ -130,6 +255,4 @@ if __name__ == "__main__":
     #         axs[i].legend(loc='upper right')
     # plt.show()
 
-    plt.savefig('plots/{}_compare.png'.format(args.env_name))
-
-    # print(np.std(results,axis=1))
+    # plt.savefig('plots/{}_compare.png'.format(args.env_name))

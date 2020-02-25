@@ -7,7 +7,7 @@ import time
 import multiprocessing as mp
 
 import utils_local
-import DDPG
+from DDPG import DDPG
 import DRIL
 from BC import Policy
 from core.agent import Agent
@@ -69,7 +69,9 @@ if __name__ == "__main__":
     max_action = float(env.action_space.high[0])
 
     # Initialize policy and imitator ensemble
-    imitator = DRIL.DRIL(args, state_dim, action_dim)
+    policy = DDPG.DDPG(state_dim, action_dim, max_action)
+
+    imitator = DRIL.DRIL(args, state_dim, policy)
     model_paths = []
     for sample in range(args.num_imitators):
         # model_path = 'imitator_models/BC_{}_traj{}_seed{}_sample{}_{}.p'.format(args.env_name, args.num_trajs,args.seed, sample, expert_type)
