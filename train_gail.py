@@ -85,6 +85,10 @@ if __name__ == "__main__":
 
     expert_rewards = []
     expert_timesteps = []
+    batch = {'states':[],
+             'actions':[],
+             'rewards':[],
+             'masks':[]}
     while total_timesteps < args.max_timesteps:
 
         if done:
@@ -116,10 +120,10 @@ if __name__ == "__main__":
             episode_timesteps = 0
             episode_num += 1
 
-            batch = {'states':[],
-                     'actions':[],
-                     'rewards':[],
-                     'masks':[]}
+            # batch = {'states':[],
+            #          'actions':[],
+            #          'rewards':[],
+            #          'masks':[]}
         state_var = torch.FloatTensor(obs).unsqueeze(0)
 
         # Perform action
