@@ -40,7 +40,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     expert_type = 'good'
-    file_name = "SQIL_TD3_%s_traj%s_seed%s_%s" % (args.env_name, args.num_trajs, str(args.seed), expert_type)
+    file_name = "SQIL_ORIGINAL_TD3_%s_traj%s_seed%s_%s" % (args.env_name, args.num_trajs, str(args.seed), expert_type)
     # buffer_name = "%s_traj100_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
     buffer_name = "%s_traj100_%s_0" % (args.buffer_type, args.env_name)
 
@@ -67,7 +67,7 @@ if __name__ == "__main__":
     max_action = float(env.action_space.high[0])
 
     # Initialize policy and imitator ensemble
-    policy = TD3_SQIL.TD3_SQIL(state_dim, action_dim, max_action)
+    policy = TD3_SQIL.TD3_SQIL_ORIGINAL(state_dim, action_dim, max_action)
 
     # Initialize buffers
     expert_buffer = utils_local.ReplayBuffer()
