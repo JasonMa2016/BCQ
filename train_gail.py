@@ -92,7 +92,13 @@ if __name__ == "__main__":
             if total_timesteps != 0:
                 print("Total T: %d Episode Num: %d Episode T: %d Reward: %f" % (
                 total_timesteps, episode_num, episode_timesteps, episode_reward))
-                imitator.train(batch)
+
+                if len(batch['states']) >= 2048:
+                    imitator.train(batch)
+                    batch = {'states': [],
+                             'actions': [],
+                             'rewards': [],
+                             'masks': []}
 
             # Save policy
             if total_timesteps % 1e4 == 0:
