@@ -152,23 +152,23 @@ class DDPG_DRIL(object):
 				torch.load(model_path))
 			self.ensemble.append(imitator)
 
-	def bc_train(self, replay_buffer, iterations=500, batch_size=100):
-		# Sample replay buffer / batch
-		for it in range(iterations):
-			state_np, next_state_np, action, reward, done = replay_buffer.sample(batch_size)
-			state = torch.FloatTensor(state_np).to(self.device)
-			action = torch.FloatTensor(action).to(self.device)
-			next_state = torch.FloatTensor(next_state_np).to(self.device)
-			reward = torch.FloatTensor(reward).to(self.device)
-			done = torch.FloatTensor(1 - done).to(self.device)
-
-			# supervised lost
-			predicted_actions = self.actor(state)
-			# predicted_actions = self.select_action(state)
-			self.actor_optimizer.zero_grad()
-			loss = self.supervised_loss(predicted_actions, action)
-			loss.backward()
-			self.actor_optimizer.step()
+	# def bc_train(self, replay_buffer, iterations=500, batch_size=100):
+	# 	# Sample replay buffer / batch
+	# 	for it in range(iterations):
+	# 		state_np, next_state_np, action, reward, done = replay_buffer.sample(batch_size)
+	# 		state = torch.FloatTensor(state_np).to(self.device)
+	# 		action = torch.FloatTensor(action).to(self.device)
+	# 		next_state = torch.FloatTensor(next_state_np).to(self.device)
+	# 		reward = torch.FloatTensor(reward).to(self.device)
+	# 		done = torch.FloatTensor(1 - done).to(self.device)
+	#
+	# 		# supervised lost
+	# 		predicted_actions = self.actor(state)
+	# 		# predicted_actions = self.select_action(state)
+	# 		self.actor_optimizer.zero_grad()
+	# 		loss = self.supervised_loss(predicted_actions, action)
+	# 		loss.backward()
+	# 		self.actor_optimizer.step()
 
 	def train(self, replay_buffer, iterations=500, batch_size=100, discount=0.99, tau=0.005):
 
@@ -251,32 +251,6 @@ class DDPG_SQIL(object):
 		state = torch.FloatTensor(state.reshape(1, -1)).to(device)
 		return self.actor(state).cpu().data.numpy().flatten()
 
-	def set_ensemble(self, model_paths):
-		self.ensemble = []
-		for model_path in model_paths:
-			imitator = Policy(self.state_dim, self.action_dim)
-			imitator.load_state_dict(
-				torch.load(model_path))
-			self.ensemble.append(imitator)
-
-	def bc_train(self, replay_buffer, iterations=500, batch_size=100):
-		# Sample replay buffer / batch
-		for it in range(iterations):
-			state_np, next_state_np, action, reward, done = replay_buffer.sample(batch_size)
-			state = torch.FloatTensor(state_np).to(self.device)
-			action = torch.FloatTensor(action).to(self.device)
-			next_state = torch.FloatTensor(next_state_np).to(self.device)
-			reward = torch.FloatTensor(reward).to(self.device)
-			done = torch.FloatTensor(1 - done).to(self.device)
-
-			# supervised lost
-			predicted_actions = self.actor(state)
-			# predicted_actions = self.select_action(state)
-			self.actor_optimizer.zero_grad()
-			loss = self.supervised_loss(predicted_actions, action)
-			loss.backward()
-			self.actor_optimizer.step()
-
 	def train(self, replay_buffer, expert=True, iterations=500, batch_size=100, discount=0.99, tau=0.005):
 
 		for it in range(iterations):
@@ -292,14 +266,6 @@ class DDPG_SQIL(object):
 			reward = - torch.FloatTensor(np.ones(reward.size())).to(device)
 			if expert:
 				reward = - reward
-			# new_reward = []
-			# for imitator in self.ensemble:
-			# 	with torch.no_grad():
-			# 		action_probs = imitator.get_log_prob(torch.FloatTensor(state), torch.FloatTensor(action))
-			# 		new_reward.append(action_probs)
-			# new_reward = torch.stack(new_reward, dim=2)
-			# reward = - torch.var(new_reward, dim=2)
-			# reward = torch.FloatTensor(reward).to(device)
 
 			# Compute the target Q value
 			target_Q = self.critic_target(next_state, self.actor_target(next_state))
@@ -362,14 +328,6 @@ class DDPG_SQIL_ORIGINAL(object):
 		state = torch.FloatTensor(state.reshape(1, -1)).to(device)
 		return self.actor(state).cpu().data.numpy().flatten()
 
-	def set_ensemble(self, model_paths):
-		self.ensemble = []
-		for model_path in model_paths:
-			imitator = Policy(self.state_dim, self.action_dim)
-			imitator.load_state_dict(
-				torch.load(model_path))
-			self.ensemble.append(imitator)
-
 	def bc_train(self, replay_buffer, iterations=500, batch_size=100):
 		# Sample replay buffer / batch
 		for it in range(iterations):
@@ -403,14 +361,6 @@ class DDPG_SQIL_ORIGINAL(object):
 			reward = torch.FloatTensor(np.zeros(reward.size())).to(device)
 			if expert:
 				reward = torch.FloatTensor(np.ones(reward.size())).to(device)
-			# new_reward = []
-			# for imitator in self.ensemble:
-			# 	with torch.no_grad():
-			# 		action_probs = imitator.get_log_prob(torch.FloatTensor(state), torch.FloatTensor(action))
-			# 		new_reward.append(action_probs)
-			# new_reward = torch.stack(new_reward, dim=2)
-			# reward = - torch.var(new_reward, dim=2)
-			# reward = torch.FloatTensor(reward).to(device)
 
 			# Compute the target Q value
 			target_Q = self.critic_target(next_state, self.actor_target(next_state))

@@ -7,10 +7,7 @@ import time
 import multiprocessing as mp
 
 import utils_local
-import DDPG
-import DRIL
-from BC import Policy
-from core.agent import Agent
+import SQIL
 
 
 if __name__ == "__main__":
@@ -69,18 +66,7 @@ if __name__ == "__main__":
     max_action = float(env.action_space.high[0])
 
     # Initialize policy and imitator ensemble
-    # policy = DDPG.DDPG_SQIL(state_dim, action_dim, max_action)
-    policy = DDPG.DDPG_SQIL_ORIGINAL(state_dim, action_dim, max_action)
-
-    # imitator = DRIL.DRIL(state_dim, action_dim, policy)
-
-    model_paths = []
-    for sample in range(args.num_imitators):
-        # model_path = 'imitator_models/BC_{}_traj{}_seed{}_sample{}_{}.p'.format(args.env_name, args.num_trajs,args.seed, sample, expert_type)
-        model_path = 'imitator_models/BC_{}_traj{}_seed0_sample{}_{}.p'.format(args.env_name, args.num_trajs, sample, expert_type)
-        model_paths.append(model_path)
-
-    policy.set_ensemble(model_paths)
+    policy = SQIL.DDPG_SQIL_ORIGINAL(state_dim, action_dim, max_action)
 
     # Initialize buffers
     expert_buffer = utils_local.ReplayBuffer()

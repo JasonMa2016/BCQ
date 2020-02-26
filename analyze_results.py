@@ -186,7 +186,7 @@ if __name__ == "__main__":
     models = ['BCQ', 'DRBCQ', 'BC']
     types = ['mixed', 'good']
 
-    plot_model_reward_over_timesteps(model_name='SQIL_DDPG', seed=2)
+    plot_model_reward_over_timesteps(model_name='SQIL_DDPG', seed=5)
     # drbcq_performance_random()
     # drbcq_performance_bad_traj()
 

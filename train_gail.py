@@ -7,21 +7,23 @@ import time
 import multiprocessing as mp
 
 import utils_local
-import SQIL
+from DDPG import DDPG
+from GAIL import GAIL
+
+from core.agent import Agent
 
 
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--env_name", default="Hopper-v2")  # OpenAI gym environment name
-    parser.add_argument("--seed", default=1, type=int)  # Sets Gym, PyTorch and Numpy seeds
+    parser.add_argument("--seed", default=0, type=int)  # Sets Gym, PyTorch and Numpy seeds
     parser.add_argument("--buffer_type", default="Robust")  # Prepends name to filename.
     parser.add_argument("--eval_freq", default=1e3, type=float)  # How often (time steps) we evaluate
     parser.add_argument("--num_trajs", default=5, type=int)            # Number of expert trajectories to use
     parser.add_argument("--num_imitators", default=5, type=int)     # Number of BC imitators in the ensemble
-    parser.add_argument("--max_timesteps", default=1e5, type=float)  # Max time steps to run environment for
+    parser.add_argument("--max_timesteps", default=1e6, type=float)  # Max time steps to run environment for
     parser.add_argument("--good", action='store_true', default=False) # Good or mixed expert trajectories
-    parser.add_argument("--start_timesteps", default=1e3, type=int)
 
     parser.add_argument('--log-std', type=float, default=-0.0, metavar='G',
                         help='log std for the policy (default: -0.0)')
@@ -38,13 +40,13 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    expert_type = 'good'
-    file_name = "SQIL_DDPG_%s_traj%s_seed%s_%s" % (args.env_name, args.num_trajs, str(args.seed), expert_type)
-    # buffer_name = "%s_traj100_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
+    expert_type = 'good' if args.good else 'mixed'
+    file_name = "GAIL_%s_traj%s_seed%s_%s" % (args.env_name, args.num_trajs, str(args.seed), expert_type)
     buffer_name = "%s_traj100_%s_0" % (args.buffer_type, args.env_name)
 
     expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
     expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
+
     flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, good=args.good)
 
     print("---------------------------------------")
@@ -65,14 +67,16 @@ if __name__ == "__main__":
     action_dim = env.action_space.shape[0]
     max_action = float(env.action_space.high[0])
 
-    # Initialize policy and imitator ensemble
-    policy = SQIL.DDPG_SQIL(state_dim, action_dim, max_action)
+    imitator = GAIL(args, state_dim, action_dim)
+    imitator.set_expert(flat_expert_trajs)
 
-    # Initialize buffers
-    expert_buffer = utils_local.ReplayBuffer()
-    expert_buffer.set_expert(flat_expert_trajs)
+    # args.num_threads = mp.cpu_count() - 1
+    # agent = Agent(env, imitator.policy.actor, args.device, custom_reward=imitator.expert_reward,
+    #               render=args.render, num_threads=args.num_threads)
 
-    replay_buffer = utils_local.ReplayBuffer()
+    # Initialize batch
+    # replay_buffer = utils_local.ReplayBuffer()
+    # replay_buffer.set_expert(flat_expert_trajs)
 
     total_timesteps = 0
     episode_reward = 0
@@ -88,14 +92,13 @@ if __name__ == "__main__":
             if total_timesteps != 0:
                 print("Total T: %d Episode Num: %d Episode T: %d Reward: %f" % (
                 total_timesteps, episode_num, episode_timesteps, episode_reward))
-                policy.train(expert_buffer, expert=True)
-                policy.train(replay_buffer)
+                imitator.train(batch)
 
             # Save policy
-            if total_timesteps % 1e5 == 0:
+            if total_timesteps % 1e4 == 0:
                 np.save("./results/" + file_name + '_rewards', expert_rewards)
                 np.save("./results/" + file_name + '_timesteps', expert_timesteps)
-                policy.save(file_name, directory="./imitator_models")
+                imitator.save(file_name, directory="./imitator_models")
 
             expert_rewards.append(episode_reward)
             expert_timesteps.append(total_timesteps)
@@ -107,22 +110,27 @@ if __name__ == "__main__":
             episode_timesteps = 0
             episode_num += 1
 
-        # Select action randomly or according to policy
-        if total_timesteps < args.start_timesteps:
-            action = env.action_space.sample()
-        else:
-            action = policy.select_action(np.array(obs))
-            # if args.expl_noise != 0:
-            #     action = (action + np.random.normal(0, args.expl_noise, size=env.action_space.shape[0])).clip(
-            #         env.action_space.low, env.action_space.high)
+            batch = {'states':[],
+                     'actions':[],
+                     'rewards':[],
+                     'masks':[]}
+        state_var = torch.FloatTensor(obs).unsqueeze(0)
 
         # Perform action
-        new_obs, reward, done, _ = env.step(action)
+        with torch.no_grad():
+            action = imitator.policy.actor.select_action(state_var)
+            action = action[0].numpy()
+            new_obs, reward, done, _ = env.step(action)
+
         done_bool = 0 if episode_timesteps + 1 == env._max_episode_steps else float(done)
         episode_reward += reward
+        reward = imitator.expert_reward(obs, action)
 
         # Store data in replay buffer
-        replay_buffer.add((obs, new_obs, action, reward, done_bool))
+        batch['states'].append(obs)
+        batch['actions'].append(action)
+        batch['rewards'].append(reward)
+        batch['masks'].append(1-done_bool)
 
         obs = new_obs
 
@@ -133,4 +141,4 @@ if __name__ == "__main__":
     np.save("./results/" + file_name + '_timesteps', expert_timesteps)
 
     # Save final policy
-    policy.save("%s" % (file_name), directory="./imitator_models")
+    imitator.save("%s" % (file_name), directory="./imitator_models")

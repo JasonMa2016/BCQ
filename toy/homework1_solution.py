@@ -73,7 +73,14 @@ def true_Q_function(env, discount=0.95):
     true_T, true_R = env.as_mdp()
     true_mdp = MDP(true_T, true_R, discount)
     true_pi_star = policy_iteration(true_mdp)[-1]
-    return Q_function(true_mdp, true_pi_star)
+    return Q_function(true_mdp, true_pi_star), true_pi_star
+
+
+def true_pi_star(env, discount=0.95):
+    true_T, true_R = env.as_mdp()
+    true_mdp = MDP(true_T, true_R, discount)
+    true_pi_star = policy_iteration(true_mdp)[-1]
+    return true_pi_star
 
 
 def epsilon_greedy_action(state, Q, epsilon=0.1):
