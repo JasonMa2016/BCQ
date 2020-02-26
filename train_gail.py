@@ -47,7 +47,8 @@ if __name__ == "__main__":
     expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
     expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
 
-    flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, good=args.good)
+    flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, num_good_traj=args.num_trajs,
+                                                                 num_bad_traj=args.num_trajs, good=args.good)
 
     print("---------------------------------------")
     print("Settings: " + file_name)

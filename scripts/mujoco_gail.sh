@@ -2,7 +2,11 @@
 
 ENV="Hopper-v2"
 
-for seed in 0 1 2 3 4
+for num_traj in 1 5 10
 do
-    python3 train_gail.py --env_name $ENV --num_trajs 5 --seed $seed
+    for seed in 0 1 2 3 4
+    do
+        python3 train_gail.py --env_name $ENV --num_trajs $num_traj --seed $seed
+            python3 train_gail.py --env_name $ENV --num_trajs $num_traj --seed $seed --good
+    done
 done

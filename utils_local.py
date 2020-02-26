@@ -91,7 +91,7 @@ def evaluate_policy_with_noise(env, policy, eval_episodes=50, noise=0.3):
 	return rewards
 
 
-def collect_trajectories_rewards(expert_trajs, num_good_traj=5, num_bad_traj=3, good=False):
+def collect_trajectories_rewards(expert_trajs, num_good_traj=5, num_bad_traj=5, good=False):
 
 	# trajs = np.concatenate((expert_trajs[:num_good_traj], expert_trajs[-num_bad_traj:]), axis=0)
 	# rewards = np.concatenate((expert_rewards[:num_bad_traj]), expert_rewards[-num_bad_traj:], axis=0)

@@ -18,17 +18,17 @@ def plot_model_reward_over_timesteps(env_name='Hopper-v2', model_name='BC', num_
     fig, ax = plt.subplots(figsize=(8, 4))
     ax.plot(timestep, reward, label='new')
 
-    file_name = 'results/SQIL_ORIGINAL_DDPG_{}_traj{}_seed{}_{}'.format(env_name, num_trajs, seed, type)
-    reward = np.load(file_name + '_rewards.npy')
-    timestep = np.load(file_name + '_timesteps.npy')
-
-    ax.plot(timestep, reward, label='original')
+    # file_name = 'results/SQIL_ORIGINAL_DDPG_{}_traj{}_seed{}_{}'.format(env_name, num_trajs, seed, type)
+    # reward = np.load(file_name + '_rewards.npy')
+    # timestep = np.load(file_name + '_timesteps.npy')
+    #
+    # ax.plot(timestep, reward, label='original')
 
     ax.set_title(file_name)
     ax.legend(loc='best')
     ax.set_xlabel('Training Steps')
     ax.set_ylabel('Rewards')
-    plt.savefig('plots/SQIL_improvement_{}.png'.format(seed))
+    plt.savefig('plots/{}_{}_traj{}_seed{}_{}.png'.format(model_name, env_name, num_trajs, seed, type))
     plt.close()
     return
 
@@ -185,8 +185,8 @@ if __name__ == "__main__":
 
     models = ['BCQ', 'DRBCQ', 'BC']
     types = ['mixed', 'good']
-
-    plot_model_reward_over_timesteps(model_name='SQIL_DDPG', seed=5)
+    for seed in range(5):
+        plot_model_reward_over_timesteps(model_name='GAIL', seed=seed, type='mixed')
     # drbcq_performance_random()
     # drbcq_performance_bad_traj()
 
