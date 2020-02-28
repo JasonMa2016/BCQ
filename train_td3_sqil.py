@@ -10,7 +10,8 @@ import utils_local
 import DDPG
 import TD3_SQIL
 
-
+# def load_model(model_name='TD3', original=False):
+#     if model_name == TD3:
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
@@ -22,6 +23,8 @@ if __name__ == "__main__":
     parser.add_argument("--num_imitators", default=5, type=int)     # Number of BC imitators in the ensemble
     parser.add_argument("--max_timesteps", default=1e5, type=float)  # Max time steps to run environment for
     parser.add_argument("--good", action='store_true', default=False) # Good or mixed expert trajectories
+    parser.add_argument("--expl_noise", default=0.1, type=float)  # Std of Gaussian exploration noise
+
     parser.add_argument("--start_timesteps", default=1e3, type=int)
 
     parser.add_argument('--log-std', type=float, default=-0.0, metavar='G',
@@ -113,9 +116,9 @@ if __name__ == "__main__":
             action = env.action_space.sample()
         else:
             action = policy.select_action(np.array(obs))
-            # if args.expl_noise != 0:
-            #     action = (action + np.random.normal(0, args.expl_noise, size=env.action_space.shape[0])).clip(
-            #         env.action_space.low, env.action_space.high)
+            if args.expl_noise != 0:
+                action = (action + np.random.normal(0, args.expl_noise, size=env.action_space.shape[0])).clip(
+                    env.action_space.low, env.action_space.high)
 
         # Perform action
         new_obs, reward, done, _ = env.step(action)
