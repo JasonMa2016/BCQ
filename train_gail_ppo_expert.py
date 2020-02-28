@@ -49,11 +49,12 @@ if __name__ == "__main__":
     expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
     flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, num_good_traj=args.num_trajs,
                                                                  num_bad_traj=args.num_trajs, good=args.good)
-
+    # print(expert_rewards)
     args.model_path = "expert_models/{}_ppo_{}.p".format(args.env_name, args.seed)
 
     policy, _, running_state, expert_args = pickle.load(open(args.model_path, "rb"))
-
+    running_state.fix=True
+    
     print("---------------------------------------")
     print("Settings: " + file_name)
     print("")
