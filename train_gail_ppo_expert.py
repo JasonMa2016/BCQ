@@ -50,7 +50,7 @@ if __name__ == "__main__":
     flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, num_good_traj=args.num_trajs,
                                                                  num_bad_traj=args.num_trajs, good=args.good)
 
-    args.model_path = "expert_models/{}_PPO_{}.p".format(args.env_name, args.seed)
+    args.model_path = "expert_models/{}_ppo_{}.p".format(args.env_name, args.seed)
 
     policy, _, running_state, expert_args = pickle.load(open(args.model_path, "rb"))
 
