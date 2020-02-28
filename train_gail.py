@@ -16,7 +16,7 @@ from core.agent import Agent
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--env_name", default="Hopper-v2")  # OpenAI gym environment name
+    parser.add_argument("--env_name", default="HalfCheetah-v2")  # OpenAI gym environment name
     parser.add_argument("--seed", default=0, type=int)  # Sets Gym, PyTorch and Numpy seeds
     parser.add_argument("--buffer_type", default="Robust")  # Prepends name to filename.
     parser.add_argument("--eval_freq", default=1e3, type=float)  # How often (time steps) we evaluate
@@ -41,12 +41,11 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     expert_type = 'good' if args.good else 'mixed'
-    file_name = "GAIL_%s_traj%s_seed%s_%s" % (args.env_name, args.num_trajs, str(args.seed), expert_type)
+    file_name = "GAIL_%s_%s_traj%s_seed%s_%s" % (args.env_name, args.num_trajs, args.buffer_type, str(args.seed), expert_type)
     buffer_name = "%s_traj100_%s_0" % (args.buffer_type, args.env_name)
 
     expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
     expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
-
     flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, num_good_traj=args.num_trajs,
                                                                  num_bad_traj=args.num_trajs, good=args.good)
 

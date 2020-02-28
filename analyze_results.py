@@ -18,11 +18,11 @@ def plot_model_reward_over_timesteps(env_name='Hopper-v2', model_name='BC', num_
     fig, ax = plt.subplots(figsize=(8, 4))
     ax.plot(timestep, reward, label='new')
 
-    file_name = 'results/SQIL_ORIGINAL_DDPG_{}_traj{}_seed{}_{}'.format(env_name, num_trajs, seed, type)
-    reward = np.load(file_name + '_rewards.npy')
-    timestep = np.load(file_name + '_timesteps.npy')
-
-    ax.plot(timestep, reward, label='original')
+    # file_name = 'results/SQIL_ORIGINAL_DDPG_{}_traj{}_seed{}_{}'.format(env_name, num_trajs, seed, type)
+    # reward = np.load(file_name + '_rewards.npy')
+    # timestep = np.load(file_name + '_timesteps.npy')
+    #
+    # ax.plot(timestep, reward, label='original')
 
     ax.set_title(file_name)
     ax.legend(loc='best')
@@ -32,6 +32,88 @@ def plot_model_reward_over_timesteps(env_name='Hopper-v2', model_name='BC', num_
     plt.close()
     return
 
+def plot_model_reward_over_timesteps_average(env_name='Hopper-v2', model_name='BC',
+                                             num_trajs=5, seeds = [0,1,2,3,4], type='good'):
+
+    # buffer_name = "%s_traj100_%s_0" % (args.buffer_type, args.env_name)
+    #
+    # expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
+    # expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
+    # buffer_name = "%s_traj100_%s_0" % (args.buffer_type, args.env_name)
+    #
+    # expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
+    # expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
+    #
+    performance = []
+    min_length = 10000
+    min_timestep = None
+    fig, ax = plt.subplots(figsize=(8, 4))
+    for seed in seeds:
+        file_name = 'results/{}_{}_traj{}_seed{}_{}'.format(model_name, env_name, num_trajs, seed, type)
+        reward = np.load(file_name + '_rewards.npy')
+        timestep = np.load(file_name + '_timesteps.npy')
+        if min_length > len(timestep):
+            min_length = len(timestep)
+            min_timestep = timestep
+        performance.append(reward)
+    for i in range(len(performance)):
+        performance[i] = performance[i][:min_length]
+    performance = np.array(performance)
+    perf_mu = np.mean(performance, axis=0)
+    perf_std = np.std(performance, axis=0)
+    ax.plot(min_timestep, np.mean(performance, axis=0), label=type)
+    ax.fill_between(min_timestep, perf_mu + perf_std, perf_mu - perf_std, alpha=0.4)
+
+    ax.legend(loc='best')
+    ax.set_title('{}_{}_traj{}_{}_average'.format(model_name, env_name, num_trajs, seed))
+    ax.set_xlabel('Training Iterations')
+    ax.set_ylabel('Rewards')
+    # plt.show()
+    plt.savefig('plots/{}_{}_traj{}_{}_average.png'.format(model_name, env_name, num_trajs, type))
+    plt.close()
+
+
+def plot_model_reward_over_timesteps_compare_average(env_name='Hopper-v2', model_name='BC',
+                                             num_trajs=5, seeds=[0, 1, 2, 3, 4]):
+    # buffer_name = "%s_traj100_%s_0" % (args.buffer_type, args.env_name)
+    #
+    # expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
+    # expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
+    # buffer_name = "%s_traj100_%s_0" % (args.buffer_type, args.env_name)
+    #
+    # expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
+    # expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
+    #
+
+    fig, ax = plt.subplots(figsize=(8, 4))
+    for type in ['good', 'mixed']:
+        performance = []
+        min_length = 10000
+        min_timestep = None
+
+        for seed in seeds:
+            file_name = 'results/{}_{}_traj{}_seed{}_{}'.format(model_name, env_name, num_trajs, seed, type)
+            reward = np.load(file_name + '_rewards.npy')
+            timestep = np.load(file_name + '_timesteps.npy')
+            if min_length > len(timestep):
+                min_length = len(timestep)
+                min_timestep = timestep
+            performance.append(reward)
+        for i in range(len(performance)):
+            performance[i] = performance[i][:min_length]
+        performance = np.array(performance)
+        perf_mu = np.mean(performance, axis=0)
+        perf_std = np.std(performance, axis=0)
+        ax.plot(min_timestep, np.mean(performance, axis=0), label=type)
+        ax.fill_between(min_timestep, perf_mu + perf_std, perf_mu - perf_std, alpha=0.4)
+
+    ax.legend(loc='best')
+    ax.set_title('{}_{}_traj{}_compare_average'.format(model_name, env_name, num_trajs))
+    ax.set_xlabel('Training Iterations')
+    ax.set_ylabel('Rewards')
+    # plt.show()
+    plt.savefig('plots/{}_{}_traj{}_compare_average.png'.format(model_name, env_name, num_trajs, type))
+    plt.close()
 
 def bc_evaluate_model_with_noise(env_name='Hopper-v2', model_name='BC', num_trajs=5, seed=0):
     expert_type = 'good'
@@ -175,6 +257,12 @@ def drbcq_performance_bad_traj(model='DRBCQ', env_name='Hopper-v2', num_trajs=5)
     plt.savefig('plots/DRBCQ_{}_bad_traj.png'.format(env_name))
 
 
+def running_mean(x, N):
+    cumsum = np.cumsum(np.insert(x, 0, 0))
+    print(cumsum)
+    return (cumsum[N:] - cumsum[:-N]) / float(N)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--env_name", default="Hopper-v2")  # OpenAI gym environment name
@@ -185,8 +273,15 @@ if __name__ == "__main__":
 
     models = ['BCQ', 'DRBCQ', 'BC']
     types = ['mixed', 'good']
-    for seed in [0,1,2,5]:
-        plot_model_reward_over_timesteps(model_name='SQIL_DDPG', seed=seed)
+    for seed in range(5):
+        plot_model_reward_over_timesteps(model_name='GAIL', seed=seed)
+    # for seed in [0,1,2,5]:
+    #     plot_model_reward_over_timesteps(model_name='SQIL_DDPG', seed=seed)
+    plot_model_reward_over_timesteps_average(model_name='GAIL')
+    plot_model_reward_over_timesteps_average(model_name='GAIL', type='mixed')
+    plot_model_reward_over_timesteps_compare_average(model_name='GAIL')
+    plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=1)
+    plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=10)
 
     # plot_model_reward_over_timesteps(model_name='SQIL_TD3', seed=1)
     # drbcq_performance_random()

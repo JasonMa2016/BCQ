@@ -2,12 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed043476-e961-4200-95e0-b4ec649a8c8f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/analyze_expert_results.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/generate_ppo_trajectories.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/train_gail_ppo_expert.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analyze_results.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyze_results.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/mujoco_sqil.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/mujoco_sqil.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_ddpg_sqil.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_ddpg_sqil.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_ddpg_sqil_original.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_td3_sqil.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_td3_sqil.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed0_good.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed0_good.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed1_good.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed1_good.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed2_good.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed2_good.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed3_good.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed3_good.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed4_good.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed4_good.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/mujoco_gail.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/mujoco_gail.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train_gail.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_gail.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,37 +39,37 @@
         <counts>
           <entry key="ipynb" value="2" />
           <entry key="md" value="2" />
-          <entry key="npy" value="6" />
+          <entry key="npy" value="7" />
           <entry key="p" value="4" />
-          <entry key="png" value="124" />
-          <entry key="py" value="220" />
-          <entry key="sh" value="39" />
+          <entry key="png" value="150" />
+          <entry key="py" value="225" />
+          <entry key="sh" value="40" />
           <entry key="txt" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Bash" value="39" />
+          <entry key="Bash" value="40" />
           <entry key="IPNB" value="2" />
-          <entry key="Image" value="124" />
+          <entry key="Image" value="150" />
           <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="16" />
-          <entry key="Python" value="220" />
-          <entry key="SQL" value="6" />
+          <entry key="Python" value="225" />
+          <entry key="SQL" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="48" />
-          <entry key="py" value="20910" />
-          <entry key="sh" value="886" />
+          <entry key="py" value="22633" />
+          <entry key="sh" value="976" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Bash" value="886" />
+          <entry key="Bash" value="976" />
           <entry key="PLAIN_TEXT" value="48" />
-          <entry key="Python" value="20910" />
+          <entry key="Python" value="22633" />
         </counts>
       </usages-collector>
     </session>
@@ -71,23 +77,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/train_td3_sqil.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="25" column="33" selection-start-line="25" selection-end-line="26" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-                <marker date="1582743003000" expanded="true" signature="210:239" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train_gail.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="42" column="13" lean-forward="true" selection-start-line="42" selection-end-line="43" />
+            <state relative-caret-position="107">
+              <caret line="36" column="12" selection-end-line="153" selection-end-column="68" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/train_gail_ppo_expert.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-939">
+              <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -96,22 +101,29 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/train_ddpg_sqil.py">
+        <entry file="file://$PROJECT_DIR$/analyze_expert_results.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1216">
-              <caret line="64" selection-start-line="64" selection-end-line="64" />
+            <state relative-caret-position="437">
+              <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#0#18#0" expanded="true" />
+                <marker date="1582911338000" expanded="true" signature="219:224" ph="..." />
+                <marker date="1582911338000" expanded="true" signature="461:771" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/mujoco_sqil.sh">
+        <entry file="file://$PROJECT_DIR$/analyze_results.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="79" selection-start-line="6" selection-start-column="79" selection-end-line="6" selection-end-column="79" />
+            <state relative-caret-position="266">
+              <caret line="14" selection-start-line="14" selection-end-line="17" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+                <marker date="1582908110000" expanded="true" signature="6959:7110" ph="..." />
+                <marker date="1582908110000" expanded="true" signature="7197:10853" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -119,7 +131,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/generate_trajectories.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="285">
+              <caret line="15" selection-start-line="15" selection-end-line="16" selection-end-column="97" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -128,40 +141,32 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plots_old/uncertain_cost_plot_mixed.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plots_old/uncertain_cost_plot_good.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/plots/BC-Hopper-v2.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SQIL.py">
+        <entry file="file://$PROJECT_DIR$/generate_ppo_trajectories.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+            <state relative-caret-position="201">
+              <caret line="39" selection-start-line="39" selection-end-line="41" selection-end-column="84" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/train_expert.py">
+        <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj1_compare_average.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj10_compare_average.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/mujoco_gail.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="32" selection-start-line="18" selection-end-line="19" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
+            <state>
+              <caret column="19" lean-forward="true" selection-start-column="19" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -215,9 +220,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/generate_trajectories.py" />
-        <option value="$PROJECT_DIR$/analyze_distributional_shift.py" />
-        <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/analysis/variance_scatterplot.py" />
         <option value="$PROJECT_DIR$/train_bc.py" />
         <option value="$PROJECT_DIR$/train_bcq_traj.py" />
@@ -258,14 +260,17 @@
         <option value="$PROJECT_DIR$/train_td3_sqil_original.py" />
         <option value="$PROJECT_DIR$/scripts/mujoco_td3_sqil.sh" />
         <option value="$PROJECT_DIR$/utils_local.py" />
-        <option value="$PROJECT_DIR$/train_gail.py" />
-        <option value="$PROJECT_DIR$/scripts/mujoco_gail.sh" />
         <option value="$PROJECT_DIR$/GAIL.py" />
         <option value="$PROJECT_DIR$/train_td3_sqil.py" />
-        <option value="$PROJECT_DIR$/analyze_results.py" />
         <option value="$PROJECT_DIR$/train_ddpg_sqil_original.py" />
         <option value="$PROJECT_DIR$/train_ddpg_sqil.py" />
         <option value="$PROJECT_DIR$/scripts/mujoco_sqil.sh" />
+        <option value="$PROJECT_DIR$/analyze_results.py" />
+        <option value="$PROJECT_DIR$/analyze_expert_results.py" />
+        <option value="$PROJECT_DIR$/generate_ppo_trajectories.py" />
+        <option value="$PROJECT_DIR$/train_gail.py" />
+        <option value="$PROJECT_DIR$/scripts/mujoco_gail.sh" />
+        <option value="$PROJECT_DIR$/train_gail_ppo_expert.py" />
       </list>
     </option>
   </component>
@@ -289,17 +294,12 @@
             <path>
               <item name="BCQ" type="b2602c69:ProjectViewProjectNode" />
               <item name="BCQ" type="462c0819:PsiDirectoryNode" />
-              <item name="plots" type="462c0819:PsiDirectoryNode" />
+              <item name="buffers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BCQ" type="b2602c69:ProjectViewProjectNode" />
               <item name="BCQ" type="462c0819:PsiDirectoryNode" />
-              <item name="plots_old" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BCQ" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BCQ" type="462c0819:PsiDirectoryNode" />
-              <item name="results" type="462c0819:PsiDirectoryNode" />
+              <item name="expert_results" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BCQ" type="b2602c69:ProjectViewProjectNode" />
@@ -349,7 +349,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Bash.mujoco_sqil.sh">
+  <component name="RunManager" selected="Python.train_gail_ppo_expert">
     <configuration name="mujoco_sqil.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
       <module name="BCQ" />
       <option name="INTERPRETER_OPTIONS" value="bash" />
@@ -358,6 +358,27 @@
       <option name="PARENT_ENVS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/mujoco_sqil.sh" />
       <option name="PARAMETERS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="analyze_expert_results" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="BCQ" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/analyze_expert_results.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <configuration name="analyze_results" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -381,7 +402,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="train_gail" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="generate_ppo_trajectories" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="BCQ" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -393,7 +414,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train_gail.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/generate_ppo_trajectories.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -402,7 +423,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="train_td3_sqil" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="train_gail_ppo_expert" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="BCQ" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -414,28 +435,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train_td3_sqil.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="train_td3_sqil_original" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="BCQ" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train_td3_sqil_original.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train_gail_ppo_expert.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -446,18 +446,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.analyze_results" />
-      <item itemvalue="Python.train_gail" />
-      <item itemvalue="Python.train_td3_sqil" />
-      <item itemvalue="Python.train_td3_sqil_original" />
       <item itemvalue="Bash.mujoco_sqil.sh" />
+      <item itemvalue="Python.analyze_expert_results" />
+      <item itemvalue="Python.generate_ppo_trajectories" />
+      <item itemvalue="Python.train_gail_ppo_expert" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Bash.mujoco_sqil.sh" />
+        <item itemvalue="Python.train_gail_ppo_expert" />
+        <item itemvalue="Python.generate_ppo_trajectories" />
+        <item itemvalue="Python.analyze_expert_results" />
         <item itemvalue="Python.analyze_results" />
-        <item itemvalue="Python.train_td3_sqil_original" />
-        <item itemvalue="Python.train_td3_sqil" />
-        <item itemvalue="Python.train_gail" />
+        <item itemvalue="Bash.mujoco_sqil.sh" />
       </list>
     </recent_temporary>
   </component>
@@ -478,12 +478,12 @@
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3015873" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3015873" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32959184" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2632653" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25714287" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -524,79 +524,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/agent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="30" column="24" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DRIL.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="218" lean-forward="true" selection-start-line="218" selection-end-line="218" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <marker date="1582513485000" expanded="true" signature="6337:6397" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/toy/solve_environments.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/SQIL_improvement_1.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/SQIL_improvement_2.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/SQIL_improvement.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/SQIL_improvement_5.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PPO.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-142">
-          <caret line="37" column="8" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TD3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1120">
-          <caret line="64" selection-start-line="64" selection-end-line="155" selection-end-column="91" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/train_dril_ddpg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="128" selection-start-line="128" selection-end-line="128" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/train_dril.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="569">
@@ -621,39 +548,11 @@
     <entry file="file://$PROJECT_DIR$/plots/DRBCQ_Hopper-v2_reward_ablation.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed3_mixed.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed4_mixed.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed1_mixed.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed0_mixed.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed0_good.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed1_good.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed2_good.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed4_good.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed3_good.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/mujoco_gail.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils_local.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -730,23 +629,8 @@
     <entry file="file://$PROJECT_DIR$/plots/SQIL_DDPG_Hopper-v2_traj5_seed5_good.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed2_mixed.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/plots/SQIL_DDPG_Hopper-v2_traj5_seed1_good.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analyze_results.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="185" column="33" lean-forward="true" selection-start-line="185" selection-start-column="33" selection-end-line="185" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <marker date="1582743655000" expanded="true" signature="3065:3216" ph="..." />
-            <marker date="1582743655000" expanded="true" signature="3303:6823" ph="..." />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SQIL.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -779,16 +663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train_gail.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="42" column="13" lean-forward="true" selection-start-line="42" selection-end-line="43" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/train_expert.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -799,27 +673,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generate_trajectories.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plots_old/uncertain_cost_plot_mixed.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/plots_old/uncertain_cost_plot_good.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/mujoco_sqil.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="79" selection-start-line="6" selection-start-column="79" selection-end-line="6" selection-end-column="79" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/train_ddpg_sqil.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -833,6 +691,129 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/plots/BC-Hopper-v2.png">
       <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/mujoco_sqil.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/SQIL_ORIGINAL_TD3_Hopper-v2_traj5_seed5_good_rewards.npy">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed3_good.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed2_good.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_4_average.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed0_good.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed1_good.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_mixed_average.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_good_average.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed4_mixed.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed3_mixed.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed2_mixed.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_compare_average.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed4_good.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj1_compare_average.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj10_compare_average.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analyze_results.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" selection-start-line="14" selection-end-line="17" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <marker date="1582908110000" expanded="true" signature="6959:7110" ph="..." />
+            <marker date="1582908110000" expanded="true" signature="7197:10853" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generate_trajectories.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" selection-start-line="15" selection-end-line="16" selection-end-column="97" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analyze_expert_results.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <marker date="1582911338000" expanded="true" signature="219:224" ph="..." />
+            <marker date="1582911338000" expanded="true" signature="461:771" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/mujoco_gail.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="19" lean-forward="true" selection-start-column="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generate_ppo_trajectories.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="39" selection-start-line="39" selection-end-line="41" selection-end-column="84" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train_gail.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="36" column="12" selection-end-line="153" selection-end-column="68" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train_gail_ppo_expert.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-939">
+          <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
