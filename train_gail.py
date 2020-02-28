@@ -41,14 +41,14 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     expert_type = 'good' if args.good else 'mixed'
-    file_name = "GAIL_%s_%s_traj%s_seed%s_%s" % (args.env_name, args.num_trajs, args.buffer_type, str(args.seed), expert_type)
+    file_name = "GAIL_%s_traj%s_seed%s_%s" % (args.env_name, args.num_trajs, str(args.seed), expert_type)
     buffer_name = "%s_traj100_%s_0" % (args.buffer_type, args.env_name)
 
     expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
     expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
     flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, num_good_traj=args.num_trajs,
                                                                  num_bad_traj=args.num_trajs, good=args.good)
-
+    print(expert_rewards)
     print("---------------------------------------")
     print("Settings: " + file_name)
     print("")
@@ -97,7 +97,7 @@ if __name__ == "__main__":
                 print("Total T: %d Episode Num: %d Episode T: %d Reward: %f" % (
                 total_timesteps, episode_num, episode_timesteps, episode_reward))
 
-                if len(batch['states']) >= 2048:
+                if len(batch['states']) >= 4000:
                     imitator.train(batch)
                     batch = {'states': [],
                              'actions': [],

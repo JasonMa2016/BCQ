@@ -12,7 +12,7 @@ import utils_local
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Save expert trajectory')
-    parser.add_argument('--env-name', default="HalfCheetah-v2", metavar='G',
+    parser.add_argument('--env-name', default="Humanoid-v2", metavar='G',
                         help='name of the environment to run')
     parser.add_argument('--model', default="ppo", metavar='G',
                         help='name of the expert model')

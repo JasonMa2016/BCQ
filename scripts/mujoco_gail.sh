@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ENV="HalfCheetah-v2"
+ENV="Walker2d-v2"
 
 for num_traj in 1 3 5
 do

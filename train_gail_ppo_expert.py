@@ -17,14 +17,16 @@ from core.agent import Agent
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--env_name", default="HalfCheetah-v2")  # OpenAI gym environment name
+    parser.add_argument("--env_name", default="Walker2d-v2")  # OpenAI gym environment name
     parser.add_argument("--seed", default=0, type=int)  # Sets Gym, PyTorch and Numpy seeds
     parser.add_argument("--buffer_type", default="Robust")  # Prepends name to filename.
     parser.add_argument("--eval_freq", default=1e3, type=float)  # How often (time steps) we evaluate
     parser.add_argument("--num_trajs", default=5, type=int)            # Number of expert trajectories to use
     parser.add_argument("--num_imitators", default=5, type=int)     # Number of BC imitators in the ensemble
     parser.add_argument("--max_timesteps", default=1e6, type=float)  # Max time steps to run environment for
-    parser.add_argument("--good", action='store_true', default=False) # Good or mixed expert trajectories
+    parser.add_argument("--batch_size", default=2e3, type=float)  # Max time steps to run environment for
+
+    parser.add_argument("--good", action='store_true', default=True) # Good or mixed expert trajectories
 
     parser.add_argument('--log-std', type=float, default=-0.0, metavar='G',
                         help='log std for the policy (default: -0.0)')
@@ -54,7 +56,7 @@ if __name__ == "__main__":
 
     policy, _, running_state, expert_args = pickle.load(open(args.model_path, "rb"))
     running_state.fix=True
-    
+
     print("---------------------------------------")
     print("Settings: " + file_name)
     print("")
@@ -103,7 +105,7 @@ if __name__ == "__main__":
                 print("Total T: %d Episode Num: %d Episode T: %d Reward: %f" % (
                 total_timesteps, episode_num, episode_timesteps, episode_reward))
 
-                if len(batch['states']) >= 2048:
+                if len(batch['states']) >= args.batch_size:
                     imitator.train(batch)
                     batch = {'states': [],
                              'actions': [],
