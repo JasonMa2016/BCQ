@@ -11,8 +11,8 @@ import utils_local
 from BC import BC, Policy
 
 
-def plot_model_reward_over_timesteps(env_name='Hopper-v2', model_name='BC', num_trajs=5, seed=0, type='good'):
-    file_name = 'results/{}_{}_traj{}_seed{}_{}'.format(model_name, env_name, num_trajs, seed, type)
+def plot_model_reward_over_timesteps(env_name='Hopper-v2', model_name='BC', num_trajs=5, seed=0, type='mixed'):
+    file_name = 'results/{}_PPO_{}_traj{}_seed{}_{}'.format(model_name, env_name, num_trajs, seed, type)
     reward = np.load(file_name + '_rewards.npy')
     timestep = np.load(file_name + '_timesteps.npy')
     fig, ax = plt.subplots(figsize=(8, 4))
@@ -273,16 +273,19 @@ if __name__ == "__main__":
 
     models = ['BCQ', 'DRBCQ', 'BC']
     types = ['mixed', 'good']
-    for seed in range(5):
-        plot_model_reward_over_timesteps(model_name='GAIL', seed=seed)
-    # for seed in [0,1,2,5]:
-    #     plot_model_reward_over_timesteps(model_name='SQIL_DDPG', seed=seed)
-    plot_model_reward_over_timesteps_average(model_name='GAIL')
-    plot_model_reward_over_timesteps_average(model_name='GAIL', type='mixed')
-    plot_model_reward_over_timesteps_compare_average(model_name='GAIL')
-    plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=1)
-    plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=10)
+    # for seed in range(5):
+    #     plot_model_reward_over_timesteps(model_name='GAIL', seed=seed)
+    # # for seed in [0,1,2,5]:
+    # #     plot_model_reward_over_timesteps(model_name='SQIL_DDPG', seed=seed)
+    # plot_model_reward_over_timesteps_average(model_name='GAIL')
+    # plot_model_reward_over_timesteps_average(model_name='GAIL', type='mixed')
+    # plot_model_reward_over_timesteps_compare_average(model_name='GAIL')
+    # plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=1)
+    # plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=10)
 
+    plot_model_reward_over_timesteps(model_name='GAIL', env_name='Walker2d-v2', seed=0, num_trajs=1)
+    plot_model_reward_over_timesteps(model_name='GAIL', env_name='Walker2d-v2', seed=0, num_trajs=3)
+    plot_model_reward_over_timesteps(model_name='GAIL', env_name='Walker2d-v2', seed=0, num_trajs=5)
     # plot_model_reward_over_timesteps(model_name='SQIL_TD3', seed=1)
     # drbcq_performance_random()
     # drbcq_performance_bad_traj()
