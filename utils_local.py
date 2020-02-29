@@ -128,7 +128,7 @@ def collect_trajectories_rewards(expert_trajs, num_good_traj=5, num_bad_traj=5, 
 		return flat_trajs['good']
 	return flat_trajs['mixed']
 
-def collect_trajectories_rewards(expert_trajs, expert_rewards, num_good_traj=5, num_bad_traj=5, good=False):
+def collect_trajectories_rewards(expert_trajs, num_good_traj=5, num_bad_traj=5, good=False):
 
 	# trajs = np.concatenate((expert_trajs[:num_good_traj], expert_trajs[-num_bad_traj:]), axis=0)
 	# rewards = np.concatenate((expert_rewards[:num_bad_traj]), expert_rewards[-num_bad_traj:], axis=0)
