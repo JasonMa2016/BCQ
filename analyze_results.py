@@ -73,6 +73,40 @@ def plot_model_reward_over_timesteps_average(env_name='Hopper-v2', model_name='B
     plt.close()
 
 
+def plot_model_best_performance_over_trajectories(env_name='Walker2d-v2', model_name='GAIL', buffer_type='PPO',
+                                                  num_trajs=[1,5,10], seeds=[0,1,2,3,4], types=['good', 'mixed']):
+    fig, ax = plt.subplots(figsize=(8, 4))
+
+    # buffer_name = "%s_traj100_%s_0" % (buffer_type, env_name)
+    #
+    # expert_rewards = np.load("./buffers/" + buffer_name + "_rewards" + ".npy", allow_pickle=True)
+    # expert_performance = np.mean(expert_rewards[:5])
+    for type in types:
+        best_performance_all = []
+
+        for traj in num_trajs:
+            best_performance = []
+
+            for seed in seeds:
+                file_name = 'results/{}_{}_traj{}_seed{}_{}'.format(model_name, env_name, traj, seed, type)
+                reward = np.load(file_name + '_rewards.npy')
+                best_performance.append(max(reward))
+            best_performance_all.append(best_performance)
+        performance = np.array(best_performance_all)
+
+        perf_mu = np.mean(performance, axis=1)
+        perf_std =np.std(performance, axis=1)
+
+        ax.plot(num_trajs, perf_mu, label=type, marker='v')
+        ax.fill_between(num_trajs, perf_mu + 0.5 * perf_std, perf_mu - 0.5* perf_std, alpha=0.4)
+    ax.axhline(y=3750, linestyle='--', label='expert')
+    ax.legend(loc='best')
+    ax.set_title('{}'.format(env_name))
+    ax.set_xlabel('Number of Expert Trajectories')
+    ax.set_ylabel('Cumulative Rewards')
+    plt.savefig('plots/{}_{}_best_performance.png'.format(model_name, env_name))
+    plt.close()
+
 def plot_model_reward_over_timesteps_compare_average(env_name='Hopper-v2', model_name='BC',
                                              num_trajs=5, seeds=[0, 1, 2, 3, 4]):
     # buffer_name = "%s_traj100_%s_0" % (args.buffer_type, args.env_name)
@@ -88,7 +122,7 @@ def plot_model_reward_over_timesteps_compare_average(env_name='Hopper-v2', model
     fig, ax = plt.subplots(figsize=(8, 4))
     for type in ['good', 'mixed']:
         performance = []
-        min_length = 10000
+        min_length = 1000000000
         min_timestep = None
 
         for seed in seeds:
@@ -104,8 +138,12 @@ def plot_model_reward_over_timesteps_compare_average(env_name='Hopper-v2', model
         performance = np.array(performance)
         perf_mu = np.mean(performance, axis=0)
         perf_std = np.std(performance, axis=0)
-        ax.plot(min_timestep, np.mean(performance, axis=0), label=type)
-        ax.fill_between(min_timestep, perf_mu + perf_std, perf_mu - perf_std, alpha=0.4)
+
+        alpha = 1
+        if type == 'mixed':
+            alpha = 0.7
+        ax.plot(min_timestep, perf_mu, label=type, alpha=alpha)
+        ax.fill_between(min_timestep, perf_mu + 0.5 * perf_std, perf_mu - 0.5 * perf_std, alpha=0.4)
 
     ax.legend(loc='best')
     ax.set_title('{}_{}_traj{}_compare_average'.format(model_name, env_name, num_trajs))
@@ -131,6 +169,7 @@ def bc_evaluate_model_with_noise(env_name='Hopper-v2', model_name='BC', num_traj
 
     rewards= utils_local.evaluate_policy(env, imitator)
     print(rewards.mean(), rewards.std())
+
 
 def bc_model_performance_plot(env_name='Hopper-v2', num_trajs=5, seed=0, samples=10):
     types = ['good', 'mixed']
@@ -284,9 +323,11 @@ if __name__ == "__main__":
     # plot_model_reward_over_timesteps_average(model_name='GAIL', type='good', num_trajs=1)
     # plot_model_reward_over_timesteps_average(model_name='GAIL', type='good', num_trajs=10)
     for traj in [1,3,5]:
-        plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=traj, env_name='Walker2d-v2')
+        plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=traj, env_name='Humanoid-v2', seeds=[0])
     # plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=1)
     # plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=10)
+
+    # plot_model_best_performance_over_trajectories(env_name='Hopper-v2')
 
     # plot_model_reward_over_timesteps(model_name='GAIL', env_name='Walker2d-v2', seed=0, num_trajs=1)
     # plot_model_reward_over_timesteps(model_name='GAIL', env_name='Walker2d-v2', seed=0, num_trajs=3)

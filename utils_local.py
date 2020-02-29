@@ -128,6 +128,44 @@ def collect_trajectories_rewards(expert_trajs, num_good_traj=5, num_bad_traj=5, 
 		return flat_trajs['good']
 	return flat_trajs['mixed']
 
+def collect_trajectories_rewards(expert_trajs, expert_rewards, num_good_traj=5, num_bad_traj=5, good=False):
+
+	# trajs = np.concatenate((expert_trajs[:num_good_traj], expert_trajs[-num_bad_traj:]), axis=0)
+	# rewards = np.concatenate((expert_rewards[:num_bad_traj]), expert_rewards[-num_bad_traj:], axis=0)
+	trajs = expert_trajs[:num_good_traj]
+	# rewards = expert_rewards[:num_good_traj]
+	# rewards += expert_rewards[:num_bad_traj]
+	flat_expert_trajs = []
+	for expert_traj in trajs:
+		for state_action in expert_traj:
+			flat_expert_trajs.append(state_action)
+	flat_trajs = {
+		'mixed':list(flat_expert_trajs),
+		'good':list(flat_expert_trajs)
+	}
+
+	for expert_traj in expert_trajs[-num_bad_traj:]:
+		for state_action in expert_traj:
+			flat_trajs['mixed'].append(state_action)
+	# print(len(flat_trajs['mixed']), len(flat_trajs['good']))
+
+	n = len(flat_trajs['mixed'])
+	index = num_good_traj
+
+	equal = False
+	while not equal:
+		current_traj = expert_trajs[index]
+		for state_action in current_traj:
+			flat_trajs['good'].append(state_action)
+			if len(flat_trajs['good']) == n:
+				equal = True
+				break
+		index += 1
+	# print(len(flat_trajs['mixed']), len(flat_trajs['good']))
+
+	if good:
+		return flat_trajs['good']
+	return flat_trajs['mixed']
 
 def to_device(device, *args):
 	return [x.to(device) for x in args]

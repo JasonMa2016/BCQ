@@ -2,7 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed043476-e961-4200-95e0-b4ec649a8c8f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/scripts/mujoco_gail.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/mujoco_gail.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analyze_imitation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imitator_models/GAIL_HalfCheetah-v2_5_trajRobust_seed0_mixed_actor.pth" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/GAIL_HalfCheetah-v2_5_trajRobust_seed0_mixed_rewards.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/GAIL_HalfCheetah-v2_5_trajRobust_seed0_mixed_timesteps.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/GAIL_HalfCheetah-v2_traj5_seed0_mixed_rewards.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/GAIL_HalfCheetah-v2_traj5_seed0_mixed_timesteps.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/GAIL_PPO_Reacher-v2_traj5_seed0_mixed_rewards.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/GAIL_PPO_Reacher-v2_traj5_seed0_mixed_timesteps.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyze_results.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyze_results.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj1_compare_average.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj1_compare_average.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj3_compare_average.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj3_compare_average.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj5_compare_average.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj5_compare_average.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils_local.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils_local.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,27 +43,27 @@
           <entry key="md" value="2" />
           <entry key="npy" value="8" />
           <entry key="p" value="4" />
-          <entry key="png" value="223" />
-          <entry key="py" value="243" />
-          <entry key="sh" value="44" />
+          <entry key="png" value="271" />
+          <entry key="py" value="264" />
+          <entry key="sh" value="45" />
           <entry key="txt" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Bash" value="44" />
+          <entry key="Bash" value="45" />
           <entry key="IPNB" value="2" />
-          <entry key="Image" value="223" />
+          <entry key="Image" value="271" />
           <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="16" />
-          <entry key="Python" value="243" />
+          <entry key="Python" value="264" />
           <entry key="SQL" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="48" />
-          <entry key="py" value="23086" />
+          <entry key="py" value="26075" />
           <entry key="sh" value="1032" />
         </counts>
       </usages-collector>
@@ -58,66 +71,87 @@
         <counts>
           <entry key="Bash" value="1032" />
           <entry key="PLAIN_TEXT" value="48" />
-          <entry key="Python" value="23086" />
+          <entry key="Python" value="26075" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/analyze_results.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/analyze_imitation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="91" column="27" selection-start-line="91" selection-start-column="27" selection-end-line="91" selection-end-column="27" />
+            <state relative-caret-position="406">
+              <caret line="43" column="30" lean-forward="true" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
-                <marker date="1582987422000" expanded="true" signature="6972:7123" ph="..." />
-                <marker date="1582987422000" expanded="true" signature="7210:10866" ph="..." />
+                <element signature="e#0#13#0" expanded="true" />
+                <marker date="1583008233000" expanded="true" signature="280:281" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj3_compare_average.png">
+        <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_best_performance.png">
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj5_compare_average.png">
+        <entry file="file://$PROJECT_DIR$/analyze_results.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="127" column="26" lean-forward="true" selection-start-line="127" selection-start-column="26" selection-end-line="127" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+                <marker date="1583008916000" expanded="true" signature="8599:8750" ph="..." />
+                <marker date="1583008916000" expanded="true" signature="8837:12493" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plots/GAIL_Humanoid-v2_traj3_compare_average.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plots/GAIL_Humanoid-v2_traj1_compare_average.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/train_gail_ppo_expert.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="73">
+              <caret line="108" column="32" lean-forward="true" selection-start-line="108" selection-start-column="32" selection-end-line="108" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BCQ.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="223" column="25" selection-start-line="223" selection-start-column="25" selection-end-line="223" selection-end-column="75" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_likelihood.png">
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj1_compare_average.png">
           <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/generate_ppo_trajectories.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="26" lean-forward="true" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj1_good_average.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/scripts/mujoco_gail.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-            </state>
-          </provider>
         </entry>
       </file>
     </leaf>
@@ -131,7 +165,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>actor_target</find>
       <find>file_name</find>
       <find>expert_traj</find>
       <find>done</find>
@@ -161,6 +194,7 @@
       <find>shape</find>
       <find>not_done</find>
       <find>args</find>
+      <find>PPO</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -169,7 +203,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/analysis/variance_scatterplot.py" />
         <option value="$PROJECT_DIR$/train_bc.py" />
         <option value="$PROJECT_DIR$/train_bcq_traj.py" />
         <option value="$PROJECT_DIR$/models/mlp_policy_disc.py" />
@@ -208,8 +241,6 @@
         <option value="$PROJECT_DIR$/TD3_SQIL.py" />
         <option value="$PROJECT_DIR$/train_td3_sqil_original.py" />
         <option value="$PROJECT_DIR$/scripts/mujoco_td3_sqil.sh" />
-        <option value="$PROJECT_DIR$/utils_local.py" />
-        <option value="$PROJECT_DIR$/GAIL.py" />
         <option value="$PROJECT_DIR$/train_td3_sqil.py" />
         <option value="$PROJECT_DIR$/train_ddpg_sqil_original.py" />
         <option value="$PROJECT_DIR$/train_ddpg_sqil.py" />
@@ -217,9 +248,12 @@
         <option value="$PROJECT_DIR$/analyze_expert_results.py" />
         <option value="$PROJECT_DIR$/train_gail.py" />
         <option value="$PROJECT_DIR$/train_gail_ppo_expert.py" />
-        <option value="$PROJECT_DIR$/analyze_results.py" />
         <option value="$PROJECT_DIR$/generate_ppo_trajectories.py" />
         <option value="$PROJECT_DIR$/scripts/mujoco_gail.sh" />
+        <option value="$PROJECT_DIR$/GAIL.py" />
+        <option value="$PROJECT_DIR$/utils_local.py" />
+        <option value="$PROJECT_DIR$/analyze_imitation.py" />
+        <option value="$PROJECT_DIR$/analyze_results.py" />
       </list>
     </option>
   </component>
@@ -250,6 +284,11 @@
             <path>
               <item name="BCQ" type="b2602c69:ProjectViewProjectNode" />
               <item name="BCQ" type="462c0819:PsiDirectoryNode" />
+              <item name="results" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BCQ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BCQ" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -272,6 +311,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/utils" />
       <recent name="$PROJECT_DIR$/old_files" />
       <recent name="$PROJECT_DIR$/plots" />
       <recent name="$PROJECT_DIR$/core" />
@@ -295,8 +335,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.generate_ppo_trajectories">
-    <configuration name="analyze_expert_results" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.analyze_imitation">
+    <configuration name="analyze_imitation" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="BCQ" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -308,7 +348,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/analyze_expert_results.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/analyze_imitation.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -403,18 +443,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.analyze_results" />
-      <item itemvalue="Python.analyze_expert_results" />
       <item itemvalue="Python.generate_ppo_trajectories" />
       <item itemvalue="Python.train_gail_ppo_expert" />
       <item itemvalue="Python.train_gail" />
+      <item itemvalue="Python.analyze_imitation" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.generate_ppo_trajectories" />
+        <item itemvalue="Python.analyze_imitation" />
         <item itemvalue="Python.analyze_results" />
+        <item itemvalue="Python.generate_ppo_trajectories" />
         <item itemvalue="Python.train_gail_ppo_expert" />
         <item itemvalue="Python.train_gail" />
-        <item itemvalue="Python.analyze_expert_results" />
       </list>
     </recent_temporary>
   </component>
@@ -435,12 +475,12 @@
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3015873" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21916972" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32959184" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2632653" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28367347" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -481,128 +521,35 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/train_gail.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="134" column="5" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PPO.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/mlp_policy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-458">
-          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed0_good.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/utils_local.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="968">
-          <caret line="93" column="4" selection-start-line="93" selection-start-column="4" selection-end-line="93" selection-end-column="4" />
+        <state relative-caret-position="284">
+          <caret line="135" selection-start-line="135" selection-end-line="136" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plots/Hopper-v2.png">
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj5_mixed_average.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/analyze_expert_results.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <marker date="1582911338000" expanded="true" signature="219:224" ph="..." />
-            <marker date="1582911338000" expanded="true" signature="461:771" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/SQIL_improvement_5.png">
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj5_good_average.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/plots/SQIL_improvement_2.png">
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj5_compare_average.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/train_td3_sqil.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/train_gail_ppo_expert.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generate_buffer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GAIL.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="21" column="35" lean-forward="true" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/mlp_discriminator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed1_mixed.png">
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_mixed_average.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed3_good.png">
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_compare_average.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed4_good.png">
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_best_performance.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed4_mixed.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed3_mixed.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj10_good_average.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj10_mixed_average.png">
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj1_compare_average.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj1_mixed_average.png">
@@ -611,110 +558,223 @@
     <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj1_good_average.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj10_compare_average.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_mixed_average.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_good_average.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_compare_average.png">
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed3_good.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj1_compare_average.png">
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed3_mixed.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj1_seed0_good.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj5_seed0_mixed.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj5_seed0_good.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed2_good.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed1_good.png">
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed2_mixed.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed0_mixed.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed0_good.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/mujoco_bcq.sh">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed2_mixed.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj3_seed0_mixed.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj3_seed0_good.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj5_good_average.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj5_mixed_average.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj1_mixed_average.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj1_good_average.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj1_seed0_mixed.png">
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj3_good_average.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj3_mixed_average.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj3_good_average.png">
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj3_seed0_good.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/analyze_results.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="91" column="27" selection-start-line="91" selection-start-column="27" selection-end-line="91" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <marker date="1582987422000" expanded="true" signature="6972:7123" ph="..." />
-            <marker date="1582987422000" expanded="true" signature="7210:10866" ph="..." />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj5_seed0_good.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj5_seed0_mixed.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed4_good.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj5_seed4_mixed.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj1_seed0_good.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj1_good_average.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj1_mixed_average.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj3_compare_average.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj5_compare_average.png">
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj1_seed0_mixed.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj1_compare_average.png">
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj3_seed0_mixed.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/generate_ppo_trajectories.py">
+    <entry file="file://$PROJECT_DIR$/BC.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="26" lean-forward="true" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+        <state>
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analyze_distributional_shift.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analyze_expert_results.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <marker date="1582911338000" expanded="true" signature="219:224" ph="..." />
+            <marker date="1582911338000" expanded="true" signature="461:771" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/mujoco_gail.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        <state relative-caret-position="95">
+          <caret line="5" column="2" lean-forward="true" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/mlp_policy_disc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-344">
+          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GAIL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="96" column="8" selection-start-line="96" selection-start-column="8" selection-end-line="96" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generate_ppo_trajectories.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="741">
+          <caret line="39" selection-start-line="39" selection-end-line="41" selection-end-column="84" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train_gail.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1126">
+          <caret line="44" selection-start-line="44" selection-end-line="47" selection-end-column="93" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PPO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generate_trajectories.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/mlp_policy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="57" column="26" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/math.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj1_compare_average.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BCQ.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="223" column="25" selection-start-line="223" selection-start-column="25" selection-end-line="223" selection-end-column="75" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train_gail_ppo_expert.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="108" column="32" lean-forward="true" selection-start-line="108" selection-start-column="32" selection-end-line="108" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Humanoid-v2_traj1_compare_average.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Humanoid-v2_traj3_compare_average.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_best_performance.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_likelihood.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plots/GAIL_Humanoid-v2_traj5_compare_average.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analyze_results.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="127" column="26" lean-forward="true" selection-start-line="127" selection-start-column="26" selection-end-line="127" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <marker date="1583008916000" expanded="true" signature="8599:8750" ph="..." />
+            <marker date="1583008916000" expanded="true" signature="8837:12493" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analyze_imitation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="43" column="30" lean-forward="true" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <marker date="1583008233000" expanded="true" signature="280:281" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
