@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ENV="Walker2d-v2"
+ENV="Humanoid-v2"
 
 for num_traj in 1 3 5
 do

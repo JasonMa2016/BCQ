@@ -49,7 +49,7 @@ def plot_model_reward_over_timesteps_average(env_name='Hopper-v2', model_name='B
     min_timestep = None
     fig, ax = plt.subplots(figsize=(8, 4))
     for seed in seeds:
-        file_name = 'results/{}_{}_traj{}_seed{}_{}'.format(model_name, env_name, num_trajs, seed, type)
+        file_name = 'results/{}_PPO_{}_traj{}_seed{}_{}'.format(model_name, env_name, num_trajs, seed, type)
         reward = np.load(file_name + '_rewards.npy')
         timestep = np.load(file_name + '_timesteps.npy')
         if min_length > len(timestep):
@@ -92,7 +92,7 @@ def plot_model_reward_over_timesteps_compare_average(env_name='Hopper-v2', model
         min_timestep = None
 
         for seed in seeds:
-            file_name = 'results/{}_{}_traj{}_seed{}_{}'.format(model_name, env_name, num_trajs, seed, type)
+            file_name = 'results/{}_PPO_{}_traj{}_seed{}_{}'.format(model_name, env_name, num_trajs, seed, type)
             reward = np.load(file_name + '_rewards.npy')
             timestep = np.load(file_name + '_timesteps.npy')
             if min_length > len(timestep):
@@ -277,15 +277,20 @@ if __name__ == "__main__":
     #     plot_model_reward_over_timesteps(model_name='GAIL', seed=seed)
     # # for seed in [0,1,2,5]:
     # #     plot_model_reward_over_timesteps(model_name='SQIL_DDPG', seed=seed)
-    # plot_model_reward_over_timesteps_average(model_name='GAIL')
-    # plot_model_reward_over_timesteps_average(model_name='GAIL', type='mixed')
-    # plot_model_reward_over_timesteps_compare_average(model_name='GAIL')
+    # for traj in [3]:
+    #     for type in ['good', 'mixed']:
+    #         plot_model_reward_over_timesteps_average(model_name='GAIL', env_name='Walker2d-v2',
+    #                                                  num_trajs=traj, type=type)
+    # plot_model_reward_over_timesteps_average(model_name='GAIL', type='good', num_trajs=1)
+    # plot_model_reward_over_timesteps_average(model_name='GAIL', type='good', num_trajs=10)
+    for traj in [1,3,5]:
+        plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=traj, env_name='Walker2d-v2')
     # plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=1)
     # plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=10)
 
-    plot_model_reward_over_timesteps(model_name='GAIL', env_name='Walker2d-v2', seed=0, num_trajs=1)
-    plot_model_reward_over_timesteps(model_name='GAIL', env_name='Walker2d-v2', seed=0, num_trajs=3)
-    plot_model_reward_over_timesteps(model_name='GAIL', env_name='Walker2d-v2', seed=0, num_trajs=5)
+    # plot_model_reward_over_timesteps(model_name='GAIL', env_name='Walker2d-v2', seed=0, num_trajs=1)
+    # plot_model_reward_over_timesteps(model_name='GAIL', env_name='Walker2d-v2', seed=0, num_trajs=3)
+    # plot_model_reward_over_timesteps(model_name='GAIL', env_name='Walker2d-v2', seed=0, num_trajs=5)
     # plot_model_reward_over_timesteps(model_name='SQIL_TD3', seed=1)
     # drbcq_performance_random()
     # drbcq_performance_bad_traj()
