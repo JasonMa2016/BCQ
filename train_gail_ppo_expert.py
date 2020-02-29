@@ -26,7 +26,7 @@ if __name__ == "__main__":
     parser.add_argument("--max_timesteps", default=1e6, type=float)  # Max time steps to run environment for
     parser.add_argument("--batch_size", default=2e3, type=float)  # Max time steps to run environment for
 
-    parser.add_argument("--good", action='store_true', default=True) # Good or mixed expert trajectories
+    parser.add_argument("--good", action='store_true', default=False) # Good or mixed expert trajectories
 
     parser.add_argument('--log-std', type=float, default=-0.0, metavar='G',
                         help='log std for the policy (default: -0.0)')
