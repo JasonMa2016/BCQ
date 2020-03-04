@@ -2,8 +2,8 @@
 
 ENV="Walker2d-v2"
 
-python3 train_bc.py --env_name $ENV --num_trajs 5 --seed 0 --good --ensemble
-python3 train_bc.py --env_name $ENV --num_trajs 5 --seed 0 --ensemble
+#python3 train_bc.py --env_name $ENV --num_trajs 5 --seed 0 --good --ensemble
+#python3 train_bc.py --env_name $ENV --num_trajs 5 --seed 0 --ensemble
 
 for seed in 0
 do

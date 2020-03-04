@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed043476-e961-4200-95e0-b4ec649a8c8f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/train_bc.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_bc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/mujoco_one_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/mujoco_one_environment.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train_bcq_traj.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_bcq_traj.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train_drbcq_traj.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_drbcq_traj.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +34,7 @@
           <entry key="npy" value="9" />
           <entry key="p" value="4" />
           <entry key="png" value="299" />
-          <entry key="py" value="286" />
+          <entry key="py" value="287" />
           <entry key="sh" value="52" />
           <entry key="txt" value="12" />
         </counts>
@@ -43,14 +46,14 @@
           <entry key="Image" value="299" />
           <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="16" />
-          <entry key="Python" value="286" />
+          <entry key="Python" value="287" />
           <entry key="SQL" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="48" />
-          <entry key="py" value="28528" />
+          <entry key="py" value="28568" />
           <entry key="sh" value="1232" />
         </counts>
       </usages-collector>
@@ -58,7 +61,7 @@
         <counts>
           <entry key="Bash" value="1232" />
           <entry key="PLAIN_TEXT" value="48" />
-          <entry key="Python" value="28528" />
+          <entry key="Python" value="28568" />
         </counts>
       </usages-collector>
     </session>
@@ -77,8 +80,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train_drbcq_traj.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="101" selection-start-line="101" selection-end-line="103" />
+            <state relative-caret-position="218">
+              <caret line="36" selection-start-line="36" selection-end-line="47" selection-end-column="80" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -86,11 +89,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/train_bcq_traj.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1653">
+              <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train_bc.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="429">
-              <caret line="52" column="61" lean-forward="true" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="61" />
+              <caret line="52" column="61" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="61" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -143,11 +158,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/mujoco_one_environment.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="74" selection-start-line="11" selection-start-column="74" selection-end-line="11" selection-end-column="74" />
+            <state relative-caret-position="266">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -156,7 +171,7 @@
         <entry file="file://$PROJECT_DIR$/scripts/mujoco_drbcq.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="209">
-              <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -172,7 +187,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>expert_traj</find>
       <find>done</find>
       <find>buffer_name</find>
       <find>max_timesteps</find>
@@ -202,6 +216,7 @@
       <find>args</find>
       <find>PPO</find>
       <find>17</find>
+      <find>i_iter</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -210,7 +225,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/train_bcq_traj.py" />
         <option value="$PROJECT_DIR$/models/mlp_policy_disc.py" />
         <option value="$PROJECT_DIR$/models/cnn_policy.py" />
         <option value="$PROJECT_DIR$/models/mlp_policy.py" />
@@ -258,9 +272,10 @@
         <option value="$PROJECT_DIR$/analyze_imitation.py" />
         <option value="$PROJECT_DIR$/scripts/mujoco_drbcq.sh" />
         <option value="$PROJECT_DIR$/utils_local.py" />
-        <option value="$PROJECT_DIR$/train_drbcq_traj.py" />
-        <option value="$PROJECT_DIR$/scripts/mujoco_one_environment.sh" />
         <option value="$PROJECT_DIR$/train_bc.py" />
+        <option value="$PROJECT_DIR$/train_drbcq_traj.py" />
+        <option value="$PROJECT_DIR$/train_bcq_traj.py" />
+        <option value="$PROJECT_DIR$/scripts/mujoco_one_environment.sh" />
       </list>
     </option>
   </component>
@@ -281,6 +296,16 @@
             <path>
               <item name="BCQ" type="b2602c69:ProjectViewProjectNode" />
               <item name="BCQ" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BCQ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BCQ" type="462c0819:PsiDirectoryNode" />
+              <item name="imitator_models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BCQ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BCQ" type="462c0819:PsiDirectoryNode" />
+              <item name="imitator_models_old" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BCQ" type="b2602c69:ProjectViewProjectNode" />
@@ -472,12 +497,12 @@
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21611722" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21611722" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32959184" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2877551" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2877551" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -518,13 +543,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/generate_trajectories.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="77" selection-start-line="77" selection-end-line="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/mlp_policy.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -719,14 +737,7 @@
     <entry file="file://$PROJECT_DIR$/scripts/mujoco_drbcq.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
-          <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/mujoco_one_environment.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="74" selection-start-line="11" selection-start-column="74" selection-end-line="11" selection-end-column="74" />
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -757,10 +768,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train_drbcq_traj.py">
+    <entry file="file://$PROJECT_DIR$/train_bc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="101" selection-start-line="101" selection-end-line="103" />
+        <state relative-caret-position="429">
+          <caret line="52" column="61" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="61" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -774,13 +785,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train_bc.py">
+    <entry file="file://$PROJECT_DIR$/train_drbcq_traj.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="52" column="61" lean-forward="true" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="61" />
+        <state relative-caret-position="218">
+          <caret line="36" selection-start-line="36" selection-end-line="47" selection-end-column="80" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train_bcq_traj.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1653">
+          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/mujoco_one_environment.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>

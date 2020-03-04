@@ -92,7 +92,6 @@ if __name__ == "__main__":
     while training_iters < args.max_timesteps:
         t0 = time.time()
         rewards = utils_local.evaluate_policy(env, imitator, running_state, BCQ=True)
-        training_iters += args.eval_freq
         expert_rewards.append(rewards)
         expert_timesteps.append(training_iters)
         pol_vals = imitator.train(replay_buffer, iterations=int(args.eval_freq), random=args.random)
@@ -104,6 +103,8 @@ if __name__ == "__main__":
 
         print("Training iterations: {}\tTraining time: {:.2f}\tReward average: {:.2f}\tReward std: {:.2f}".format(str(training_iters),
                                                                                           t1-t0,rewards.mean(),rewards.std()))
+        training_iters += args.eval_freq
+
     # save the imitator
     imitator.actor.to('cpu')
     torch.save(imitator.actor.state_dict(), 'imitator_models/{}.p'.format(file_name))

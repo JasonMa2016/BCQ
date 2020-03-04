@@ -3,6 +3,7 @@ import numpy as np
 import torch
 import argparse
 import os
+import pickle
 import time
 
 import utils_local
@@ -26,24 +27,19 @@ if __name__ == "__main__":
     expert_type = 'good' if args.good else 'mixed'
     file_name = "BCQ_%s_traj%s_seed%s_%s" % (args.env_name, args.num_trajs, str(args.seed), expert_type)
     # buffer_name = "%s_traj100_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
-    buffer_name = "%s_traj100_%s_0" % (args.buffer_type, args.env_name)
+
+    buffer_name = "PPO_traj100_%s_0" % (args.env_name)
+
     expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
     expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
-    #
-    # # create a flat list
-    # flat_expert_trajs = []
-    # if args.good:
-    #     expert_trajs = expert_trajs[:args.num_trajs]
-    #     expert_rewards = expert_rewards[:args.num_trajs]
-    # else:
-    #     expert_trajs = np.concatenate((expert_trajs[:args.num_trajs],expert_trajs[-3:]), axis=0)
-    #     expert_rewards = np.concatenate((expert_rewards[:args.num_trajs], expert_rewards[-3:]), axis=0)
-    #
-    # print("Expert rewards: {}".format(expert_rewards))
-    # print("avg: {} std: {}".format(np.mean(expert_rewards), np.std(expert_rewards)))
-    # for expert_traj in expert_trajs:
-    #     for state_action in expert_traj:
-    #         flat_expert_trajs.append(state_action)
+
+    args.model_path = "expert_models/{}_ppo_0.p".format(args.env_name)
+
+    _, _, running_state, expert_args = pickle.load(open(args.model_path, "rb"))
+
+    flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, num_good_traj=args.num_trajs,
+                                                                 num_bad_traj= args.num_bad_trajs,
+                                                                 good=args.good)
 
     flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, good=args.good)
     print("---------------------------------------")
@@ -65,7 +61,7 @@ if __name__ == "__main__":
     max_action = float(env.action_space.high[0])
 
     # Initialize policy and imitator ensemble
-    policy = BCQ.BCQ(state_dim, action_dim, max_action)
+    imitator = BCQ.BCQ(state_dim, action_dim, max_action)
 
     # Initialize batch
 
@@ -78,18 +74,26 @@ if __name__ == "__main__":
     done = True
 
     training_iters = 0
+
+    expert_rewards = []
+    expert_timesteps = []
+
     while training_iters < args.max_timesteps:
         t0 = time.time()
-        pol_vals = policy.train(replay_buffer, iterations=int(args.eval_freq))
+        rewards = utils_local.evaluate_policy(env, imitator, running_state, BCQ=True)
+        expert_rewards.append(rewards)
+        expert_timesteps.append(training_iters)
+        pol_vals = imitator.train(replay_buffer, iterations=int(args.eval_freq), random=args.random)
         t1 = time.time()
-        rewards = utils_local.evaluate_policy(env, policy)
-        evaluations.append(rewards)
-        np.save("./results/" + file_name, evaluations)
 
-        training_iters += args.eval_freq
+        if training_iters % 1e4 == 0:
+            np.save("./results/" + file_name + '_rewards', expert_rewards)
+            np.save("./results/" + file_name + '_timesteps', expert_timesteps)
+
         print("Training iterations: {}\tTraining time: {:.2f}\tReward average: {:.2f}\tReward std: {:.2f}".format(str(training_iters),
                                                                                           t1-t0,rewards.mean(),rewards.std()))
+        training_iters += args.eval_freq
 
-    # save the policy
-    policy.actor.to('cpu')
-    torch.save(policy.actor.state_dict(), 'imitator_models/{}.p'.format(file_name))
+    # save the imitator
+    imitator.actor.to('cpu')
+    torch.save(imitator.actor.state_dict(), 'imitator_models/{}.p'.format(file_name))
