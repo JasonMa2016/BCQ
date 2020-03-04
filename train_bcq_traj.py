@@ -83,7 +83,7 @@ if __name__ == "__main__":
         rewards = utils_local.evaluate_policy(env, imitator, running_state, BCQ=True)
         expert_rewards.append(rewards)
         expert_timesteps.append(training_iters)
-        pol_vals = imitator.train(replay_buffer, iterations=int(args.eval_freq), random=args.random)
+        pol_vals = imitator.train(replay_buffer, iterations=int(args.eval_freq))
         t1 = time.time()
 
         if training_iters % 1e4 == 0:
