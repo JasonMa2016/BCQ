@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-for env in Reacher-v2 Hopper-v2 HalfCheetah-v2 Walker2d-v2 Ant-v2 Humanoid-v2
+ENV="Walker2d-v2"
+
+for num_traj in 1 3 5
 do
     for seed in 0 1 2 3 4
     do
-        python3 train_drbcq_traj.py --env_name $env --num_trajs 5 --seed $seed
-        python3 train_drbcq_traj.py --env_name $env --num_trajs 5 --seed $seed
+        python3 train_drbcq_traj.py --env_name $ENV --num_trajs $num_traj --seed $seed
+        python3 train_drbcq_traj.py --env_name $ENV --num_trajs $num_traj --seed $seed --good
     done
 done
