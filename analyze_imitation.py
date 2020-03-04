@@ -10,11 +10,17 @@ import gym
 from models.mlp_policy import Policy
 from utils_local import *
 
-def imitation_histogram():
-    return
-
 
 def likelihood(env_name='Walker2d-v2', model_name='GAIL', traj=5, seed=0, in_sample=True):
+    """
+    Compute the likelihood of the entire trajectory
+    :param env_name:
+    :param model_name:
+    :param traj:
+    :param seed:
+    :param in_sample:
+    :return:
+    """
     expert_path = "expert_models/{}_PPO_0.p".format(env_name)
 
     policy, _, running_state, expert_args = pickle.load(open(expert_path, "rb"))
@@ -105,7 +111,17 @@ def plot_distribution(env_name='Walker2d-v2', model_name='GAIL', sample_traj=50,
 
 def analyze_model_with_noise(env_name='Walker2d-v2', model_name='GAIL', num_trajs=[1,3,5],
                                  seeds=[0,1,2,3,4], type='good', noise1=0.3, noise2=0.3):
-
+    """
+    Robustness test.
+    :param env_name:
+    :param model_name:
+    :param num_trajs:
+    :param seeds:
+    :param type:
+    :param noise1:
+    :param noise2:
+    :return:
+    """
     fig, ax = plt.subplots(figsize=(8, 4))
 
     rewards = []
