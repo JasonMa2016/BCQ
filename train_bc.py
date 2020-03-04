@@ -42,15 +42,15 @@ def assets_dir():
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--env_name", default="Hopper-v2")              # OpenAI gym environment name
+    parser.add_argument("--env_name", default="Walker2d-v2")              # OpenAI gym environment name
     parser.add_argument("--seed", default=0, type=int)                  # Sets Gym, PyTorch and Numpy seeds
     parser.add_argument("--buffer_type", default="Robust")              # Prepends name to filename.
     parser.add_argument("--num_trajs", default=5, type=int)            # Number of expert trajectories to use
-    parser.add_argument("--eval_freq", default=5e3, type=float)         # How often (time steps) we evaluate
+    parser.add_argument("--eval_freq", default=1e3, type=float)         # How often (time steps) we evaluate
     # parser.add_argument("--max_timesteps", default=1e6, type=float)     # Max time steps to run environment for
-    parser.add_argument("--ensemble", action='store_true', default=False)
+    parser.add_argument("--ensemble", action='store_true', default=True)
     parser.add_argument("--good", action='store_true', default=False)
-    parser.add_argument("--max_iters", default=20000, type=int)
+    parser.add_argument("--max_iters", default=1e5, type=int)
 
     args = parser.parse_args()
     args.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
@@ -59,10 +59,15 @@ if __name__ == "__main__":
     file_name = "BC_%s_%s_%s" % (args.env_name, str(args.seed), expert_type)
 
     # buffer_name = "%s_traj100_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
-    buffer_name = "%s_traj100_%s_0" % (args.buffer_type, args.env_name)
+    # buffer_name = "%s_traj100_%s_0" % (args.buffer_type, args.env_name)
+    buffer_name = "PPO_traj100_%s_0" % (args.env_name)
 
     expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
     expert_rewards = np.load("./buffers/"+buffer_name+ "_rewards" + ".npy", allow_pickle=True)
+
+    args.model_path = "expert_models/{}_ppo_0.p".format(args.env_name)
+
+    _, _, running_state, expert_args = pickle.load(open(args.model_path, "rb"))
 
     # print(expert_rewards)
     #
@@ -120,7 +125,7 @@ if __name__ == "__main__":
     else:
         # ensemble
         expert_traj = np.array(flat_expert_trajs)
-        for sample in range(10):
+        for sample in range(5):
             print("=======================================")
             print("BC Imitator {}".format(sample+1))
             indices = np.random.choice(len(expert_traj), len(expert_traj))
@@ -131,15 +136,22 @@ if __name__ == "__main__":
             imitator.set_expert(current_expert_traj)
             evaluations = []
             file_name = 'BC_{}_traj{}_seed{}_sample{}_{}'.format(args.env_name, args.num_trajs, args.seed, sample, expert_type)
-            for i_iter in range(args.max_iters):
+            expert_rewards = []
+            expert_timesteps = []
+
+            for i_iter in range(int(args.max_iters)):
                 t0 = time.time()
                 loss = imitator.train()
                 t1 = time.time()
-                if i_iter % 2000 == 0:
+                if i_iter % args.eval_freq == 0:
                     imitator.actor.to('cpu')
-                    rewards = utils_local.evaluate_policy(env, imitator.actor)
-                    evaluations.append(rewards)
-                    np.save("./results/" + file_name, evaluations)
+                    rewards = utils_local.evaluate_policy(env, imitator.actor, running_state)
+
+                    np.save("./results/" + file_name + '_rewards', expert_rewards)
+                    np.save("./results/" + file_name + '_timesteps', expert_timesteps)
+
+                    # evaluations.append(rewards)
+                    # np.save("./results/" + file_name, evaluations)
                     print(
                         'Training iteration {}\tT_update:{:.4f}\t reward avg:{:.2f}\t reward std:{:.2f}\t training loss:{:.2f}'.format(
                             i_iter, t1 - t0, rewards.mean(), rewards.std(), loss))
