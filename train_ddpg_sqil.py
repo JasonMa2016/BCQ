@@ -3,6 +3,8 @@ import numpy as np
 import torch
 import argparse
 import os
+import pickle
+
 import time
 import multiprocessing as mp
 
@@ -19,12 +21,11 @@ if __name__ == "__main__":
     parser.add_argument("--eval_freq", default=1e3, type=float)  # How often (time steps) we evaluate
     parser.add_argument("--num_trajs", default=5, type=int)            # Number of expert trajectories to use
     parser.add_argument("--num_imitators", default=5, type=int)     # Number of BC imitators in the ensemble
-    parser.add_argument("--max_timesteps", default=1e5, type=float)  # Max time steps to run environment for
+    parser.add_argument("--max_timesteps", default=2e5, type=float)  # Max time steps to run environment for
     parser.add_argument("--good", action='store_true', default=False) # Good or mixed expert trajectories
     parser.add_argument("--start_timesteps", default=1e3, type=int)
     parser.add_argument("--expl_noise", default=0.1, type=float)  # Std of Gaussian exploration noise
     parser.add_argument("--new", action='store_true', default=False)
-
 
     args = parser.parse_args()
 
@@ -32,12 +33,17 @@ if __name__ == "__main__":
     model_type = 'NEW' if args.new else 'ORIGINAL'
     file_name = "SQIL_DDPG_%s_%s_traj%s_seed%s_%s" % (model_type, args.env_name, args.num_trajs, str(args.seed), expert_type)
     # buffer_name = "%s_traj100_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
-    buffer_name = "%s_traj100_%s_0" % (args.buffer_type, args.env_name)
+    buffer_name = "PPO_traj100_%s_0" % (args.env_name)
 
     expert_trajs = np.load("./buffers/"+buffer_name+".npy", allow_pickle=True)
     expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
     flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, num_good_traj=args.num_trajs,
                                                                  num_bad_traj=args.num_trajs, good=args.good)
+    # print(expert_rewards)
+    args.model_path = "expert_models/{}_ppo_0.p".format(args.env_name)
+
+    policy, _, running_state, expert_args = pickle.load(open(args.model_path, "rb"))
+    running_state.fix=True
 
     print("---------------------------------------")
     print("Settings: " + file_name)
@@ -57,11 +63,7 @@ if __name__ == "__main__":
     action_dim = env.action_space.shape[0]
     max_action = float(env.action_space.high[0])
 
-    # Initialize policy and imitator ensemble
-    if args.new:
-        policy = SQIL.DDPG_SQIL(state_dim, action_dim, max_action)
-    else:
-        policy = SQIL.DDPG_SQIL_ORIGINAL(state_dim, action_dim, ax_action)
+    policy = SQIL.DDPG_SQIL(state_dim, action_dim, max_action)
 
     # Initialize buffers
     expert_buffer = utils_local.ReplayBuffer()
@@ -76,26 +78,42 @@ if __name__ == "__main__":
 
     expert_rewards = []
     expert_timesteps = []
+
+    evaluation_rewards = []
+    best_reward = 0
     while total_timesteps < args.max_timesteps:
 
         if done:
+            # evaluate current policy
+            rewards = utils_local.evaluate_policy(env, policy, running_state, BCQ=True)
+            rewards = np.mean(rewards)
+            evaluation_rewards.append(rewards)
+
+            # save the best policy
+            if rewards > best_reward:
+                best_reward = rewards
+                policy.save_best("%s" % (file_name), directory="./imitator_models_new")
 
             if total_timesteps != 0:
                 print("Total T: %d Episode Num: %d Episode T: %d Reward: %f" % (
                 total_timesteps, episode_num, episode_timesteps, episode_reward))
-                policy.train(expert_buffer, expert=True)
-                policy.train(replay_buffer)
 
+                policy.train(replay_buffer, expert_buffer, original=args.new)
+                    # policy.train(replay_buffer)
+                t1 = time.time()
+                print("Episode {} took {} seconds".format(episode_num, t1-t0))
+                print("")
             # Save policy
             if total_timesteps % 1e5 == 0:
-                np.save("./results/" + file_name + '_rewards', expert_rewards)
-                np.save("./results/" + file_name + '_timesteps', expert_timesteps)
-                policy.save(file_name, directory="./imitator_models")
+                np.save("./results_sqil/" + file_name + '_rewards', expert_rewards)
+                np.save("./results_sqil/" + file_name + '_timesteps', expert_timesteps)
+                policy.save(file_name, directory="./imitator_models_new")
 
             expert_rewards.append(episode_reward)
             expert_timesteps.append(total_timesteps)
 
             # Reset environment
+            t0 = time.time()
             obs = env.reset()
             done = False
             episode_reward = 0
@@ -124,8 +142,9 @@ if __name__ == "__main__":
         episode_timesteps += 1
         total_timesteps += 1
 
-    np.save("./results/" + file_name + '_rewards', expert_rewards)
-    np.save("./results/" + file_name + '_timesteps', expert_timesteps)
+    np.save("./results_sqil/" + file_name + '_rewards', expert_rewards)
+    np.save("./results_sqil/" + file_name + '_timesteps', expert_timesteps)
+    np.save("./results_sqil/" + file_name + '_evaluation_rewards', evaluation_rewards)
 
     # Save final policy
-    policy.save("%s" % (file_name), directory="./imitator_models")
+    policy.save("%s" % (file_name), directory="./imitator_models_new")

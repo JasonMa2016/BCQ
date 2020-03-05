@@ -89,6 +89,7 @@ if __name__ == "__main__":
              'actions':[],
              'rewards':[],
              'masks':[]}
+
     while total_timesteps < args.max_timesteps:
 
         if done:
