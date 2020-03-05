@@ -15,7 +15,7 @@ import SQIL
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--env_name", default="Hopper-v2")  # OpenAI gym environment name
+    parser.add_argument("--env_name", default="Walker2d-v2")  # OpenAI gym environment name
     parser.add_argument("--seed", default=1, type=int)  # Sets Gym, PyTorch and Numpy seeds
     parser.add_argument("--buffer_type", default="Robust")  # Prepends name to filename.
     parser.add_argument("--eval_freq", default=1e3, type=float)  # How often (time steps) we evaluate
@@ -39,7 +39,7 @@ if __name__ == "__main__":
     expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
     flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, num_good_traj=args.num_trajs,
                                                                  num_bad_traj=args.num_trajs, good=args.good)
-    # print(expert_rewards)
+    print(expert_rewards)
     args.model_path = "expert_models/{}_ppo_0.p".format(args.env_name)
 
     policy, _, running_state, expert_args = pickle.load(open(args.model_path, "rb"))

@@ -147,6 +147,9 @@ if __name__ == "__main__":
                     imitator.actor.to('cpu')
                     rewards = utils_local.evaluate_policy(env, imitator.actor, running_state)
 
+                    expert_rewards.append(rewards)
+                    expert_timesteps.append(i_iter)
+
                     np.save("./results/" + file_name + '_rewards', expert_rewards)
                     np.save("./results/" + file_name + '_timesteps', expert_timesteps)
 
@@ -156,7 +159,10 @@ if __name__ == "__main__":
                         'Training iteration {}\tT_update:{:.4f}\t reward avg:{:.2f}\t reward std:{:.2f}\t training loss:{:.2f}'.format(
                             i_iter, t1 - t0, rewards.mean(), rewards.std(), loss))
                     imitator.actor.to(args.device)
+
             imitator.actor.to('cpu')
             torch.save(imitator.actor.state_dict(), 'imitator_models/{}.p'.format(file_name))
             print("=======================================")
             print("")
+        np.save("./results/" + file_name + '_rewards', expert_rewards)
+        np.save("./results/" + file_name + '_timesteps', expert_timesteps)
