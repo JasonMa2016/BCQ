@@ -11,7 +11,7 @@ from models.mlp_policy import Policy
 from utils_local import *
 
 
-def drbcq_performance_random(model='DRBCQ', env_name="Walker2d-v2", num_trajs=5, seed=0):
+def drbcq_performance_random(model='DRBCQ', env_name="Walker2d-v2", num_trajs=5):
     '''
     Compare uncertainty cost vs. random reward
     :param env_name:
@@ -100,5 +100,7 @@ def bc_performance(env_name='Walker2d-v2', num_trajs=5,seed=0):
 
 
 if __name__ == "__main__":
-    # drbcq_performance_random()
-    bc_performance()
+    drbcq_performance_random(env_name='Hopper-v2')
+    drbcq_performance_random(env_name='Humanoid-v2')
+
+    # bc_performance()
