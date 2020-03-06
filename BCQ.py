@@ -184,7 +184,7 @@ class BCQ(object):
 
 			# Update through DPG
 			actor_loss = -self.critic.q1(state, perturbed_actions).mean()
-		 	 
+
 			self.actor_optimizer.zero_grad()
 			actor_loss.backward()
 			self.actor_optimizer.step()

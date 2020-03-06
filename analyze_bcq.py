@@ -22,13 +22,16 @@ def drbcq_performance_random(model='DRBCQ', env_name="Walker2d-v2", num_trajs=5)
     '''
 
     fig, ax = plt.subplots(figsize=(8, 4))
-    types = ['DRBCQ', 'DRBCQ-mixed','random']
+    types = ['DRBCQ', 'DRBCQ-mixed','random', 'random-mixed']
     for type in types:
         performance = []
         for seed in range(5):
 
             if type == 'random':
                 file_name = "./results/" + "{}_{}_traj{}_seed{}_good_random".format(model, env_name, num_trajs, seed,
+                                                                           type)
+            elif type == 'random-mixed':
+                file_name = "./results/" + "{}_{}_traj{}_seed{}_mixed_random".format(model, env_name, num_trajs, seed,
                                                                            type)
             elif type =='DRBCQ-mixed':
                 file_name = "./results/" + "{}_{}_traj{}_seed{}_mixed".format(model, env_name, num_trajs, seed,
@@ -48,21 +51,23 @@ def drbcq_performance_random(model='DRBCQ', env_name="Walker2d-v2", num_trajs=5)
         ax.plot(timestep, perf_mu, label=type)
         ax.fill_between(timestep, perf_mu+perf_std, perf_mu-perf_std, alpha=0.4)
 
-    performance = []
-    for seed in range(5):
-        file_name = "./results/" + "BCQ_{}_traj{}_seed{}_good".format(env_name, num_trajs, seed,
-                                                                       type)
-        reward = np.load(file_name + '_rewards.npy')
-        timestep = np.load(file_name + '_timesteps.npy')
-        performance.append(np.mean(reward, axis=1))
+    types = ['good', 'mixed']
+    for type in types:
+        performance = []
+        for seed in range(5):
+            file_name = "./results/" + "BCQ_{}_traj{}_seed{}_good".format(env_name, num_trajs, seed,
+                                                                           type)
+            reward = np.load(file_name + '_rewards.npy')
+            timestep = np.load(file_name + '_timesteps.npy')
+            performance.append(np.mean(reward, axis=1))
 
-    performance = np.array(performance)
-    # print(performance.shape)
-    perf_mu = np.mean(performance, axis=0)
-    # print(perf_mu.shape)
-    perf_std = np.std(performance, axis=0)
-    ax.plot(timestep, perf_mu, label='BCQ')
-    ax.fill_between(timestep, perf_mu+perf_std, perf_mu-perf_std, alpha=0.4)
+        performance = np.array(performance)
+        # print(performance.shape)
+        perf_mu = np.mean(performance, axis=0)
+        # print(perf_mu.shape)
+        perf_std = np.std(performance, axis=0)
+        ax.plot(timestep, perf_mu, label='BCQ' + ' ' + type)
+        ax.fill_between(timestep, perf_mu+perf_std, perf_mu-perf_std, alpha=0.4)
 
     ax.legend(loc='best')
     ax.set_title('DRBCQ {} Reward Ablation Plot'.format(env_name))
@@ -74,16 +79,16 @@ def drbcq_performance_random(model='DRBCQ', env_name="Walker2d-v2", num_trajs=5)
 
 def bc_performance(env_name='Walker2d-v2', num_trajs=5,seed=0):
     types = ['good', 'mixed']
+    fig, ax = plt.subplots(figsize=(8, 4))
+
     for type in types:
-        fig, ax = plt.subplots(figsize=(8, 4))
         performance = []
         for sample in range(5):
             file_name = "./results/" + "BC_{}_traj{}_seed{}_sample{}_{}".format(env_name, num_trajs,
                                                                                 seed, sample, type)
             reward = np.load(file_name + '_rewards.npy')
             timestep = np.load(file_name + '_timesteps.npy')
-            print(reward)
-            performance.append(reward)
+            performance.append(np.mean(reward, axis=1))
 
         performance = np.array(performance)
         perf_mu = np.mean(performance, axis=0)
@@ -91,16 +96,17 @@ def bc_performance(env_name='Walker2d-v2', num_trajs=5,seed=0):
         ax.plot(timestep, perf_mu, label=type)
         ax.fill_between(timestep, perf_mu + perf_std, perf_mu - perf_std, alpha=0.4)
 
-        ax.legend(loc='best')
-        ax.set_title('BC {} Reward '.format(env_name))
-        ax.set_xlabel('Training Iterations')
-        ax.set_ylabel('Rewards')
-        # plt.show()
-        plt.savefig('plots/BC_{}_reward_plot.png'.format(env_name))
+    ax.legend(loc='best')
+    ax.set_title('BC {} Reward '.format(env_name))
+    ax.set_xlabel('Training Iterations')
+    ax.set_ylabel('Rewards')
+    plt.savefig('plots/BC_{}_reward_plot.png'.format(env_name))
 
 
 if __name__ == "__main__":
     drbcq_performance_random(env_name='Hopper-v2')
     drbcq_performance_random(env_name='Humanoid-v2')
-
-    # bc_performance()
+    drbcq_performance_random(env_name='Walker2d-v2')
+    # bc_performance(env_name='Walker2d-v2')
+    # bc_performance(env_name='Hopper-v2')
+    # bc_performance(env_name='Humanoid-v2')

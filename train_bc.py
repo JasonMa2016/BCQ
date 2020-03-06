@@ -48,7 +48,7 @@ if __name__ == "__main__":
     parser.add_argument("--num_trajs", default=5, type=int)            # Number of expert trajectories to use
     parser.add_argument("--eval_freq", default=1e3, type=float)         # How often (time steps) we evaluate
     # parser.add_argument("--max_timesteps", default=1e6, type=float)     # Max time steps to run environment for
-    parser.add_argument("--ensemble", action='store_true', default=True)
+    parser.add_argument("--ensemble", action='store_true', default=False)
     parser.add_argument("--good", action='store_true', default=False)
     parser.add_argument("--max_iters", default=1e5, type=int)
 
@@ -100,28 +100,39 @@ if __name__ == "__main__":
         evaluations = []
         file_name = 'BC_{}_traj{}_seed{}_{}'.format(args.env_name, args.num_trajs, args.seed,
                                                              expert_type)
+        print(file_name)
+        expert_rewards = []
+        expert_timesteps = []
 
-        for i_iter in range(args.max_iters):
+        for i_iter in range(int(args.max_iters)):
+            if i_iter % args.eval_freq == 0:
+                imitator.actor.to('cpu')
+                rewards = utils_local.evaluate_policy(env, imitator.actor, running_state)
+
+                expert_rewards.append(rewards)
+                expert_timesteps.append(i_iter)
+
+                np.save("./results/" + file_name + '_rewards', expert_rewards)
+                np.save("./results/" + file_name + '_timesteps', expert_timesteps)
+
+                # evaluations.append(rewards)
+                # np.save("./results/" + file_name, evaluations)
+                if i_iter > 0:
+                    print(
+                        'Training iteration {}\tT_update:{:.4f}\t reward avg:{:.2f}\t reward std:{:.2f}\t training loss:{:.2f}'.format(
+                            i_iter, t1 - t0, rewards.mean(), rewards.std(), loss))
+                imitator.actor.to(args.device)
             t0 = time.time()
             loss = imitator.train()
             t1 = time.time()
-            if i_iter % 2000 == 0:
-                imitator.actor.to('cpu')
-                rewards = utils_local.evaluate_policy(env, imitator.actor)
-                evaluations.append(rewards)
-                np.save("./results/" + file_name, evaluations)
-                print('Training iteration {}\tT_update:{:.4f}\t reward avg:{:.2f}\t reward std:{:.2f}\t training loss:{:.2f}'.format(
-                i_iter, t1-t0, rewards.mean(), rewards.std(), loss))
-                imitator.actor.to(args.device)
 
         imitator.actor.to('cpu')
         torch.save(imitator.actor.state_dict(), 'imitator_models/{}.p'.format(file_name))
-
         print("=======================================")
-        print("BC Imitator performance:")
-        policy_rewards = utils_local.evaluate_policy(env, imitator.actor)
-        print("{} episodes\t reward avg:{:.2f}\t reward std:{:.2f}".format(len(policy_rewards), policy_rewards.mean(),
-                                                                           policy_rewards.std()))
+        print("")
+        np.save("./results/" + file_name + '_rewards', expert_rewards)
+        np.save("./results/" + file_name + '_timesteps', expert_timesteps)
+
     else:
         # ensemble
         expert_traj = np.array(flat_expert_trajs)
@@ -155,6 +166,7 @@ if __name__ == "__main__":
 
                     # evaluations.append(rewards)
                     # np.save("./results/" + file_name, evaluations)
+
                     print(
                         'Training iteration {}\tT_update:{:.4f}\t reward avg:{:.2f}\t reward std:{:.2f}\t training loss:{:.2f}'.format(
                             i_iter, t1 - t0, rewards.mean(), rewards.std(), loss))

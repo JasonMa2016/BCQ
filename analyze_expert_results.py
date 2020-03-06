@@ -43,4 +43,6 @@ if __name__ == "__main__":
     # for env in envs:
     #     analyze_expert_trajectory(env_name=env)
     analyze_expert_trajectory(env_name='Walker2d-v2')
+    analyze_expert_trajectory(env_name='Humanoid-v2')
+    analyze_expert_trajectory(env_name='Hopper-v2')
     # analyze_expert_training(env_name='Humanoid-v2')
