@@ -99,7 +99,7 @@ if __name__ == "__main__":
         imitator = BC(args, state_dim, action_dim, max_action)
         imitator.set_expert(flat_expert_trajs)
         evaluations = []
-        file_name = 'BC_{}_batch{}_traj{}_seed{}_{}_'.format(args.env_name, int(args.batch_size), args.num_trajs, args.seed,
+        file_name = 'BC_{}_batch{}_traj{}_seed{}_{}'.format(args.env_name, int(args.batch_size), args.num_trajs, args.seed,
                                                              expert_type)
         print(file_name)
         expert_rewards = []
