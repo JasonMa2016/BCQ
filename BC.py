@@ -98,7 +98,6 @@ class BC(object):
         """
         Set the expert trajectories.
         :param expert_traj:
-        :param num_traj
         :return:
         """
         self.expert_traj = expert_traj
@@ -107,17 +106,39 @@ class BC(object):
         for i in range(len(self.expert_traj)):
             self.expert_states.append(self.expert_traj[i][0])
             self.expert_actions.append(self.expert_traj[i][2])
-        self.expert_actions = torch.FloatTensor(self.expert_actions)
-        self.expert_states = torch.FloatTensor(self.expert_states)
+        # self.expert_actions = torch.FloatTensor(self.expert_actions)
+        # self.expert_states = torch.FloatTensor(self.expert_states)
 
-    def train(self):
+
+    def train(self, batch_size=None):
         """
         :param num_traj:
         :return:
         """
+        ind = np.random.randint(0, len(self.expert_states), size=batch_size)
 
-        expert_states = self.expert_states.to(self.device)
-        expert_actions = self.expert_actions.to(self.device)
+        expert_states = []
+        expert_actions = []
+
+        for i in ind:
+            expert_states.append(self.expert_states[i])
+            expert_actions.append(self.expert_actions[i])
+
+            # s, s2, a, r, d = self.storage[i]
+            # state.append(np.array(s, copy=False))
+            # next_state.append(np.array(s2, copy=False))
+            # action.append(np.array(a, copy=False))
+            # reward.append(np.array(r, copy=False))
+            # done.append(np.array(d, copy=False))
+
+        # return (np.array(state),
+        #     np.array(next_state),
+        #     np.array(action),
+        #     np.array(reward).reshape(-1, 1),
+        #     np.array(done).reshape(-1, 1))
+
+        expert_states = torch.FloatTensor(self.expert_states).to(self.device)
+        expert_actions = torch.FloatTensor(self.expert_actions).to(self.device)
 
         predicted_actions = self.actor.select_action(expert_states)
         self.actor_optimizer.zero_grad()

@@ -78,8 +78,8 @@ if __name__ == "__main__":
 
     expert_rewards = []
     expert_timesteps = []
-
     evaluation_rewards = []
+
     best_reward = 0
     while total_timesteps < args.max_timesteps:
 

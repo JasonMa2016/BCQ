@@ -107,4 +107,5 @@ if __name__ == "__main__":
 
     # save the imitator
     imitator.actor.to('cpu')
-    torch.save(imitator.actor.state_dict(), 'imitator_models/{}.p'.format(file_name))
+    imitator.save("%s" % (file_name), directory="./imitator_models")
+    # torch.save(imitator.actor.state_dict(), 'imitator_models/{}.p'.format(file_name))

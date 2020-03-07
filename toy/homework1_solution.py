@@ -121,7 +121,7 @@ def run_simulation(
         min_num_episodes=100,
         min_num_iters=5000,
         epsilon=0.1,
-        discount=0.95,
+        discount=0.8,
         # SARSA/Q-learning parameters
         step_size=0.5,
         Q_initial=0.0,

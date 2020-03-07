@@ -28,7 +28,7 @@ if __name__ == "__main__":
         toy.homework1_solution.plot_trajectory(env, res_expert['Q'], trajectories, env_name, 'expert')
 
         # good imitator
-        res_imitation = toy.homework1_solution.run_simulation_imitation(env, 'Q-learning', trajectories, min_num_episodes=200)
+        res_imitation = toy.homework1_solution.run_simulation_imitation(env, 'Q-learning', trajectories, min_num_episodes=200, default_reward=-10)
         episode_rewards, trajectories = toy.homework1_solution.evaluate_static_policy(env, res_imitation['Q'])
         toy.homework1_solution.plot_policy(env, res_imitation['Q'], env_name, 'good_imitator')
         toy.homework1_solution.plot_trajectory(env, res_imitation['Q'], trajectories, env_name, 'good imitator')

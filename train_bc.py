@@ -51,6 +51,7 @@ if __name__ == "__main__":
     parser.add_argument("--ensemble", action='store_true', default=False)
     parser.add_argument("--good", action='store_true', default=False)
     parser.add_argument("--max_iters", default=1e5, type=int)
+    parser.add_argument("--batch_size", default=1e2, type=int)
 
     args = parser.parse_args()
     args.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
@@ -98,7 +99,7 @@ if __name__ == "__main__":
         imitator = BC(args, state_dim, action_dim, max_action)
         imitator.set_expert(flat_expert_trajs)
         evaluations = []
-        file_name = 'BC_{}_traj{}_seed{}_{}'.format(args.env_name, args.num_trajs, args.seed,
+        file_name = 'BC_{}_batch{}_traj{}_seed{}_{}_'.format(args.env_name, int(args.batch_size), args.num_trajs, args.seed,
                                                              expert_type)
         print(file_name)
         expert_rewards = []
@@ -123,7 +124,7 @@ if __name__ == "__main__":
                             i_iter, t1 - t0, rewards.mean(), rewards.std(), loss))
                 imitator.actor.to(args.device)
             t0 = time.time()
-            loss = imitator.train()
+            loss = imitator.train(batch_size=int(args.batch_size))
             t1 = time.time()
 
         imitator.actor.to('cpu')

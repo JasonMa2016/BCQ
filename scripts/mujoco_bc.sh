@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
-ENV="Walker2d-v2"
-TRAJ=1
+TRAJ=5
 
-for seed in 0 1 2 3 4
+for env in Hopper-v2 Walker2d-v2 
 do
-    python3 train_bc.py --env_name $ENV --num_trajs $TRAJ --seed $seed --good
-    python3 train_bc.py --env_name $ENV --num_trajs $TRAJ --seed $seed
+    for seed in 0 1 2 3 4
+    do
+        python3 train_bc.py --env_name $ENV --num_trajs $TRAJ --seed $seed --good
+        python3 train_bc.py --env_name $ENV --num_trajs $TRAJ --seed $seed
+    done
 done
 
 
