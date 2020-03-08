@@ -49,14 +49,14 @@ if __name__ == "__main__":
     parser.add_argument("--eval_freq", default=1e3, type=float)         # How often (time steps) we evaluate
     # parser.add_argument("--max_timesteps", default=1e6, type=float)     # Max time steps to run environment for
     parser.add_argument("--ensemble", action='store_true', default=False)
-    parser.add_argument("--good", action='store_true', default=False)
+    parser.add_argument("--type", default='good')
     parser.add_argument("--max_iters", default=1e5, type=int)
     parser.add_argument("--batch_size", default=1e2, type=int)
 
     args = parser.parse_args()
     args.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
-    expert_type = 'good' if args.good else 'mixed'
+    expert_type = args.type
     file_name = "BC_%s_%s_%s" % (args.env_name, str(args.seed), expert_type)
 
     # buffer_name = "%s_traj100_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
@@ -70,19 +70,7 @@ if __name__ == "__main__":
 
     _, _, running_state, expert_args = pickle.load(open(args.model_path, "rb"))
 
-    # print(expert_rewards)
-    #
-    # # create a flat list
-    # flat_expert_trajs = []
-    # if args.good:
-    #     expert_trajs = expert_trajs[:args.num_trajs]
-    # else:
-    #     expert_trajs = np.concatenate((expert_trajs[:args.num_trajs],expert_trajs[-3:]), axis=0)
-    # for expert_traj in expert_trajs:
-    #     for state_action in expert_traj:
-    #         flat_expert_trajs.append(state_action)
-    # print(len(flat_expert_trajs))
-    flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, good=args.good)
+    flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, type=args.type)
 
     env = gym.make(args.env_name)
 

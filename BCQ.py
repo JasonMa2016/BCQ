@@ -224,7 +224,7 @@ class DRBCQ(BCQ):
 			# Sample replay buffer / batch
 			state_np, next_state_np, action, reward, done = replay_buffer.sample(batch_size)
 			reward = torch.FloatTensor(reward).to(device)
-
+			print(reward)
 			if random:
 				reward = torch.FloatTensor(np.random.random(reward.size())).to(device)
 			else:
@@ -237,7 +237,7 @@ class DRBCQ(BCQ):
 				new_reward = torch.stack(new_reward, dim=2)
 				reward = - torch.var(new_reward, dim=2)
 				reward = torch.FloatTensor(reward).to(device)
-
+			print(reward)
 			state = torch.FloatTensor(state_np).to(device)
 			action = torch.FloatTensor(action).to(device)
 			next_state = torch.FloatTensor(next_state_np).to(device)

@@ -21,10 +21,10 @@ if __name__ == "__main__":
     parser.add_argument("--eval_freq", default=1e3, type=float)  # How often (time steps) we evaluate
     parser.add_argument("--num_trajs", default=5, type=int)            # Number of expert trajectories to use
     parser.add_argument("--max_timesteps", default=1e5, type=float)  # Max time steps to run environment for
-    parser.add_argument("--good", action='store_true', default=False)
+    parser.add_argument("--type", default="good") # Good or mixed expert trajectories
 
     args = parser.parse_args()
-    expert_type = 'good' if args.good else 'mixed'
+    expert_type = args.type
     file_name = "BCQ_%s_traj%s_seed%s_%s" % (args.env_name, args.num_trajs, str(args.seed), expert_type)
     # buffer_name = "%s_traj100_%s_%s" % (args.buffer_type, args.env_name, str(args.seed))
 
@@ -37,11 +37,9 @@ if __name__ == "__main__":
 
     _, _, running_state, expert_args = pickle.load(open(args.model_path, "rb"))
 
-    flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, num_good_traj=args.num_trajs,
-                                                                 num_bad_traj= args.num_trajs,
-                                                                 good=args.good)
 
-    flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, good=args.good)
+
+    flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, type=args.type)
     print("---------------------------------------")
     print("Settings: " + file_name)
     print("")
