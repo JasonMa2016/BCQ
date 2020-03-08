@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ed043476-e961-4200-95e0-b4ec649a8c8f" name="Default Changelist" comment="" />
+    <list default="true" id="ed043476-e961-4200-95e0-b4ec649a8c8f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/scripts/mujoco_bc.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/mujoco_bc.sh" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,12 +51,12 @@
         <counts>
           <entry key="dummy" value="48" />
           <entry key="py" value="33092" />
-          <entry key="sh" value="1664" />
+          <entry key="sh" value="1728" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Bash" value="1664" />
+          <entry key="Bash" value="1728" />
           <entry key="PLAIN_TEXT" value="48" />
           <entry key="Python" value="33092" />
         </counts>
@@ -108,11 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/mujoco_bc.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="21" lean-forward="true" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+            <state relative-caret-position="171">
+              <caret line="9" column="31" lean-forward="true" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -139,7 +141,7 @@
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/mujoco_imperfect.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="209">
@@ -244,7 +246,6 @@
         <option value="$PROJECT_DIR$/train_ddpg_sqil.py" />
         <option value="$PROJECT_DIR$/train_gail_ppo_expert.py" />
         <option value="$PROJECT_DIR$/BC.py" />
-        <option value="$PROJECT_DIR$/scripts/mujoco_bc.sh" />
         <option value="$PROJECT_DIR$/scripts/mujoco_drbcq.sh" />
         <option value="$PROJECT_DIR$/train_bc.py" />
         <option value="$PROJECT_DIR$/train_bcq_traj.py" />
@@ -253,6 +254,7 @@
         <option value="$PROJECT_DIR$/scripts/mujoco_imperfect.sh" />
         <option value="$PROJECT_DIR$/utils_local.py" />
         <option value="$PROJECT_DIR$/train_drbcq_traj.py" />
+        <option value="$PROJECT_DIR$/scripts/mujoco_bc.sh" />
       </list>
     </option>
   </component>
@@ -714,9 +716,6 @@
     <entry file="file://$PROJECT_DIR$/toy/cliffworld_bad_imitator.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/plots/DRBCQ_Walker2d-v2_reward_ablation.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/BC.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1539">
@@ -754,13 +753,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/mujoco_imperfect.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/train_bc.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1139">
@@ -771,10 +763,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/plots/DRBCQ_Walker2d-v2_reward_ablation.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/mujoco_bc.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="21" lean-forward="true" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+        <state relative-caret-position="171">
+          <caret line="9" column="31" lean-forward="true" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/mujoco_imperfect.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
         </state>
       </provider>
     </entry>
