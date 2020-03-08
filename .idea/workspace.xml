@@ -1,52 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ed043476-e961-4200-95e0-b4ec649a8c8f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/results/BC_Hopper-v2_batch100_traj5_seed0_good__rewards.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Hopper-v2_batch100_traj5_seed0_good__timesteps.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Hopper-v2_batch100_traj5_seed0_good_rewards.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Hopper-v2_batch100_traj5_seed0_good_timesteps.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Hopper-v2_batch100_traj5_seed0_mixed_rewards.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Hopper-v2_batch100_traj5_seed0_mixed_timesteps.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Hopper-v2_batch100_traj5_seed1_good_rewards.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Hopper-v2_batch100_traj5_seed1_good_timesteps.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Hopper-v2_batch100_traj5_seed1_mixed_rewards.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Hopper-v2_batch100_traj5_seed1_mixed_timesteps.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Hopper-v2_batch100_traj5_seed2_good_rewards.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Hopper-v2_batch100_traj5_seed2_good_timesteps.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Hopper-v2_batch100_traj5_seed2_mixed_rewards.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Hopper-v2_batch100_traj5_seed2_mixed_timesteps.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Hopper-v2_batch100_traj5_seed3_good_rewards.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Hopper-v2_batch100_traj5_seed3_good_timesteps.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Humanoid-v2_batch100_traj5_seed0_good_rewards.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Humanoid-v2_batch100_traj5_seed0_good_timesteps.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Walker2d-v2_batch100_traj5_seed0_good_rewards.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Walker2d-v2_batch100_traj5_seed0_good_timesteps.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Walker2d-v2_batch100_traj5_seed0_mixed_rewards.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Walker2d-v2_batch100_traj5_seed0_mixed_timesteps.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Walker2d-v2_batch100_traj5_seed1_good_rewards.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Walker2d-v2_batch100_traj5_seed1_good_timesteps.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Walker2d-v2_batch100_traj5_seed1_mixed_rewards.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Walker2d-v2_batch100_traj5_seed1_mixed_timesteps.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Walker2d-v2_batch100_traj5_seed2_good_rewards.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Walker2d-v2_batch100_traj5_seed2_good_timesteps.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Walker2d-v2_batch100_traj5_seed2_mixed_rewards.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/results/BC_Walker2d-v2_batch100_traj5_seed2_mixed_timesteps.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/mujoco_imperfect.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BCQ.py" beforeDir="false" afterPath="$PROJECT_DIR$/BCQ.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyze_bcq.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyze_bcq.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/DRBCQ_Hopper-v2_reward_ablation.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/DRBCQ_Hopper-v2_reward_ablation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/DRBCQ_Humanoid-v2_reward_ablation.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/DRBCQ_Humanoid-v2_reward_ablation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/DRBCQ_Walker2d-v2_reward_ablation.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/DRBCQ_Walker2d-v2_reward_ablation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/batch_Hopper-v2_reward_plot.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/batch_Hopper-v2_reward_plot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/batch_Humanoid-v2_reward_plot.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/batch_Humanoid-v2_reward_plot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/batch_Walker2d-v2_reward_plot.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/batch_Walker2d-v2_reward_plot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_bc.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_bc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_bcq_traj.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_bcq_traj.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_drbcq_traj.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_drbcq_traj.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils_local.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils_local.py" afterDir="false" />
-    </list>
+    <list default="true" id="ed043476-e961-4200-95e0-b4ec649a8c8f" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,13 +30,13 @@
           <entry key="p" value="4" />
           <entry key="png" value="561" />
           <entry key="py" value="402" />
-          <entry key="sh" value="84" />
+          <entry key="sh" value="85" />
           <entry key="txt" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Bash" value="84" />
+          <entry key="Bash" value="85" />
           <entry key="IPNB" value="3" />
           <entry key="Image" value="561" />
           <entry key="Markdown" value="2" />
@@ -117,7 +72,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train_drbcq_traj.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="774">
@@ -144,11 +99,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train_bc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1424">
+            <state relative-caret-position="-1139">
               <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scripts/mujoco_bc.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="6" column="21" lean-forward="true" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -182,11 +146,6 @@
               <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/toy/cliffworld_good imitator_trajectory.png">
-          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -665,13 +624,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/mujoco_bc.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" selection-start-line="2" selection-end-line="11" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plots/DRBCQ_Hopper-v2_bad_traj.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -765,36 +717,12 @@
     <entry file="file://$PROJECT_DIR$/plots/DRBCQ_Walker2d-v2_reward_ablation.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/mujoco_imperfect.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils_local.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-222">
-          <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BC.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1539">
           <caret line="81" column="6" selection-start-line="81" selection-start-column="6" selection-end-line="81" selection-end-column="6" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/train_bc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1424">
-          <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -816,6 +744,37 @@
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils_local.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-222">
+          <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/mujoco_imperfect.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train_bc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1139">
+          <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/mujoco_bc.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="21" lean-forward="true" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
         </state>
       </provider>
     </entry>
