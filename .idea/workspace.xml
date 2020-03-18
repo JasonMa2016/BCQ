@@ -1,81 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ed043476-e961-4200-95e0-b4ec649a8c8f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyze_bcq.py" beforeDir="false" afterPath="$PROJECT_DIR$/analyze_bcq.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/BC_Hopper-v2_reward_plot.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/BC_Hopper-v2_reward_plot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots/BC_Walker2d-v2_reward_plot.png" beforeDir="false" afterPath="$PROJECT_DIR$/plots/BC_Walker2d-v2_reward_plot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BCQ_Hopper-v2_traj5_seed0_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BCQ_Hopper-v2_traj5_seed0_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BCQ_Hopper-v2_traj5_seed1_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BCQ_Hopper-v2_traj5_seed1_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BCQ_Hopper-v2_traj5_seed2_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BCQ_Hopper-v2_traj5_seed2_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample0_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample0_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample1_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample1_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample2_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample2_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample3_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample3_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample4_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample4_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample5_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample5_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample6_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample6_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample7_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample7_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample8_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample8_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample9_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/BC_Hopper-v2_traj5_seed0_sample9_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/DRBCQ_Hopper-v2_traj5_seed0_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/DRBCQ_Hopper-v2_traj5_seed0_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/DRBCQ_Hopper-v2_traj5_seed1_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/DRBCQ_Hopper-v2_traj5_seed1_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/DRBCQ_Hopper-v2_traj5_seed2_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_new_old/DRBCQ_Hopper-v2_traj5_seed2_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BCQ_Hopper-v2_traj5_seed0_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BCQ_Hopper-v2_traj5_seed0_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_0_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample0_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample0_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample1_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample1_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample2_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample2_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample3_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample3_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample4_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample4_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample5_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample5_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample6_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample6_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample7_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample7_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample8_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample8_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample9_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/BC_Hopper-v2_traj5_seed0_sample9_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/DRBCQ_Hopper-v2_traj5_seed0_good.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/DRBCQ_Hopper-v2_traj5_seed0_mixed.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_old/DRBCQ_traj5_Hopper-v2_0.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_sqil/SQIL_DDPG_NEW_Walker2d-v2_traj5_seed0_good_evaluation_rewards.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_sqil/SQIL_DDPG_NEW_Walker2d-v2_traj5_seed0_good_rewards.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_sqil/SQIL_DDPG_NEW_Walker2d-v2_traj5_seed0_good_timesteps.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_sqil/SQIL_DDPG_ORIGINAL_Hopper-v2_traj5_seed1_mixed_evaluation_rewards.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_sqil/SQIL_DDPG_ORIGINAL_Hopper-v2_traj5_seed1_mixed_rewards.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_sqil/SQIL_DDPG_ORIGINAL_Hopper-v2_traj5_seed1_mixed_timesteps.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_sqil/SQIL_DDPG_ORIGINAL_Walker2d-v2_traj5_seed0_good_evaluation_rewards.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_sqil/SQIL_DDPG_ORIGINAL_Walker2d-v2_traj5_seed0_good_rewards.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results_sqil/SQIL_DDPG_ORIGINAL_Walker2d-v2_traj5_seed0_good_timesteps.npy" beforeDir="false" />
-    </list>
+    <list default="true" id="ed043476-e961-4200-95e0-b4ec649a8c8f" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,13 +30,13 @@
           <entry key="p" value="4" />
           <entry key="png" value="581" />
           <entry key="py" value="410" />
-          <entry key="sh" value="85" />
+          <entry key="sh" value="87" />
           <entry key="txt" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Bash" value="85" />
+          <entry key="Bash" value="87" />
           <entry key="IPNB" value="3" />
           <entry key="Image" value="581" />
           <entry key="Markdown" value="2" />
@@ -123,12 +49,12 @@
         <counts>
           <entry key="dummy" value="48" />
           <entry key="py" value="33182" />
-          <entry key="sh" value="1728" />
+          <entry key="sh" value="1755" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Bash" value="1728" />
+          <entry key="Bash" value="1755" />
           <entry key="PLAIN_TEXT" value="48" />
           <entry key="Python" value="33182" />
         </counts>
@@ -159,9 +85,23 @@
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plots/BC_Walker2d-v2_batch100_traj1_reward_plot.png">
           <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scripts/mujoco_bc.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/mujoco_bcq.sh">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -182,29 +122,6 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plots/BC_Walker2d-v2_noise10_noise20.3.png">
           <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/train_drbcq_traj.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-373">
-              <caret line="47" selection-start-line="47" selection-end-line="47" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/analyze_imitation_drbcq.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2069">
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
         </entry>
       </file>
     </leaf>
@@ -305,8 +222,8 @@
         <option value="$PROJECT_DIR$/scripts/mujoco_imperfect.sh" />
         <option value="$PROJECT_DIR$/utils_local.py" />
         <option value="$PROJECT_DIR$/train_drbcq_traj.py" />
-        <option value="$PROJECT_DIR$/scripts/mujoco_bc.sh" />
         <option value="$PROJECT_DIR$/analyze_bcq.py" />
+        <option value="$PROJECT_DIR$/scripts/mujoco_bc.sh" />
       </list>
     </option>
   </component>
@@ -336,6 +253,11 @@
               <item name="BCQ" type="b2602c69:ProjectViewProjectNode" />
               <item name="BCQ" type="462c0819:PsiDirectoryNode" />
               <item name="results" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BCQ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BCQ" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BCQ" type="b2602c69:ProjectViewProjectNode" />
@@ -568,9 +490,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/results/BC_Walker2d-v2_batch100_traj5_seed0_mixed_rewards.npy">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-635" />
@@ -639,13 +558,6 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/mujoco_bc.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -806,6 +718,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/plots/BC_Walker2d-v2_batch100_traj1_reward_plot.png">
       <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/mujoco_bcq.sh">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/mujoco_bc.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
