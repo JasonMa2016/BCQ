@@ -125,18 +125,18 @@ def drbcq_performance_ablation(env_name="Walker2d-v2", num_trajs=5, type='good')
     plt.savefig('plots/DRBCQ_{}_random_reward_ablation_{}.png'.format(env_name, type))
 
 
-def bc_performance(env_name='Walker2d-v2', num_trajs=5,seed=0):
-    types = ['good', 'mixed']
+def bc_performance(env_name='Walker2d-v2', num_trajs=5,seeds=5):
+    types = ['good', 'mixed', 'imperfect']
     fig, ax = plt.subplots(figsize=(8, 4))
 
     for type in types:
         performance = []
-        for seed in range(5):
+        for seed in range(seeds):
         # for sample in range(5):
         #     file_name = "./results/" + "BC_{}_traj{}_seed{}_sample{}_{}".format(env_name, num_trajs,
         #                                                                         seed, sample, type)
 
-            file_name = "./results/" + "BC_{}_traj{}_seed{}_{}".format(env_name, num_trajs,
+            file_name = "./results/" + "BC_{}_batch100_traj{}_seed{}_{}".format(env_name, num_trajs,
                                                                                 seed, type)
             reward = np.load(file_name + '_rewards.npy')
             timestep = np.load(file_name + '_timesteps.npy')
@@ -152,7 +152,7 @@ def bc_performance(env_name='Walker2d-v2', num_trajs=5,seed=0):
     ax.set_title('BC {} Reward '.format(env_name))
     ax.set_xlabel('Training Iterations')
     ax.set_ylabel('Rewards')
-    plt.savefig('plots/BC_{}_reward_plot.png'.format(env_name))
+    plt.savefig('plots/BC_{}_batch100_traj{}_reward_plot.png'.format(env_name, num_trajs))
 
 
 def compare_batch_models(models=['DRBCQ', 'BC'], env_name='Walker2d-v2', num_trajs=5):
@@ -197,12 +197,12 @@ if __name__ == "__main__":
     # drbcq_performance_random(env_name='Hopper-v2')
     # drbcq_performance_random(env_name='Humanoid-v2')
     # drbcq_performance_random(env_name='Walker2d-v2')
-    envs = ['Hopper-v2', 'Humanoid-v2', 'Walker2d-v2']
-    for env in envs:
-        for type in ['good', 'mixed']:
-            drbcq_performance_ablation(env_name=env, type=type)
-    # bc_performance(env_name='Walker2d-v2')
-    # bc_performance(env_name='Hopper-v2')
+    # envs = ['Hopper-v2', 'Humanoid-v2', 'Walker2d-v2']
+    # for env in envs:
+    #     for type in ['good', 'mixed']:
+    #         drbcq_performance_ablation(env_name=env, type=type)
+    bc_performance(env_name='Walker2d-v2', num_trajs=1,seeds=1)
+    bc_performance(env_name='Hopper-v2', num_trajs=1,seeds=1)
     # bc_performance(env_name='Humanoid-v2')
 
     # compare_batch_models()
