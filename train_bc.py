@@ -42,18 +42,21 @@ def assets_dir():
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--env_name", default="Walker2d-v2")              # OpenAI gym environment name
+    parser.add_argument("--env_name", default="Humanoid-v2")              # OpenAI gym environment name
     parser.add_argument("--seed", default=0, type=int)                  # Sets Gym, PyTorch and Numpy seeds
     parser.add_argument("--buffer_type", default="Robust")              # Prepends name to filename.
     parser.add_argument("--num_trajs", default=5, type=int)            # Number of expert trajectories to use
-    parser.add_argument("--eval_freq", default=1e3, type=float)         # How often (time steps) we evaluate
+    parser.add_argument("--eval_freq", default=4e2, type=float)         # How often (time steps) we evaluate
     # parser.add_argument("--max_timesteps", default=1e6, type=float)     # Max time steps to run environment for
     parser.add_argument("--ensemble", action='store_true', default=False)
     parser.add_argument("--type", default='good')
-    parser.add_argument("--max_iters", default=1e5, type=int)
+    parser.add_argument("--max_iters", default=2e3, type=int)
     parser.add_argument("--batch_size", default=1e2, type=int)
 
     args = parser.parse_args()
+
+    args.ensemble = True
+
     args.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
     expert_type = args.type
@@ -70,7 +73,8 @@ if __name__ == "__main__":
 
     _, _, running_state, expert_args = pickle.load(open(args.model_path, "rb"))
 
-    flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, type=args.type)
+    flat_expert_trajs = utils_local.collect_trajectories_rewards(expert_trajs, num_trajs=args.num_trajs,
+                                                                 type=args.type)
 
     env = gym.make(args.env_name)
 
@@ -87,7 +91,7 @@ if __name__ == "__main__":
         imitator = BC(args, state_dim, action_dim, max_action)
         imitator.set_expert(flat_expert_trajs)
         evaluations = []
-        file_name = 'BC_{}_batch{}_traj{}_seed{}_{}'.format(args.env_name, int(args.batch_size), args.num_trajs, args.seed,
+        file_name = 'BC_{}_batch{}_traj{}_seed{}_{}_final'.format(args.env_name, int(args.batch_size), args.num_trajs, args.seed,
                                                              expert_type)
         print(file_name)
         expert_rewards = []
@@ -127,7 +131,7 @@ if __name__ == "__main__":
         expert_traj = np.array(flat_expert_trajs)
         for sample in range(5):
             print("=======================================")
-            print("BC Imitator {}".format(sample+1))
+            print("{} BC Imitator {}".format(args.env_name, sample+1))
             indices = np.random.choice(len(expert_traj), len(expert_traj))
             # print(indices)
             # print(expert_traj)
@@ -135,14 +139,13 @@ if __name__ == "__main__":
             imitator = BC(args, state_dim, action_dim, max_action)
             imitator.set_expert(current_expert_traj)
             evaluations = []
-            file_name = 'BC_{}_traj{}_seed{}_sample{}_{}'.format(args.env_name, args.num_trajs, args.seed, sample, expert_type)
+            file_name = 'BC_{}_traj{}_seed{}_sample{}_{}'.format(args.env_name, args.num_trajs,
+                                                                 args.seed, sample, expert_type)
             expert_rewards = []
             expert_timesteps = []
 
+            best_reward = 0
             for i_iter in range(int(args.max_iters)):
-                t0 = time.time()
-                loss = imitator.train()
-                t1 = time.time()
                 if i_iter % args.eval_freq == 0:
                     imitator.actor.to('cpu')
                     rewards = utils_local.evaluate_policy(env, imitator.actor, running_state)
@@ -153,17 +156,25 @@ if __name__ == "__main__":
                     np.save("./results/" + file_name + '_rewards', expert_rewards)
                     np.save("./results/" + file_name + '_timesteps', expert_timesteps)
 
+                    # save the best policy
+                    if rewards.mean() > best_reward:
+                        best_reward = rewards.mean()
+                        torch.save(imitator.actor.state_dict(), 'imitator_models/{}.p'.format(file_name))
+
                     # evaluations.append(rewards)
                     # np.save("./results/" + file_name, evaluations)
-
-                    print(
-                        'Training iteration {}\tT_update:{:.4f}\t reward avg:{:.2f}\t reward std:{:.2f}\t training loss:{:.2f}'.format(
-                            i_iter, t1 - t0, rewards.mean(), rewards.std(), loss))
+                    if i_iter > 0:
+                        print(
+                            'Training iteration {}\tT_update:{:.4f}\t reward avg:{:.2f}\t reward std:{:.2f}\t training loss:{:.2f}'.format(
+                                i_iter, t1 - t0, rewards.mean(), rewards.std(), loss))
                     imitator.actor.to(args.device)
+                t0 = time.time()
+                loss = imitator.train(batch_size=int(args.batch_size))
+                t1 = time.time()
 
-            imitator.actor.to('cpu')
-            torch.save(imitator.actor.state_dict(), 'imitator_models/{}.p'.format(file_name))
+            # imitator.actor.to('cpu')
+            # torch.save(imitator.actor.state_dict(), 'imitator_models/{}.p'.format(file_name))
             print("=======================================")
             print("")
-        np.save("./results/" + file_name + '_rewards', expert_rewards)
-        np.save("./results/" + file_name + '_timesteps', expert_timesteps)
+            np.save("./results/" + file_name + '_rewards', expert_rewards)
+            np.save("./results/" + file_name + '_timesteps', expert_timesteps)

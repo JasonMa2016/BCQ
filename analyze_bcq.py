@@ -126,7 +126,7 @@ def drbcq_performance_ablation(env_name="Walker2d-v2", num_trajs=5, type='good')
 
 
 def bc_performance(env_name='Walker2d-v2', num_trajs=5,seeds=5):
-    types = ['good', 'mixed', 'imperfect']
+    types = ['good', 'mixed']
     fig, ax = plt.subplots(figsize=(8, 4))
 
     for type in types:
@@ -140,6 +140,7 @@ def bc_performance(env_name='Walker2d-v2', num_trajs=5,seeds=5):
                                                                                 seed, type)
             reward = np.load(file_name + '_rewards.npy')
             timestep = np.load(file_name + '_timesteps.npy')
+            timestep = timestep * 10
             performance.append(np.mean(reward, axis=1))
 
         performance = np.array(performance)
@@ -149,11 +150,39 @@ def bc_performance(env_name='Walker2d-v2', num_trajs=5,seeds=5):
         ax.fill_between(timestep, perf_mu + perf_std, perf_mu - perf_std, alpha=0.4)
 
     ax.legend(loc='best')
-    ax.set_title('BC {} Reward '.format(env_name))
-    ax.set_xlabel('Training Iterations')
+    ax.set_title('BC {} Running Performance '.format(env_name))
+    ax.set_xlabel('Training Samples')
     ax.set_ylabel('Rewards')
     plt.savefig('plots/BC_{}_batch100_traj{}_reward_plot.png'.format(env_name, num_trajs))
 
+def drbcq_performance(env_name='Walker2d-v2', num_trajs=5,seeds=5):
+    types = ['good', 'mixed']
+    fig, ax = plt.subplots(figsize=(8, 4))
+
+    for type in types:
+        performance = []
+        for seed in range(seeds):
+        # for sample in range(5):
+        #     file_name = "./results/" + "BC_{}_traj{}_seed{}_sample{}_{}".format(env_name, num_trajs,
+        #                                                                         seed, sample, type)
+
+            file_name = "./results/" + "BCQ_{}_traj{}_seed{}_{}".format(env_name, num_trajs,
+                                                                                seed, type)
+            reward = np.load(file_name + '_rewards.npy')
+            timestep = np.load(file_name + '_timesteps.npy')
+            performance.append(np.mean(reward, axis=1))
+
+        performance = np.array(performance)
+        perf_mu = np.mean(performance, axis=0)
+        perf_std = np.std(performance, axis=0)
+        ax.plot(timestep, perf_mu, label=type)
+        ax.fill_between(timestep, perf_mu + perf_std, perf_mu - perf_std, alpha=0.4)
+
+    ax.legend(loc='best')
+    ax.set_title('DRBCQ {} Reward '.format(env_name))
+    ax.set_xlabel('Training Iterations')
+    ax.set_ylabel('Rewards')
+    plt.savefig('plots/BCQ_{}_traj{}_reward_plot.png'.format(env_name, num_trajs))
 
 def compare_batch_models(models=['DRBCQ', 'BC'], env_name='Walker2d-v2', num_trajs=5):
     fig, ax = plt.subplots(figsize=(8, 4))
@@ -201,9 +230,13 @@ if __name__ == "__main__":
     # for env in envs:
     #     for type in ['good', 'mixed']:
     #         drbcq_performance_ablation(env_name=env, type=type)
-    bc_performance(env_name='Walker2d-v2', num_trajs=1,seeds=1)
-    bc_performance(env_name='Hopper-v2', num_trajs=1,seeds=1)
-    # bc_performance(env_name='Humanoid-v2')
+    bc_performance(env_name='Walker2d-v2', num_trajs=5, seeds=5)
+    bc_performance(env_name='Hopper-v2', num_trajs=5, seeds=5)
+    bc_performance(env_name='Humanoid-v2', num_trajs=5, seeds=5)
+    # drbcq_performance(env_name='Walker2d-v2')
+    # drbcq_performance(env_name='Hopper-v2')
+    # drbcq_performance(env_name='Humanoid-v2')
+
 
     # compare_batch_models()
     # compare_batch_models(env_name='Hopper-v2')

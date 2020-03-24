@@ -14,6 +14,10 @@ class Policy(nn.Module):
     def __init__(self, state_dim, action_dim, hidden_size=(400, 300), activation='relu', log_std=0):
         super().__init__()
         self.is_disc_action = False
+        self.state_dim = state_dim
+        self.action_dim = action_dim
+        self.log_std = log_std
+
         if activation == 'tanh':
             self.activation = torch.tanh
         elif activation == 'relu':
@@ -62,6 +66,9 @@ class Policy(nn.Module):
 
     def get_log_prob(self, x, actions):
         action_mean, action_log_std, action_std = self.forward(x)
+        action_log_std = nn.Parameter(torch.ones(1, self.action_dim) * self.log_std)
+        action_std = torch.exp(action_log_std)
+
         return normal_log_density(actions, action_mean, action_log_std, action_std)
 
     def get_fim(self, x):

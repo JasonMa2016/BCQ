@@ -31,7 +31,7 @@ def likelihood(env_name='Walker2d-v2', model_name='GAIL', traj=5, seed=0, in_sam
 
     fig, ax = plt.subplots(figsize=(8, 4))
 
-    for type in ['good', 'mixed']:
+    for type in ['good']:
         imitator_name = '{}_PPO_{}_traj{}_seed{}_{}'.format(model_name, env_name, traj, seed, type)
         imitator = Policy(17,6)
         imitator.load_state_dict(torch.load('imitator_models/%s_actor.pth' % (imitator_name)))
@@ -55,14 +55,99 @@ def likelihood(env_name='Walker2d-v2', model_name='GAIL', traj=5, seed=0, in_sam
         probs = np.array(probs)
         probs_mu = np.mean(probs, axis=0)
         probs_std = np.std(probs, axis=0)
-        ax.plot([i for i in range(min_timestep)], probs_mu, label=type)
-        ax.fill_between(min_timestep, probs_mu + probs_std, probs_mu - probs_std, alpha=0.4)
 
-    ax.set_title('{} {} Imitator Log-Likelihood over Expert Trajectories'.format(env_name, model_name))
+        ax.plot([i for i in range(min_timestep)], probs_mu, label=type)
+        ax.fill_between([i for i in range(min_timestep)], probs_mu + probs_std, probs_mu - probs_std, alpha=0.7)
+
+    ax.set_title('{} {} Imitator Stepwise Log-Likelihood over Expert Trajectories'.format(env_name, model_name))
     ax.legend(loc='best')
     ax.set_xlabel('Steps')
     ax.set_ylabel('Log Likelihood')
     plt.savefig('plots/{}_{}_likelihood.png'.format(model_name, env_name))
+    plt.close()
+    return
+
+
+def likelihood_both(env_name='Walker2d-v2', model_name='GAIL', traj=5, seed=0, in_sample=True):
+    """
+    Compute the likelihood of the entire trajectory
+    :param env_name:
+    :param model_name:
+    :param traj:
+    :param seed:
+    :param in_sample:
+    :return:
+    """
+    expert_path = "expert_models/{}_PPO_0.p".format(env_name)
+
+    policy, _, running_state, expert_args = pickle.load(open(expert_path, "rb"))
+
+    buffer_name = "PPO_traj100_%s_0" % (env_name)
+    expert_trajs = np.load("./buffers/" + buffer_name + ".npy", allow_pickle=True)
+    # expert_rewards = np.load("./buffers/"+buffer_name+"_rewards" + ".npy", allow_pickle=True)
+
+    fig, ax = plt.subplots(figsize=(8, 4))
+
+    for type in ['good']:
+        imitator_name = '{}_PPO_{}_traj{}_seed{}_{}'.format(model_name, env_name, traj, seed, type)
+        imitator = Policy(17, 6)
+        imitator.load_state_dict(torch.load('imitator_models/%s_actor.pth' % (imitator_name)))
+        probs = []
+        min_timestep = 10000
+        for i in range(traj):
+            prob = []
+            if len(expert_trajs[i]) < min_timestep:
+                min_timestep = len(expert_trajs[i])
+            for sample in expert_trajs[i]:
+                states = torch.FloatTensor(sample[0])
+                actions = torch.FloatTensor(sample[2])
+                # states = torch.FloatTensor(np.random.random(states.size()))
+                log_prob = imitator.get_log_prob(states.unsqueeze(0),
+                                                 actions.unsqueeze(0))[0][0].detach().numpy()
+                prob.append(log_prob)
+            probs.append(prob)
+
+        for i in range(len(probs)):
+            probs[i] = probs[i][:min_timestep]
+        probs = np.array(probs)
+        probs_mu = np.mean(probs, axis=0)
+        probs_std = np.std(probs, axis=0)
+
+        ax.plot([i for i in range(min_timestep)], probs_mu, label='training trajs')
+        ax.fill_between([i for i in range(min_timestep)], probs_mu + probs_std, probs_mu - probs_std, alpha=0.7)
+
+        probs = []
+        min_timestep = 10000
+        for i in range(traj):
+            prob = []
+            if len(expert_trajs[i+5]) < min_timestep:
+                min_timestep = len(expert_trajs[i])
+            for sample in expert_trajs[i+5]:
+                # print(sample)
+                states = torch.FloatTensor(sample[0])
+                # print(states)
+                # print("")
+                actions = torch.FloatTensor(sample[2])
+                # states = torch.FloatTensor(np.random.random(states.size()))
+                log_prob = imitator.get_log_prob(states.unsqueeze(0),
+                                                 actions.unsqueeze(0))[0][0].detach().numpy()
+                prob.append(log_prob)
+            probs.append(prob)
+            # print(probs)
+        for i in range(len(probs)):
+            probs[i] = probs[i][:min_timestep]
+        probs = np.array(probs)
+        probs_mu = np.mean(probs, axis=0)
+        probs_std = np.std(probs, axis=0)
+        # print(probs_std)
+        ax.plot([i for i in range(min_timestep)], probs_mu, label='non-training trajs')
+        ax.fill_between([i for i in range(min_timestep)], probs_mu + probs_std, probs_mu - probs_std, alpha=0.7)
+
+    ax.set_title('{} {} Imitator Stepwise Log-Likelihood Comparison'.format(env_name, model_name))
+    ax.legend(loc='best')
+    ax.set_xlabel('Steps')
+    ax.set_ylabel('Log Likelihood')
+    plt.savefig('plots/{}_{}_likelihood_comparison.png'.format(model_name, env_name))
     plt.close()
     return
 
@@ -160,21 +245,61 @@ def analyze_model_with_noise(env_name='Walker2d-v2', model_name='GAIL', num_traj
     labels = ['no noise', 'noise']
     for label, array in zip(labels, lst):
 
-        perf_mu = np.mean(array, axis=1)
+        perf_mu = np.max(array, axis=1) # ???
         perf_std =np.std(array, axis=1)
 
         ax.plot(num_trajs, perf_mu, label=label, marker='v')
         ax.fill_between(num_trajs, perf_mu + 0.5 * perf_std, perf_mu - 0.5* perf_std, alpha=0.4)
 
     ax.legend(loc='best')
-    ax.set_title('{} {} Noise Evaluation'.format(env_name, model_name))
+    ax.set_title('{} {} Noise Evaluation, epsilon={}'.format(env_name, model_name, noise1))
     ax.set_xlabel('Number of Expert Trajectories')
     ax.set_ylabel('Cumulative Rewards')
     plt.savefig('plots/{}_{}_noise1{}_noise2{}.png'.format(model_name, env_name, noise1, noise2))
     plt.close()
 
 
+def plot_model_best_performance_over_trajectories(env_name='Walker2d-v2', model_name='GAIL', buffer_type='PPO',
+                                                  num_trajs=[1,3,5], seeds=[0,1,2,3,4], types=['good', 'mixed']):
+    fig, ax = plt.subplots(figsize=(8, 4))
+
+    # buffer_name = "%s_traj100_%s_0" % (buffer_type, env_name)
+    #
+    # expert_rewards = np.load("./buffers/" + buffer_name + "_rewards" + ".npy", allow_pickle=True)
+    # expert_performance = np.mean(expert_rewards[:5])
+
+    for i, type in enumerate(types):
+        best_performance_all = []
+
+        for traj in num_trajs:
+            best_performance = []
+
+            for seed in seeds:
+                file_name = 'results/{}_{}_traj{}_seed{}_{}'.format(model_name, env_name, traj, seed, type)
+                reward = np.load(file_name + '_rewards.npy')
+                best_performance.append(max(np.mean(reward, axis=0)))
+            best_performance_all.append(best_performance)
+        performance = np.array(best_performance_all)
+
+        perf_mu = np.mean(performance, axis=1)
+        perf_std =np.std(performance, axis=1)
+
+        print(perf_mu, perf_std)
+        ax.plot(num_trajs, perf_mu, label=type, marker='v')
+        ax.fill_between(num_trajs, perf_mu + 0.5 * perf_std, perf_mu - 0.5* perf_std, alpha=0.4)
+    ax.axhline(y=3750, linestyle='--', label='expert')
+    ax.legend(loc='best')
+    ax.set_title('{} {} Best Performance '.format(model_name, env_name))
+    ax.set_xlabel('Number of Expert Trajectories')
+    ax.set_ylabel('Cumulative Rewards')
+    plt.savefig('plots/{}_{}_best_performance.png'.format(model_name, env_name))
+    plt.close()
+
+
 if __name__ == "__main__":
     # likelihood('Walker2d-v2')
+    # likelihood_both('Walker2d-v2')
     # plot_distribution()
     analyze_model_with_noise(noise1=0)
+    analyze_model_with_noise(noise1=0.3)
+    # plot_model_best_performance_over_trajectories(model_name='BC')

@@ -51,6 +51,9 @@ class ReplayBuffer(object):
 def evaluate_policy(env, policy, running_state,
                                eval_episodes=10, BCQ=False):
     rewards = []
+    np.random.seed(2020)
+    torch.manual_seed(2020)
+    env.seed(2020)
 
     for _ in range(eval_episodes):
         episode_reward = 0
@@ -76,10 +79,13 @@ def evaluate_policy(env, policy, running_state,
 
 
 def evaluate_policy_with_noise(env, policy, running_state,
-                               eval_episodes=50,
+                               eval_episodes=10,
                                noise1=0.3,
-                               noise2=0.3):
+                               noise2=0.3, BCQ=False):
     rewards = []
+    np.random.seed(2020)
+    torch.manual_seed(2020)
+    env.seed(2020)
 
     for _ in range(eval_episodes):
         episode_reward = 0
@@ -91,11 +97,13 @@ def evaluate_policy_with_noise(env, policy, running_state,
                 state_var = torch.FloatTensor(obs).unsqueeze(0)
                 # select deterministically
 
-
                 if np.random.uniform(0, 1) < noise1:
                     action = env.action_space.sample()
                 else:
-                    action = policy(state_var)[0][0].detach().numpy()
+                    if not BCQ:
+                        action = policy(state_var)[0][0].detach().numpy()
+                    else:
+                        action = policy.select_action(state_var)
                     if noise2 != 0:
                         action = (action + np.random.normal(0, noise2, size=env.action_space.shape[0])).clip(
                             env.action_space.low, env.action_space.high)
@@ -110,11 +118,11 @@ def evaluate_policy_with_noise(env, policy, running_state,
     return rewards
 
 
-def collect_trajectories_rewards(expert_trajs, num_good_traj=5, num_bad_traj=5, type='good'):
+def collect_trajectories_rewards(expert_trajs, num_trajs=5, type='good'):
 
     # trajs = np.concatenate((expert_trajs[:num_good_traj], expert_trajs[-num_bad_traj:]), axis=0)
     # rewards = np.concatenate((expert_rewards[:num_bad_traj]), expert_rewards[-num_bad_traj:], axis=0)
-    trajs = expert_trajs[:num_good_traj]
+    trajs = expert_trajs[:num_trajs]
     flat_expert_trajs = []
     for expert_traj in trajs:
         for state_action in expert_traj:
@@ -125,7 +133,7 @@ def collect_trajectories_rewards(expert_trajs, num_good_traj=5, num_bad_traj=5, 
         'good':list(flat_expert_trajs)
     }
 
-    for expert_traj in expert_trajs[-num_bad_traj:]:
+    for expert_traj in expert_trajs[-num_trajs:]:
         for state_action in expert_traj:
             flat_trajs['mixed'].append(state_action)
             flat_trajs['imperfect'].append(state_action)
@@ -133,7 +141,7 @@ def collect_trajectories_rewards(expert_trajs, num_good_traj=5, num_bad_traj=5, 
     # print(len(flat_trajs['mixed']), len(flat_trajs['good']))
 
     n = len(flat_trajs['mixed'])
-    index = num_good_traj
+    index = num_trajs
 
     equal = False
     while not equal:

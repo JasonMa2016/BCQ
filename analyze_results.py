@@ -74,7 +74,7 @@ def plot_model_reward_over_timesteps_average(env_name='Hopper-v2', model_name='B
 
 
 def plot_model_best_performance_over_trajectories(env_name='Walker2d-v2', model_name='GAIL', buffer_type='PPO',
-                                                  num_trajs=[1,5,10], seeds=[0,1,2,3,4], types=['good', 'mixed']):
+                                                  num_trajs=[1,3,5], seeds=[0,1,2,3,4], types=['good', 'mixed']):
     fig, ax = plt.subplots(figsize=(8, 4))
 
     # buffer_name = "%s_traj100_%s_0" % (buffer_type, env_name)
@@ -88,7 +88,7 @@ def plot_model_best_performance_over_trajectories(env_name='Walker2d-v2', model_
             best_performance = []
 
             for seed in seeds:
-                file_name = 'results/{}_{}_traj{}_seed{}_{}'.format(model_name, env_name, traj, seed, type)
+                file_name = 'results/{}_PPO_{}_traj{}_seed{}_{}'.format(model_name, env_name, traj, seed, type)
                 reward = np.load(file_name + '_rewards.npy')
                 best_performance.append(max(reward))
             best_performance_all.append(best_performance)
@@ -96,12 +96,12 @@ def plot_model_best_performance_over_trajectories(env_name='Walker2d-v2', model_
 
         perf_mu = np.mean(performance, axis=1)
         perf_std =np.std(performance, axis=1)
-
+        print(perf_mu, perf_std)
         ax.plot(num_trajs, perf_mu, label=type, marker='v')
         ax.fill_between(num_trajs, perf_mu + 0.5 * perf_std, perf_mu - 0.5* perf_std, alpha=0.4)
     ax.axhline(y=3750, linestyle='--', label='expert')
     ax.legend(loc='best')
-    ax.set_title('{}'.format(env_name))
+    ax.set_title('{} {} Best Performance '.format(model_name, env_name))
     ax.set_xlabel('Number of Expert Trajectories')
     ax.set_ylabel('Cumulative Rewards')
     plt.savefig('plots/{}_{}_best_performance.png'.format(model_name, env_name))
@@ -146,8 +146,8 @@ def plot_model_reward_over_timesteps_compare_average(env_name='Hopper-v2', model
         ax.fill_between(min_timestep, perf_mu + 0.5 * perf_std, perf_mu - 0.5 * perf_std, alpha=0.4)
 
     ax.legend(loc='best')
-    ax.set_title('{}_{}_traj{}_compare_average'.format(model_name, env_name, num_trajs))
-    ax.set_xlabel('Training Iterations')
+    ax.set_title('{} {} Running Performance'.format(model_name, env_name, num_trajs))
+    ax.set_xlabel('Training Samples')
     ax.set_ylabel('Rewards')
     # plt.show()
     plt.savefig('plots/{}_{}_traj{}_compare_average.png'.format(model_name, env_name, num_trajs, type))
@@ -321,13 +321,15 @@ if __name__ == "__main__":
     #         plot_model_reward_over_timesteps_average(model_name='GAIL', env_name='Walker2d-v2',
     #                                                  num_trajs=traj, type=type)
     # plot_model_reward_over_timesteps_average(model_name='GAIL', type='good', num_trajs=1)
-    # plot_model_reward_over_timesteps_average(model_name='GAIL', type='good', num_trajs=10)
-    for traj in [1,3,5]:
-        plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=traj, env_name='Humanoid-v2', seeds=[0])
-    # plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=1)
-    # plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=10)
 
-    # plot_model_best_performance_over_trajectories(env_name='Hopper-v2')
+    # plot_model_reward_over_timesteps_average(model_name='GAIL', type='good', num_trajs=10)
+    # for traj in [1,3,5]:
+    #     plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=traj, env_name='Humanoid-v2', seeds=[0])
+
+    # plot_model_reward_over_timesteps_compare_average(model_name='GAIL', num_trajs=1)
+    plot_model_reward_over_timesteps_compare_average(env_name='Walker2d-v2', model_name='GAIL', num_trajs=5)
+
+    # plot_model_best_performance_over_trajectories(env_name='Walker2d-v2')
 
     # plot_model_reward_over_timesteps(model_name='GAIL', env_name='Walker2d-v2', seed=0, num_trajs=1)
     # plot_model_reward_over_timesteps(model_name='GAIL', env_name='Walker2d-v2', seed=0, num_trajs=3)

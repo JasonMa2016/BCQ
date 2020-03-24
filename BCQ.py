@@ -197,6 +197,11 @@ class BCQ(object):
 			for param, target_param in zip(self.actor.parameters(), self.actor_target.parameters()):
 				target_param.data.copy_(tau * param.data + (1 - tau) * target_param.data)
 
+	def load(self, filename, directory='imitator_models',):
+		self.actor.load_state_dict(torch.load('%s/%s_actor.pth' % (directory, filename), map_location=torch.device('cpu')))
+		self.critic.load_state_dict(torch.load('%s/%s_critic.pth' % (directory, filename), map_location=torch.device('cpu')))
+		self.vae.load_state_dict(torch.load('%s/%s_vae.pth' % (directory, filename), map_location=torch.device('cpu')))
+
 	def save(self, filename, directory):
 		torch.save(self.actor.state_dict(), '%s/%s_actor.pth' % (directory, filename))
 		torch.save(self.critic.state_dict(), '%s/%s_critic.pth' % (directory, filename))
@@ -224,7 +229,7 @@ class DRBCQ(BCQ):
 			# Sample replay buffer / batch
 			state_np, next_state_np, action, reward, done = replay_buffer.sample(batch_size)
 			reward = torch.FloatTensor(reward).to(device)
-			print(reward)
+			# print(reward)
 			if random:
 				reward = torch.FloatTensor(np.random.random(reward.size())).to(device)
 			else:
@@ -237,7 +242,7 @@ class DRBCQ(BCQ):
 				new_reward = torch.stack(new_reward, dim=2)
 				reward = - torch.var(new_reward, dim=2)
 				reward = torch.FloatTensor(reward).to(device)
-			print(reward)
+			# print(reward)
 			state = torch.FloatTensor(state_np).to(device)
 			action = torch.FloatTensor(action).to(device)
 			next_state = torch.FloatTensor(next_state_np).to(device)
