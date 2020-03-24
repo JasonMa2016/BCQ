@@ -227,9 +227,9 @@ class DRBCQ(BCQ):
 		for it in range(iterations):
 
 			# Sample replay buffer / batch
-			# state_np, next_state_np, action, reward, done = replay_buffer.sample(batch_size)
-			state_np, next_state_np, action, reward, done = replay_buffer.sample_all()
-			batch_size = state_np.shape[0]
+			state_np, next_state_np, action, reward, done = replay_buffer.sample(batch_size)
+			# state_np, next_state_np, action, reward, done = replay_buffer.sample_all()
+			# batch_size = state_np.shape[0]
 
 			reward = torch.FloatTensor(reward).to(device)
 			# print(reward)

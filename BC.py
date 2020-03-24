@@ -144,8 +144,10 @@ class BC(object):
         #     np.array(reward).reshape(-1, 1),
         #     np.array(done).reshape(-1, 1))
 
-        expert_states = torch.FloatTensor(self.expert_states).to(self.device)
-        expert_actions = torch.FloatTensor(self.expert_actions).to(self.device)
+        # expert_states = torch.FloatTensor(self.expert_states).to(self.device)
+        # expert_actions = torch.FloatTensor(self.expert_actions).to(self.device)
+        expert_states = torch.FloatTensor(np.array(expert_states)).to(self.device)
+        expert_actions = torch.FloatTensor(np.array(expert_actions)).to(self.device)
 
         predicted_actions = self.actor.select_action(expert_states)
         self.actor_optimizer.zero_grad()

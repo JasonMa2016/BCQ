@@ -42,7 +42,7 @@ def assets_dir():
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--env_name", default="Humanoid-v2")              # OpenAI gym environment name
+    parser.add_argument("--env_name", default="Walker2d-v2")              # OpenAI gym environment name
     parser.add_argument("--seed", default=0, type=int)                  # Sets Gym, PyTorch and Numpy seeds
     parser.add_argument("--buffer_type", default="Robust")              # Prepends name to filename.
     parser.add_argument("--num_trajs", default=5, type=int)            # Number of expert trajectories to use
