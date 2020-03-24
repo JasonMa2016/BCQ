@@ -15,6 +15,24 @@ class ReplayBuffer(object):
     def add(self, data):
         self.storage.append(data)
 
+    def sample_all(self):
+        ind = len(self.storage)
+        state, next_state, action, reward, done = [], [], [], [], []
+
+        for i in range(ind):
+            s, s2, a, r, d = self.storage[i]
+            state.append(np.array(s, copy=False))
+            next_state.append(np.array(s2, copy=False))
+            action.append(np.array(a, copy=False))
+            reward.append(np.array(r, copy=False))
+            done.append(np.array(d, copy=False))
+
+        return (np.array(state),
+            np.array(next_state),
+            np.array(action),
+            np.array(reward).reshape(-1, 1),
+            np.array(done).reshape(-1, 1))
+
     def sample(self, batch_size):
         ind = np.random.randint(0, len(self.storage), size=batch_size)
         # ind = np.random.choice(batch_size, batch_size, replace=False)

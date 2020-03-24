@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed043476-e961-4200-95e0-b4ec649a8c8f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/scripts/mujoco_drbcq.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/mujoco_drbcq.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BCQ.py" beforeDir="false" afterPath="$PROJECT_DIR$/BCQ.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils_local.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils_local.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +33,7 @@
           <entry key="npy" value="22" />
           <entry key="p" value="4" />
           <entry key="png" value="724" />
-          <entry key="py" value="455" />
+          <entry key="py" value="459" />
           <entry key="pyi" value="1" />
           <entry key="sh" value="93" />
           <entry key="txt" value="12" />
@@ -45,7 +46,7 @@
           <entry key="Image" value="724" />
           <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="16" />
-          <entry key="Python" value="455" />
+          <entry key="Python" value="459" />
           <entry key="PythonStub" value="1" />
           <entry key="SQL" value="22" />
         </counts>
@@ -53,7 +54,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="48" />
-          <entry key="py" value="35377" />
+          <entry key="py" value="35484" />
           <entry key="sh" value="1843" />
         </counts>
       </usages-collector>
@@ -61,7 +62,7 @@
         <counts>
           <entry key="Bash" value="1843" />
           <entry key="PLAIN_TEXT" value="48" />
-          <entry key="Python" value="35377" />
+          <entry key="Python" value="35484" />
         </counts>
       </usages-collector>
     </session>
@@ -69,14 +70,50 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BCQ.py">
+        <entry file="file://$PROJECT_DIR$/analyze_bcq.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="582">
-              <caret line="244" column="20" selection-start-line="244" selection-end-line="245" />
+            <state relative-caret-position="-489">
+              <caret line="133" column="33" lean-forward="true" selection-start-line="133" selection-start-column="33" selection-end-line="133" selection-end-column="33" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
-                <marker date="1585013331000" expanded="true" signature="6292:6647" ph="..." />
-                <marker date="1585013331000" expanded="true" signature="6683:6686" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analyze_results.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="6270">
+              <caret line="330" lean-forward="true" selection-start-line="330" selection-end-line="330" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analyze_imitation_drbcq.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3670">
+              <caret line="188" column="71" selection-start-line="188" selection-start-column="71" selection-end-line="188" selection-end-column="71" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BCQ.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="376">
+              <caret line="232" selection-start-line="232" selection-end-line="232" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+                <marker date="1585018167000" expanded="true" signature="6292:6647" ph="..." />
+                <marker date="1585018167000" expanded="true" signature="6683:6686" ph="..." />
               </folding>
             </state>
           </provider>
@@ -85,8 +122,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train_drbcq_traj.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
+            <state relative-caret-position="405">
+              <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -94,7 +131,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/mujoco_drbcq.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="171">
@@ -104,19 +141,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/mujoco_bc.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils_local.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="120" column="4" selection-start-line="120" selection-start-column="4" selection-end-line="120" selection-end-column="4" />
+              <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+              <folding>
+                <marker date="1585018111000" expanded="true" signature="390:1015" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -134,10 +165,21 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analyze_expert_results.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-293">
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="68" selection-start-line="68" selection-end-line="69" selection-end-column="46" />
+            <state relative-caret-position="-843">
+              <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -177,7 +219,6 @@
       <find>iter</find>
       <find>actor</find>
       <find>epsilon</find>
-      <find>batch_size</find>
       <find>running_state</find>
       <find>load</find>
       <find>num_traj</find>
@@ -185,6 +226,7 @@
       <find>action_log</find>
       <find>zoom</find>
       <find>action_log_std</find>
+      <find>batch_size</find>
       <find>print</find>
     </findStrings>
   </component>
@@ -239,12 +281,12 @@
         <option value="$PROJECT_DIR$/analyze_imitation_drbcq.py" />
         <option value="$PROJECT_DIR$/analyze_imitation.py" />
         <option value="$PROJECT_DIR$/analyze_bcq.py" />
-        <option value="$PROJECT_DIR$/utils_local.py" />
-        <option value="$PROJECT_DIR$/BCQ.py" />
         <option value="$PROJECT_DIR$/BC.py" />
         <option value="$PROJECT_DIR$/train_drbcq_traj.py" />
         <option value="$PROJECT_DIR$/train_bc.py" />
         <option value="$PROJECT_DIR$/scripts/mujoco_drbcq.sh" />
+        <option value="$PROJECT_DIR$/utils_local.py" />
+        <option value="$PROJECT_DIR$/BCQ.py" />
       </list>
     </option>
   </component>
@@ -320,7 +362,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.train_bc">
+  <component name="RunManager" selected="Python.train_drbcq_traj">
     <configuration name="analyze_bcq" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="BCQ" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -435,8 +477,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.train_bc" />
         <item itemvalue="Python.train_drbcq_traj" />
+        <item itemvalue="Python.train_bc" />
         <item itemvalue="Python.analyze_bcq" />
         <item itemvalue="Python.analyze_imitation" />
         <item itemvalue="Python.analyze_imitation_drbcq" />
@@ -460,12 +502,12 @@
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23687424" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23687424" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32959184" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.22346939" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22346939" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -506,21 +548,8 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/plots/GAIL_Hopper-v2_traj1_compare_average.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_traj3_compare_average.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analyze_results.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="330" lean-forward="true" selection-start-line="330" selection-end-line="330" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/plots/BC_Hopper-v2_batch100_traj1_reward_plot.png">
       <provider selected="true" editor-type-id="images" />
@@ -596,28 +625,8 @@
     <entry file="file://$PROJECT_DIR$/plots/GAIL_Walker2d-v2_noise10_noise20.3.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/analyze_bcq.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="133" column="33" lean-forward="true" selection-start-line="133" selection-start-column="33" selection-end-line="133" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plots/BC_Walker2d-v2_batch100_traj5_reward_plot.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/analyze_imitation_drbcq.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1049">
-          <caret line="188" column="71" selection-start-line="188" selection-start-column="71" selection-end-line="188" selection-end-column="71" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/analyze_imitation.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -680,20 +689,27 @@
     <entry file="file://$PROJECT_DIR$/plots/BCQ_Walker2d-v2_traj5_reward_plot.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/BC.py">
+    <entry file="file://$PROJECT_DIR$/scripts/mujoco_bc.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="68" selection-start-line="68" selection-end-line="69" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="76">
+          <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils_local.py">
+    <entry file="file://$PROJECT_DIR$/scripts/mujoco_drbcq.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="120" column="4" selection-start-line="120" selection-start-column="4" selection-end-line="120" selection-end-column="4" />
+        <state relative-caret-position="171">
+          <caret line="9" column="97" selection-start-line="9" selection-start-column="97" selection-end-line="9" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BC.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-843">
+          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -707,39 +723,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BCQ.py">
+    <entry file="file://$PROJECT_DIR$/analyze_expert_results.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="244" column="20" selection-start-line="244" selection-end-line="245" />
+        <state relative-caret-position="-293">
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analyze_bcq.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-489">
+          <caret line="133" column="33" lean-forward="true" selection-start-line="133" selection-start-column="33" selection-end-line="133" selection-end-column="33" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
-            <marker date="1585013331000" expanded="true" signature="6292:6647" ph="..." />
-            <marker date="1585013331000" expanded="true" signature="6683:6686" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analyze_results.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6270">
+          <caret line="330" lean-forward="true" selection-start-line="330" selection-end-line="330" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analyze_imitation_drbcq.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3670">
+          <caret line="188" column="71" selection-start-line="188" selection-start-column="71" selection-end-line="188" selection-end-column="71" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils_local.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+          <folding>
+            <marker date="1585018111000" expanded="true" signature="390:1015" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/train_drbcq_traj.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
+        <state relative-caret-position="405">
+          <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/mujoco_bc.sh">
+    <entry file="file://$PROJECT_DIR$/BCQ.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/mujoco_drbcq.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="97" selection-start-line="9" selection-start-column="97" selection-end-line="9" selection-end-column="97" />
+        <state relative-caret-position="376">
+          <caret line="232" selection-start-line="232" selection-end-line="232" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <marker date="1585018167000" expanded="true" signature="6292:6647" ph="..." />
+            <marker date="1585018167000" expanded="true" signature="6683:6686" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
