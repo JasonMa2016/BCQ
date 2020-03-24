@@ -46,16 +46,15 @@ if __name__ == "__main__":
     parser.add_argument("--seed", default=0, type=int)                  # Sets Gym, PyTorch and Numpy seeds
     parser.add_argument("--buffer_type", default="Robust")              # Prepends name to filename.
     parser.add_argument("--num_trajs", default=5, type=int)            # Number of expert trajectories to use
-    parser.add_argument("--eval_freq", default=4e2, type=float)         # How often (time steps) we evaluate
+    parser.add_argument("--eval_freq", default=2e2, type=float)         # How often (time steps) we evaluate
     # parser.add_argument("--max_timesteps", default=1e6, type=float)     # Max time steps to run environment for
     parser.add_argument("--ensemble", action='store_true', default=False)
     parser.add_argument("--type", default='good')
-    parser.add_argument("--max_iters", default=2e3, type=int)
+    parser.add_argument("--max_iters", default=2e4, type=int)
     parser.add_argument("--batch_size", default=1e2, type=int)
 
     args = parser.parse_args()
 
-    args.ensemble = True
 
     args.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
