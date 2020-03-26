@@ -72,7 +72,7 @@ if __name__ == "__main__":
     imitator = BCQ.DRBCQ(state_dim, action_dim, max_action)
     model_paths = []
     for sample in range(args.num_imitators):
-        model_path = 'imitator_models/BC_{}_traj{}_seed0_sample{}_{}.p'.format(args.env_name, args.num_trajs, sample, expert_type)
+        model_path = 'imitator_models/BC_{}_traj5_seed0_sample{}_{}.p'.format(args.env_name, sample, expert_type)
 
         model_paths.append(model_path)
     imitator.set_ensemble(model_paths)
