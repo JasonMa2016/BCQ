@@ -54,7 +54,7 @@ if __name__ == "__main__":
     parser.add_argument("--batch_size", default=1e2, type=int)
 
     args = parser.parse_args()
-    args.ensemble = True
+    # args.ensemble = True
 
     args.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
