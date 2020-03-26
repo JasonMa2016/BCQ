@@ -66,8 +66,8 @@ class Policy(nn.Module):
 
     def get_log_prob(self, x, actions):
         action_mean, action_log_std, action_std = self.forward(x)
-        action_log_std = nn.Parameter(torch.ones(1, self.action_dim) * self.log_std)
-        action_std = torch.exp(action_log_std)
+        # action_log_std = nn.Parameter(torch.ones(1, self.action_dim) * self.log_std)
+        # action_std = torch.exp(action_log_std)
 
         return normal_log_density(actions, action_mean, action_log_std, action_std)
 
