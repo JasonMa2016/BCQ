@@ -18,10 +18,10 @@ if __name__ == "__main__":
     parser.add_argument("--env_name", default="Walker2d-v2")  # OpenAI gym environment name
     parser.add_argument("--seed", default=0, type=int)  # Sets Gym, PyTorch and Numpy seeds
     parser.add_argument("--buffer_type", default="Robust")  # Prepends name to filename.
-    parser.add_argument("--eval_freq", default=2e2, type=float)  # How often (time steps) we evaluate
+    parser.add_argument("--eval_freq", default=1e2, type=float)  # How often (time steps) we evaluate
     parser.add_argument("--num_trajs", default=5, type=int)            # Number of expert trajectories to use
     parser.add_argument("--num_imitators", default=5, type=int)     # Number of BC imitators in the ensemble
-    parser.add_argument("--max_timesteps", default=2e4, type=float)  # Max time steps to run environment for
+    parser.add_argument("--max_timesteps", default=1e4, type=float)  # Max time steps to run environment for
     parser.add_argument("--type", default="good") # Good or mixed expert trajectories
     parser.add_argument("--random", action='store_true', default=False) # Random reward
 
@@ -29,6 +29,9 @@ if __name__ == "__main__":
     expert_type = args.type
 
     file_name = "DRBCQ_%s_traj%s_seed%s_%s" % (args.env_name, args.num_trajs,
+                                               str(args.seed), expert_type)
+    if args.random:
+        file_name = "RBCQ_%s_traj%s_seed%s_%s" % (args.env_name, args.num_trajs,
                                                str(args.seed), expert_type)
     # args.random=True
     if args.random:

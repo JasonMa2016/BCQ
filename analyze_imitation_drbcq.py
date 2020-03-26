@@ -98,7 +98,7 @@ def likelihood_both(env_name='Walker2d-v2', model_name='DRBCQ', traj=5, seed=0, 
         imitator_name = '{}_{}_traj{}_seed{}_{}'.format(model_name, env_name, traj, seed, type)
         imitator = Policy(17,6)
         # print(imitator.action_log_std)
-        imitator.load_state_dict(torch.load('imitator_models/%s.p' % (imitator_name)))
+        imitator.load_state_dict(torch.load('imitator_models/%s_actor.pth' % (imitator_name)))
         # print(imitator.action_log_std)
         # return 0
         probs = []
@@ -406,7 +406,7 @@ def analyze_bcq_with_noise(env_name='Walker2d-v2', model_name='BCQ', num_trajs=[
 if __name__ == "__main__":
 
     # likelihood('Walker2d-v2', model_name='BC')
-    # likelihood_both('Walker2d-v2', model_name='BC')
+    likelihood_both('Walker2d-v2')
     plot_distribution()
     # analyze_model_with_noise(model_name='BC')
 

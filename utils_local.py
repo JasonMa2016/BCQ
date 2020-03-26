@@ -179,7 +179,7 @@ def collect_trajectories_rewards(expert_trajs, num_trajs=5, type='good'):
     else:
         return flat_trajs['imperfect']
 
-def evaluate_model(env, model, running_state=None, num_trajs=50, verbose=True, render=False, floattensor=False):
+def evaluate_model(env, model, BCQ=False, running_state=None, num_trajs=50, verbose=True, render=False, floattensor=False):
     """seeding"""
     np.random.seed(2020)
     torch.manual_seed(2020)
@@ -199,9 +199,13 @@ def evaluate_model(env, model, running_state=None, num_trajs=50, verbose=True, r
                 state_var = torch.tensor(state).unsqueeze(0)
             with torch.no_grad():
                 # select deterministically
-                action = model(state_var)[0][0].numpy()
+                if not BCQ:
+                    action = model(state_var)[0][0].numpy()
+                else:
+                    action = model.select_action(state_var)
                 # action = imitator.select_action(state_var)[0].numpy()
-            action = int(action) if model.is_disc_action else action.astype(np.float64)
+            # action = int(action) if model.is_disc_action else action.astype(np.float64)
+            action = action.astype(np.float64)
             next_state, reward, done, _ = env.step(action)
             next_state = running_state(next_state)
             episode_rewards += reward

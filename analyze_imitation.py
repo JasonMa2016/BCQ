@@ -259,7 +259,7 @@ def analyze_model_with_noise(env_name='Walker2d-v2', model_name='GAIL', num_traj
     plt.close()
 
 
-def plot_model_best_performance_over_trajectories(env_name='Walker2d-v2', model_name='GAIL', buffer_type='PPO',
+def plot_model_best_performance_over_trajectories(expert_line=3750, env_name='Walker2d-v2', model_name='GAIL', buffer_type='PPO',
                                                   num_trajs=[1,3,5], seeds=[0,1,2,3,4], types=['good', 'mixed']):
     fig, ax = plt.subplots(figsize=(8, 4))
 
@@ -287,7 +287,7 @@ def plot_model_best_performance_over_trajectories(env_name='Walker2d-v2', model_
         print(perf_mu, perf_std)
         ax.plot(num_trajs, perf_mu, label=type, marker='v')
         ax.fill_between(num_trajs, perf_mu + 0.5 * perf_std, perf_mu - 0.5* perf_std, alpha=0.4)
-    ax.axhline(y=3750, linestyle='--', label='expert')
+    ax.axhline(y=expert_line, linestyle='--', label='expert')
     ax.legend(loc='best')
     ax.set_title('{} {} Best Performance '.format(model_name, env_name))
     ax.set_xlabel('Number of Expert Trajectories')
@@ -300,6 +300,6 @@ if __name__ == "__main__":
     # likelihood('Walker2d-v2')
     # likelihood_both('Walker2d-v2')
     # plot_distribution()
-    analyze_model_with_noise(noise1=0)
-    analyze_model_with_noise(noise1=0.3)
-    # plot_model_best_performance_over_trajectories(model_name='BC')
+    # analyze_model_with_noise(noise1=0)
+    # analyze_model_with_noise(noise1=0.3)
+    plot_model_best_performance_over_trajectories(model_name='DRBCQ')
